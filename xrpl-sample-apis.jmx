@@ -65,6 +65,15 @@
           <boolProp name="TransactionController.parent">false</boolProp>
         </TransactionController>
         <hashTree>
+          <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random ledger index number" enabled="true">
+            <stringProp name="maximumValue">85478162</stringProp>
+            <stringProp name="minimumValue">71899701</stringProp>
+            <stringProp name="outputFormat"></stringProp>
+            <boolProp name="perThread">true</boolProp>
+            <stringProp name="randomSeed"></stringProp>
+            <stringProp name="variableName">ledgerIndex</stringProp>
+          </RandomVariableConfig>
+          <hashTree/>
           <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="ws Account_info " enabled="false">
             <boolProp name="createNewConnection">true</boolProp>
             <boolProp name="TLS">false</boolProp>
@@ -541,6 +550,34 @@ log.info(&quot;payload is: &quot; + payload);</stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
             <stringProp name="TestPlan.comments">https://xrpl.org/ledger.html
+</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP ledger_data" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&quot;method&quot;:&quot;ledger_data&quot;,&quot;params&quot;: [{&quot;ledger_index&quot;:&quot;${ledgerIndex}&quot;,&quot;binary&quot;:false}]}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">s1.ripple.com</stringProp>
+            <stringProp name="HTTPSampler.port">51234</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path"></stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="TestPlan.comments">https://xrpl.org/ledger_data.html
 </stringProp>
           </HTTPSamplerProxy>
           <hashTree/>

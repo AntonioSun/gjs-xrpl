@@ -22,6 +22,10 @@ gradle-app.setting
 
 # jmeter
 jmeter.log
+jmeter.properties
+saveservice.properties
+upgrade.properties
+*.jtl
 
 # xrpl
 accounts.csv

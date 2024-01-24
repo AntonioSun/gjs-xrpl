@@ -32,6 +32,7 @@ start {
       variable(name: 'c_cfg_TestID', value: '${c_cfg_TestName}${c_cfg_TimeTag}', description: 'Test ID, for identification and reporting purpose')
     }
 
+    debug '---- default request settings ----', enabled: false
     defaults(protocol: '${c_app_protocol}', domain: '${c_app_host_name}', port:  '${c_app_host_port}')
     headers {
       header(name: 'Host', value: '${c_app_host_name}')
@@ -45,19 +46,22 @@ start {
     cookies()
     cache()
 
+    debug '---- default error checkings ----', enabled: false
+    check_response {
+      status() eq 200 or 302
+    }
+    check_response applyTo: 'parent', {
+      text() excludes '${c_app_error_kw}'
+    }
+
+    debug '---- Thread Groups starts ----', enabled: false
     group(name: 'Thread Group', delay: load_settings.v.server_info.delay, delayedStart: true,
       users: load_settings.v.server_info.users, rampUp: load_settings.v.server_info.ramp, keepUser: false,
-      loops: load_settings.v.server_info.loops, duration: load_settings.v.server_info.duration, scheduler: true) {
-
-      check_response {
-        status() eq 200 or 302
-      }
-      check_response applyTo: 'parent', {
-        text() excludes '${c_app_error_kw}'
-      }
+      duration: load_settings.v.server_info.duration, loops: load_settings.v.server_info.loops,
+      scheduler: load_settings.v.server_info.scheduler, enabled: load_settings.v.server_info.enabled) {
 
       debug '--== Tx: server_info ==--', displayJMeterVariables: true, displayJMeterProperties: true, enabled: false
-      transaction('Tx01 server_info') {
+      transaction('Tx01 server_info', generate: true) {
         
         http (method: 'POST', path: '/login', name: 'Tx01r server_info') {
           body '{"method":"server_info"}'
@@ -66,15 +70,17 @@ start {
     
       }
 
-      flow (name: 'Think Time Flow Control Action') {
+      flow (name: 'Think Time Flow Control', enabled: false) {
         uniform_timer (name: 'Think Time', delay: '${c_tt_delay}', range: '${c_tt_range}')
       }
 
-      flow (name: 'Pace Time Flow Control Action') {
+      flow (name: 'Pace Time Flow Control') {
         uniform_timer (name: 'Pace Time', delay: '${c_tt_delay}', range: '${c_tt_range}')
       }
       // end group
     }
+
+    debug '---- Thread Groups ends ----', enabled: false
 
     backend(name: 'InfluxDb Backend', enabled: false) {
       arguments {

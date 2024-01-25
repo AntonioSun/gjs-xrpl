@@ -63,7 +63,7 @@ start {
       debug '--== Tx: server_info ==--', displayJMeterVariables: true, displayJMeterProperties: true, enabled: false
       transaction('Tx01 server_info', generate: true) {
         
-        http (method: 'POST', path: '/login', name: 'Tx01r server_info') {
+        http (method: 'POST', path: '/', name: 'Tx01r server_info') {
           body '{"method":"server_info"}'
           //extract_jmes expression: 'book.id', variable: 'p_bookId'
         }

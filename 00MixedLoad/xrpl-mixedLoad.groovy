@@ -55,7 +55,7 @@ start {
     }
 
     debug '---- Thread Groups starts ----', enabled: false
-    group(name: 'Thread Group', delay: load_settings.v.server_info.delay, delayedStart: true,
+    group(name: 'Thread Group server_info', delay: load_settings.v.server_info.delay, delayedStart: true,
       users: load_settings.v.server_info.users, rampUp: load_settings.v.server_info.ramp, keepUser: false,
       duration: load_settings.v.server_info.duration, loops: load_settings.v.server_info.loops,
       scheduler: load_settings.v.server_info.scheduler, enabled: load_settings.v.server_info.enabled) {
@@ -78,6 +78,15 @@ start {
         uniform_timer (name: 'Pace Time', delay: '${c_tt_delay}', range: '${c_tt_range}')
       }
       // end group
+    }
+
+    group(name: 'Thread Group ledger_data', delay: load_settings.v.ledger_data.delay, delayedStart: true,
+      users: load_settings.v.ledger_data.users, rampUp: load_settings.v.ledger_data.ramp, keepUser: false,
+      duration: load_settings.v.ledger_data.duration, loops: load_settings.v.ledger_data.loops,
+      scheduler: load_settings.v.ledger_data.scheduler, enabled: load_settings.v.ledger_data.enabled) {
+
+      // cannot use "../"
+      insert 'Ledger_data/ledger_data_ins.groovy'
     }
 
     debug '---- Thread Groups ends ----', enabled: false

@@ -32,6 +32,9 @@ start {
       variable(name: 'c_cfg_TestID', value: '${c_cfg_TestName}${c_cfg_TimeTag}', description: 'Test ID, for identification and reporting purpose')
     }
 
+    csv name: 'CSV accounts', file: 'accounts.csv', variables: ['s_account']
+    csv name: 'CSV nft_ids', file: 'nft_ids.csv', variables: ['s_nft_id']
+
     debug '---- default request settings ----', enabled: false
     defaults(protocol: '${c_app_protocol}', domain: '${c_app_host_name}', port:  '${c_app_host_port}')
     headers {
@@ -72,6 +75,44 @@ start {
 
       flow (name: 'Think Time Flow Control', enabled: false) {
         uniform_timer (name: 'Think Time', delay: '${c_tt_delay}', range: '${c_tt_range}')
+      }
+
+      flow (name: 'Pace Time Flow Control') {
+        uniform_timer (name: 'Pace Time', delay: '${c_tt_delay}', range: '${c_tt_range}')
+      }
+      // end group
+    }
+
+    group(name: 'Thread Group account_info', delay: load_settings.v.account_info.delay, delayedStart: true,
+      users: load_settings.v.account_info.users, rampUp: load_settings.v.account_info.ramp, keepUser: false,
+      duration: load_settings.v.account_info.duration, loops: load_settings.v.account_info.loops,
+      scheduler: load_settings.v.account_info.scheduler, enabled: load_settings.v.account_info.enabled) {
+
+      debug '--== Tx: account_info ==--', displayJMeterVariables: true, displayJMeterProperties: true, enabled: false
+      transaction('Tx01 account_info', generate: true) {
+
+        http (method: 'POST', path: '/', name: 'Tx01r account_info') {
+          body '''{"method":"account_info","params": [{"account":"${s_account}","ledger_index":"validated","queue":false}]}'''
+        }
+
+      }
+      flow (name: 'Pace Time Flow Control') {
+        uniform_timer (name: 'Pace Time', delay: '${c_tt_delay}', range: '${c_tt_range}')
+      }
+    }
+
+    group(name: 'Thread Group nft_info', delay: load_settings.v.nft_info.delay, delayedStart: true,
+      users: load_settings.v.nft_info.users, rampUp: load_settings.v.nft_info.ramp, keepUser: false,
+      duration: load_settings.v.nft_info.duration, loops: load_settings.v.nft_info.loops,
+      scheduler: load_settings.v.nft_info.scheduler, enabled: load_settings.v.nft_info.enabled) {
+
+      debug '--== Tx: nft_info ==--', displayJMeterVariables: true, displayJMeterProperties: true, enabled: false
+      transaction('Tx01 nft_info', generate: true) {
+
+        http (method: 'POST', path: '/', name: 'Tx01r nft_info') {
+          body '''{"method":"nft_info","params": [{"nft_id":"${s_nft_id}"}]}'''
+        }
+
       }
 
       flow (name: 'Pace Time Flow Control') {

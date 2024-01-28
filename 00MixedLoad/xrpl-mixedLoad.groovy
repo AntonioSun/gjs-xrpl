@@ -6,6 +6,11 @@
 import load_settings
 
 start {
+
+  // develop stage, 'dev', 'alpha', ... or 'prod'
+  def stage  =  System.env['TEST_STAGE'] ?: 'dev'
+  def notProd = stage != 'prod'
+
   plan {
     variables {
       // using __env() custom JMeter Functions, https://jmeter-plugins.org/wiki/Functions/
@@ -118,8 +123,7 @@ start {
       flow (name: 'Pace Time Flow Control') {
         uniform_timer (name: 'Pace Time', delay: '${c_tt_delay}', range: '${c_tt_range}')
       }
-      // end group
-    }
+   }
 
     group(name: 'Thread Group ledger_data', delay: load_settings.v.ledger_data.delay, delayedStart: true,
       users: load_settings.v.ledger_data.users, rampUp: load_settings.v.ledger_data.ramp, keepUser: false,
@@ -145,7 +149,7 @@ start {
         argument(name: "eventTags", value: '')
       }
     }
-    summary(file: '${c_cfg_TestID}.jtl', enabled: true)
-    view () // View Result Tree
+    summary(file: '${c_cfg_TestID}.jtl', enabled: notProd)
+    view (enabled: notProd) // View Result Tree
   }
 }

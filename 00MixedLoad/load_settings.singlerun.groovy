@@ -5,9 +5,9 @@ class load_settings {
     def static tduration = System.env['TEST_DURATION'] ?: 120
 
     def static v = [
-        server_info: [ users: 1, ramp: tramp, delay: 0, loops: 1, duration: tduration, scheduler: true, enabled: true ],
-        account_info: [ users: 1, ramp: tramp, delay: 0, loops: 1, duration: tduration, scheduler: true, enabled: true ],
-        nft_info: [ users: 1, ramp: tramp, delay: 0, loops: 1, duration: tduration, scheduler: true, enabled: true ],
-        ledger_data: [ users: 1, ramp: tramp, delay: 0, loops: 1, duration: tduration, scheduler: true, enabled: true ],
+        server_info:  [ enabled: true, users: 1, ramp: tramp, delay: 0, loops: 1, duration: tduration, scheduler: true ],
+        account_info: [ enabled: true, users: 1, ramp: tramp, delay: 0, loops: 1, duration: tduration, scheduler: true ],
+        nft_info:     [ enabled: true, users: 1, ramp: tramp, delay: 0, loops: 1, duration: tduration, scheduler: true ],
+        ledger_data:  [ enabled: true, users: 1, ramp: tramp, delay: 0, loops: 1, duration: tduration, scheduler: true ],
     ]
 }

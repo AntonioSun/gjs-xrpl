@@ -1,0 +1,71 @@
+Variables:
+  - {"Name":"p_session_email_","Value":"john"}
+  - {"Name":"p_session_password_","Value":"john"}
+
+Reqs:
+
+
+- Transaction: Sign in
+  Requests:
+
+  - URL: http://localhost:7070/login
+    Method: POST
+    Headers:
+      - { Name: 'Accept', Value: 'text/html, application/xhtml+xml' }
+    PostData:
+      Params:
+        - { Name: 'username', Value: '${p_session_email_}' }
+        - { Name: 'password', Value: '${p_session_password_}' }
+
+
+- Transaction: GET books
+  Requests:
+
+  - URL: http://localhost:7070/api/books
+    Method: GET
+    QueryString:
+        - { Name: 'limit', Value: '10' }
+    Code: |
+      extract_json expressions: '$..id', variables: 'p_bookId'
+
+
+- Transaction: GET a book
+  Requests:
+
+  - URL: http://localhost:7070/api/books/${p_bookId}
+    Method: GET
+    Code: |
+      extract_json expressions: '$..author.id', variables: 'p_authorId'
+
+
+- Transaction: GET authors
+  Requests:
+  - URL: http://localhost:7070/api/authors/${p_authorId}
+    Method: GET
+    Code: |
+      extract_jmes expression: 'id', variable: 'p_authorId'
+      extract_jmes expression: 'bio', variable: 'p_authorBio'
+
+
+# - Transaction: Post comment
+#   Requests:
+
+#   - URL: http://localhost:7070/api/books/${p_bookId}/comments
+#     Method: POST
+#     PostData:
+#       Params:
+#         - { Name: 'title', Value: 'Short comment' }
+#         - { Name: 'content', Value: 'Short content' }
+
+
+- Transaction: Post comment
+  Requests:
+
+  - URL: http://localhost:7070/api/books/${p_bookId}/comments
+    Method: POST
+    PostData:
+      Text: |
+        {
+        "title": "Short comment",
+        "content": "Short content"
+        }

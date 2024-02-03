@@ -21,14 +21,10 @@ start {
       variable(name: 'c_pt_range', value: '${__P(c_pt_range, 120000)}', description: 'Pace Time: Maximum random number of ms to delay')
       variable(name: 'c_pt_delay', value: '${__P(c_pt_delay, 60000)}', description: 'Pace Time: Ms to delay in addition to random time')
       variable(name: 'c_cfg_TestName', value: 'book', description: 'Test name to identify different tests')
-      variable(name: 'c_cfg_TimeTag', value: '_${START.YMD}-${START.HMS}', description: 'Time based tag to identify different tests')
       variable(name: 'c_cfg_Influxdb', value: '${__env(c_cfg_Influxdb, , localhost)}', description: 'Influxdb server host name')
       variable(name: 'p_session_email_', value: 'john')
       variable(name: 'p_session_password_', value: 'john')
       }
-    variables {
-      variable(name: 'c_cfg_TestID', value: '${c_cfg_TestName}${c_cfg_TimeTag}', description: 'Test ID, for identification and reporting purpose')
-    }
 
     group(name: 'Thread Group', delay: '${c_lt_delay}', delayedStart: true,
       users: '${c_lt_users}', rampUp: '${c_lt_ramp}', keepUser: false,
@@ -53,8 +49,8 @@ start {
         text() excludes '${c_app_error_kw}'
       }
 
-      jsrsampler '--== Tx: Sign in ==--', inline: '', enabled: false
-      transaction('Tx01 Sign in') {
+      debug '--== Tx: Sign in ==--', enabled: false
+      transaction('Tx01 Sign in', generate: true) {
         
         http (method: 'POST', path: '/login', name: 'Tx01r login') {
           headers {
@@ -74,8 +70,8 @@ start {
         uniform_timer (name: 'Think Time', delay: '${c_tt_delay}', range: '${c_tt_range}')
       }
 
-      jsrsampler '--== Tx: GET books ==--', inline: '', enabled: false
-      transaction('Tx02 GET books') {
+      debug '--== Tx: GET books ==--', enabled: false
+      transaction('Tx02 GET books', generate: true) {
         
         http (method: 'GET', path: '/api/books', name: 'Tx02r books') {
           
@@ -93,8 +89,8 @@ start {
         uniform_timer (name: 'Think Time', delay: '${c_tt_delay}', range: '${c_tt_range}')
       }
 
-      jsrsampler '--== Tx: GET a book ==--', inline: '', enabled: false
-      transaction('Tx03 GET a book') {
+      debug '--== Tx: GET a book ==--', enabled: false
+      transaction('Tx03 GET a book', generate: true) {
         
         http (method: 'GET', path: '/api/books/${p_bookId}', name: 'Tx03r ${p_bookId}') {
           
@@ -108,8 +104,8 @@ start {
         uniform_timer (name: 'Think Time', delay: '${c_tt_delay}', range: '${c_tt_range}')
       }
 
-      jsrsampler '--== Tx: GET authors ==--', inline: '', enabled: false
-      transaction('Tx04 GET authors') {
+      debug '--== Tx: GET authors ==--', enabled: false
+      transaction('Tx04 GET authors', generate: true) {
         
         http (method: 'GET', path: '/api/authors/${p_authorId}', name: 'Tx04r ${p_authorId}') {
           
@@ -124,8 +120,8 @@ start {
         uniform_timer (name: 'Think Time', delay: '${c_tt_delay}', range: '${c_tt_range}')
       }
 
-      jsrsampler '--== Tx: Post comment ==--', inline: '', enabled: false
-      transaction('Tx05 Post comment') {
+      debug '--== Tx: Post comment ==--', enabled: false
+      transaction('Tx05 Post comment', generate: true) {
         
         http (method: 'POST', path: '/api/books/${p_bookId}/comments', name: 'Tx05r comments') {
           
@@ -151,20 +147,23 @@ start {
       // end group
     }
 
-    backend(name: 'InfluxDb Backend', enabled: false) {
+    backend(name: 'InfluxDb Backend', classname: 'rocks.nt.apm.jmeter.JMeterInfluxDBBackendListenerClient') {
       arguments {
-        argument(name: 'influxdbMetricsSender', value: 'org.apache.jmeter.visualizers.backend.influxdb.HttpMetricsSender')
-        argument(name: 'influxdbUrl', value: 'http://${c_cfg_Influxdb}:8086/write?db=jmeter_results')
-        argument(name: 'application', value: '${c_cfg_TestID}')
-        argument(name: 'measurement', value: 'jmeter')
-        argument(name: 'summaryOnly', value: 'false')
-        argument(name: 'samplersRegex', value: '^Tx\\d+.*')
-        argument(name: 'percentiles', value: '50;90;95;99')
-        argument(name: 'testTitle', value: '${c_cfg_TestID} - users: ${c_lt_users}, duration ${c_lt_duration}, rampup: ${c_lt_ramp}')
-        argument(name: "eventTags", value: '')
+        argument(name: 'testName', value: '${c_cfg_TestName}')
+        argument(name: 'nodeName', value: '${c_cfg_TestID} - users: ${c_lt_users}, duration ${c_lt_duration}, rampup: ${c_lt_ramp}')
+        argument(name: 'runId', value: '''${c_cfg_TestName}_${__time(yyMMdd'-'hhmmss)}''')
+        argument(name: 'influxDBHost', value: '${c_cfg_Influxdb}')
+        argument(name: 'influxDBPort', value: '8086')
+        argument(name: 'influxDBUser', value: 'admin')
+        argument(name: 'influxDBPassword', value: 'Admin4perf@Ripp13%123')
+        argument(name: 'influxDBDatabase', value: 'jmeter')
+        argument(name: 'retentionPolicy', value: 'autogen')
+        argument(name: 'samplersList', value: '^Tx\\d+.*')
+        argument(name: 'useRegexForSamplerList', value: 'true')
+        argument(name: 'recordSubSamples', value: 'true')
       }
     }
-    summary(file: '${c_cfg_TestID}.jtl', enabled: true)
+    summary(file: '''${c_cfg_TestName}_${__time(yyMMdd'-'hhmmss)}.jtl''', enabled: true)
     view () // View Result Tree
   }
 }

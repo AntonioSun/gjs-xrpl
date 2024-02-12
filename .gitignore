@@ -31,3 +31,5 @@ upgrade.properties
 accounts.csv
 nft_ids.csv
 
+book_offers.csv
+.DS_Store

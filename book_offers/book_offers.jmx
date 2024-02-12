@@ -133,7 +133,7 @@
       </Arguments>
       <hashTree/>
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV book_offers" enabled="true">
-        <stringProp name="filename">../Common/book_offers.csv</stringProp>
+        <stringProp name="filename">../common/book_offers.csv</stringProp>
         <stringProp name="fileEncoding">UTF-8</stringProp>
         <stringProp name="variableNames">acct,vCurrency,vIssuer</stringProp>
         <boolProp name="ignoreFirstLine">false</boolProp>

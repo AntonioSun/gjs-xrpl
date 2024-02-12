@@ -5,11 +5,11 @@ fragment {
       // Defines a 'Random Variable' config element
       random name: 'Random ledger index number', variable: 'ledgerIndex', minimum: 71899701, maximum: 85478162, perUser: true
 
-      debug '--== Tx: ledger_data ==--', displayJMeterVariables: true, displayJMeterProperties: true, enabled: false
-      transaction('Tx01 ledger_data', generate: true) {
+      debug '--== Tx: book_offers ==--', displayJMeterVariables: true, displayJMeterProperties: true, enabled: false
+      transaction('Tx01 book_offers', generate: true) {
         
-        http (method: 'POST', path: '/', name: 'Tx01r ledger_data') {
-          body '''{"method":"ledger_data","params": [{"ledger_index":"${ledgerIndex}","binary":false}]}'''
+        http (method: 'POST', path: '/', name: 'Tx01r book_offers') {
+          body '''{"method":"book_offers","params": [{"taker": "${acct}","taker_gets": {"currency": "${vCurrency}","issuer": "${vIssuer}"},"taker_pays": {"currency": "XRP"}}]}'''
           //extract_jmes expression: 'book.id', variable: 'p_bookId'
         }
     

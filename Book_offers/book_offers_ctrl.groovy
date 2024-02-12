@@ -22,7 +22,7 @@ start {
       variable(name: 'c_tt_delay', value: '${__P(c_tt_delay, 500)}', description: 'Think Time: Ms to delay in addition to random time')
       variable(name: 'c_pt_range', value: '${__P(c_pt_range, 12000)}', description: 'Pace Time: Maximum random number of ms to delay')
       variable(name: 'c_pt_delay', value: '${__P(c_pt_delay, 3000)}', description: 'Pace Time: Ms to delay in addition to random time')
-      variable(name: 'c_cfg_TestName', value: 'ledger_data', description: 'Test name to identify different tests')
+      variable(name: 'c_cfg_TestName', value: 'book_offers', description: 'Test name to identify different tests')
       variable(name: 'c_cfg_TimeTag', value: '_${START.YMD}-${START.HMS}', description: 'Time based tag to identify different tests')
       variable(name: 'c_cfg_Influxdb', value: '${__env(c_cfg_Influxdb, , localhost)}', description: 'Influxdb server host name')
       variable(name: 'p_session_email', value: 'john')
@@ -31,6 +31,8 @@ start {
     variables {
       variable(name: 'c_cfg_TestID', value: '${c_cfg_TestName}${c_cfg_TimeTag}', description: 'Test ID, for identification and reporting purpose')
     }
+
+    csv name: 'CSV book_offers', file: '../Common/book_offers.csv', variables: ["acct","vCurrency","vIssuer"]
 
     debug '---- default request settings ----', enabled: false
     defaults(protocol: '${c_app_protocol}', domain: '${c_app_host_name}', port:  '${c_app_host_port}')
@@ -55,12 +57,12 @@ start {
     }
 
     debug '---- Thread Groups starts ----', enabled: false
-    group(name: 'Thread Group', delay: load_settings.v.ledger_data.delay, delayedStart: true,
-      users: load_settings.v.ledger_data.users, rampUp: load_settings.v.ledger_data.ramp, keepUser: false,
-      duration: load_settings.v.ledger_data.duration, loops: load_settings.v.ledger_data.loops,
-      scheduler: load_settings.v.ledger_data.scheduler, enabled: load_settings.v.ledger_data.enabled) {
+    group(name: 'Thread Group', delay: load_settings.v.book_offers.delay, delayedStart: true,
+      users: load_settings.v.book_offers.users, rampUp: load_settings.v.book_offers.ramp, keepUser: false,
+      duration: load_settings.v.book_offers.duration, loops: load_settings.v.book_offers.loops,
+      scheduler: load_settings.v.book_offers.scheduler, enabled: load_settings.v.book_offers.enabled) {
 
-      insert 'ledger_data_ins.groovy'
+      insert 'book_offers_ins.groovy'
     }
 
     debug '---- Thread Groups ends ----', enabled: false

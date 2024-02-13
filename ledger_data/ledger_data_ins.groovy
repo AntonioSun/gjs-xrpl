@@ -3,7 +3,7 @@ fragment {
     simple {
 
       // Defines a 'Random Variable' config element
-      random name: 'Random ledger index number', variable: 'ledgerIndex', minimum: 71899701, maximum: 85478162, perUser: true
+      random name: 'Random ledger index number', variable: 'ledgerIndex', minimum: 30000000, maximum: 85478162, perUser: true
 
       debug '--== Tx: ledger_data ==--', displayJMeterVariables: true, displayJMeterProperties: true, enabled: false
       transaction('Tx01 ledger_data', generate: true) {

@@ -483,7 +483,7 @@
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Simple Controller" enabled="true"/>
         <hashTree>
           <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random ledger index number" enabled="true">
-            <stringProp name="minimumValue">71899701</stringProp>
+            <stringProp name="minimumValue">30000000</stringProp>
             <stringProp name="maximumValue">85478162</stringProp>
             <boolProp name="perThread">true</boolProp>
             <stringProp name="variableName">ledgerIndex</stringProp>

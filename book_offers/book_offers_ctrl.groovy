@@ -64,22 +64,7 @@ start {
       insert 'book_offers_ins.groovy'
     }
 
-    debug '---- Thread Groups ends ----', enabled: false
-
-    backend(name: 'InfluxDb Backend', enabled: false) {
-      arguments {
-        argument(name: 'influxdbMetricsSender', value: 'org.apache.jmeter.visualizers.backend.influxdb.HttpMetricsSender')
-        argument(name: 'influxdbUrl', value: 'http://${c_cfg_Influxdb}:8086/write?db=jmeter_results')
-        argument(name: 'application', value: '${c_cfg_TestID}')
-        argument(name: 'measurement', value: 'jmeter')
-        argument(name: 'summaryOnly', value: 'false')
-        argument(name: 'samplersRegex', value: '^Tx\\d+.*')
-        argument(name: 'percentiles', value: '50;90;95;99')
-        argument(name: 'testTitle', value: '${c_cfg_TestID} - users: ${c_lt_users}, duration ${c_lt_duration}, rampup: ${c_lt_ramp}')
-        argument(name: "eventTags", value: '')
-      }
-    }
-    summary(file: '${c_cfg_TestID}.jtl', enabled: true)
-    view () // View Result Tree
+  // common file-end configuration
+  insert 'common/stationary-end.groovy'
   }
 }

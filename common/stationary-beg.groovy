@@ -1,0 +1,1 @@
+../demo_reuse/fragments/stationary-beg.groovy

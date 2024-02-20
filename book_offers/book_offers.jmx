@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.4.3">
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
   <hashTree>
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
       <boolProp name="TestPlan.functional_mode">false</boolProp>
       <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
       <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" enabled="true">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
     </TestPlan>
     <hashTree>
       <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
@@ -38,13 +40,13 @@
           </elementProp>
           <elementProp name="c_lt_users" elementType="Argument">
             <stringProp name="Argument.name">c_lt_users</stringProp>
-            <stringProp name="Argument.value">${__P(c_lt_users, 10)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_lt_users, 1)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">loadtest users</stringProp>
           </elementProp>
           <elementProp name="c_lt_ramp" elementType="Argument">
             <stringProp name="Argument.name">c_lt_ramp</stringProp>
-            <stringProp name="Argument.value">${__P(c_lt_ramp, 30)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_lt_ramp, 10)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">loadtest ramp up in seconds</stringProp>
           </elementProp>
@@ -62,7 +64,7 @@
           </elementProp>
           <elementProp name="c_lt_delay" elementType="Argument">
             <stringProp name="Argument.name">c_lt_delay</stringProp>
-            <stringProp name="Argument.value">${__P(c_lt_delay, 1)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_lt_delay, 10)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">thread delay in seconds</stringProp>
           </elementProp>
@@ -112,11 +114,13 @@
             <stringProp name="Argument.name">p_session_email</stringProp>
             <stringProp name="Argument.value">john</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc"></stringProp>
           </elementProp>
           <elementProp name="p_session_password" elementType="Argument">
             <stringProp name="Argument.name">p_session_password</stringProp>
             <stringProp name="Argument.value">john</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc"></stringProp>
           </elementProp>
         </collectionProp>
       </Arguments>
@@ -151,17 +155,16 @@
       </DebugSampler>
       <hashTree/>
       <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
-        <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
-          <collectionProp name="Arguments.arguments"/>
-        </elementProp>
+        <stringProp name="HTTPSampler.protocol">${c_app_protocol}</stringProp>
         <stringProp name="HTTPSampler.domain">${c_app_host_name}</stringProp>
         <stringProp name="HTTPSampler.port">${c_app_host_port}</stringProp>
-        <stringProp name="HTTPSampler.protocol">${c_app_protocol}</stringProp>
-        <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+        <stringProp name="HTTPSampler.method">GET</stringProp>
         <stringProp name="HTTPSampler.path"></stringProp>
-        <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
-        <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-        <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+        <boolProp name="HTTPSampler.md5">false</boolProp>
+        <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+          <collectionProp name="Arguments.arguments"/>
+        </elementProp>
       </ConfigTestElement>
       <hashTree/>
       <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Headers" enabled="true">
@@ -245,16 +248,16 @@
       <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <stringProp name="ThreadGroup.num_threads">1</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">10</stringProp>
+        <stringProp name="ThreadGroup.num_threads">${c_lt_users}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${c_lt_ramp}</stringProp>
         <boolProp name="ThreadGroup.delayedStart">true</boolProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">120</stringProp>
-        <stringProp name="ThreadGroup.delay">10</stringProp>
+        <stringProp name="ThreadGroup.duration">${c_lt_duration}</stringProp>
+        <stringProp name="ThreadGroup.delay">${c_lt_delay}</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" enabled="true">
+          <stringProp name="LoopController.loops">${c_lt_loops}</stringProp>
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <intProp name="LoopController.loops">-1</intProp>
         </elementProp>
       </ThreadGroup>
       <hashTree>
@@ -265,8 +268,6 @@
             <stringProp name="maximumValue">85478162</stringProp>
             <boolProp name="perThread">true</boolProp>
             <stringProp name="variableName">ledgerIndex</stringProp>
-            <stringProp name="outputFormat"></stringProp>
-            <stringProp name="randomSeed"></stringProp>
           </RandomVariableConfig>
           <hashTree/>
           <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="--== Tx: book_offers ==--" enabled="false">
@@ -281,29 +282,27 @@
           </TransactionController>
           <hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Tx01r book_offers" enabled="true">
-              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
               <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
                 <collectionProp name="Arguments.arguments">
                   <elementProp name="" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
                     <stringProp name="Argument.value">{&quot;method&quot;:&quot;book_offers&quot;,&quot;params&quot;: [{&quot;taker&quot;: &quot;${acct}&quot;,&quot;taker_gets&quot;: {&quot;currency&quot;: &quot;${vCurrency}&quot;,&quot;issuer&quot;: &quot;${vIssuer}&quot;},&quot;taker_pays&quot;: {&quot;currency&quot;: &quot;XRP&quot;}}]}</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   </elementProp>
                 </collectionProp>
               </elementProp>
-              <stringProp name="HTTPSampler.domain"></stringProp>
-              <stringProp name="HTTPSampler.port"></stringProp>
               <stringProp name="HTTPSampler.protocol"></stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/</stringProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.path">/</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
               <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+              <boolProp name="HTTPSampler.md5">false</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
             </HTTPSamplerProxy>
             <hashTree/>
           </hashTree>
@@ -339,57 +338,60 @@
         <boolProp name="displaySystemProperties">false</boolProp>
       </DebugSampler>
       <hashTree/>
-      <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="InfluxDb Backend" enabled="false">
-        <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" enabled="true">
+      <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="InfluxDb Backend" enabled="true">
+        <elementProp name="arguments" elementType="Arguments">
           <collectionProp name="Arguments.arguments">
-            <elementProp name="influxdbMetricsSender" elementType="Argument">
-              <stringProp name="Argument.name">influxdbMetricsSender</stringProp>
-              <stringProp name="Argument.value">org.apache.jmeter.visualizers.backend.influxdb.HttpMetricsSender</stringProp>
-              <stringProp name="Argument.metadata">=</stringProp>
+            <elementProp name="testName" elementType="Argument">
+              <stringProp name="Argument.name">testName</stringProp>
+              <stringProp name="Argument.value">${c_cfg_TestName}</stringProp>
             </elementProp>
-            <elementProp name="influxdbUrl" elementType="Argument">
-              <stringProp name="Argument.name">influxdbUrl</stringProp>
-              <stringProp name="Argument.value">http://${c_cfg_Influxdb}:8086/write?db=jmeter_results</stringProp>
-              <stringProp name="Argument.metadata">=</stringProp>
+            <elementProp name="nodeName" elementType="Argument">
+              <stringProp name="Argument.name">nodeName</stringProp>
+              <stringProp name="Argument.value">${c_cfg_TestName} - users: ${c_lt_users}, duration ${c_lt_duration}, rampup: ${c_lt_ramp}</stringProp>
             </elementProp>
-            <elementProp name="application" elementType="Argument">
-              <stringProp name="Argument.name">application</stringProp>
-              <stringProp name="Argument.value">${c_cfg_TestID}</stringProp>
-              <stringProp name="Argument.metadata">=</stringProp>
+            <elementProp name="runId" elementType="Argument">
+              <stringProp name="Argument.name">runId</stringProp>
+              <stringProp name="Argument.value">${c_cfg_TestName}_${__time(yyMMdd-HHmm)}</stringProp>
             </elementProp>
-            <elementProp name="measurement" elementType="Argument">
-              <stringProp name="Argument.name">measurement</stringProp>
+            <elementProp name="influxDBHost" elementType="Argument">
+              <stringProp name="Argument.name">influxDBHost</stringProp>
+              <stringProp name="Argument.value">${c_cfg_Influxdb}</stringProp>
+            </elementProp>
+            <elementProp name="influxDBPort" elementType="Argument">
+              <stringProp name="Argument.name">influxDBPort</stringProp>
+              <stringProp name="Argument.value">8086</stringProp>
+            </elementProp>
+            <elementProp name="influxDBUser" elementType="Argument">
+              <stringProp name="Argument.name">influxDBUser</stringProp>
+              <stringProp name="Argument.value">admin</stringProp>
+            </elementProp>
+            <elementProp name="influxDBPassword" elementType="Argument">
+              <stringProp name="Argument.name">influxDBPassword</stringProp>
+              <stringProp name="Argument.value">Admin4perf@Ripp13%123</stringProp>
+            </elementProp>
+            <elementProp name="influxDBDatabase" elementType="Argument">
+              <stringProp name="Argument.name">influxDBDatabase</stringProp>
               <stringProp name="Argument.value">jmeter</stringProp>
-              <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
-            <elementProp name="summaryOnly" elementType="Argument">
-              <stringProp name="Argument.name">summaryOnly</stringProp>
-              <stringProp name="Argument.value">false</stringProp>
-              <stringProp name="Argument.metadata">=</stringProp>
+            <elementProp name="retentionPolicy" elementType="Argument">
+              <stringProp name="Argument.name">retentionPolicy</stringProp>
+              <stringProp name="Argument.value">autogen</stringProp>
             </elementProp>
-            <elementProp name="samplersRegex" elementType="Argument">
-              <stringProp name="Argument.name">samplersRegex</stringProp>
+            <elementProp name="samplersList" elementType="Argument">
+              <stringProp name="Argument.name">samplersList</stringProp>
               <stringProp name="Argument.value">^Tx\d+.*</stringProp>
-              <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
-            <elementProp name="percentiles" elementType="Argument">
-              <stringProp name="Argument.name">percentiles</stringProp>
-              <stringProp name="Argument.value">50;90;95;99</stringProp>
-              <stringProp name="Argument.metadata">=</stringProp>
+            <elementProp name="useRegexForSamplerList" elementType="Argument">
+              <stringProp name="Argument.name">useRegexForSamplerList</stringProp>
+              <stringProp name="Argument.value">true</stringProp>
             </elementProp>
-            <elementProp name="testTitle" elementType="Argument">
-              <stringProp name="Argument.name">testTitle</stringProp>
-              <stringProp name="Argument.value">${c_cfg_TestID} - users: ${c_lt_users}, duration ${c_lt_duration}, rampup: ${c_lt_ramp}</stringProp>
-              <stringProp name="Argument.metadata">=</stringProp>
-            </elementProp>
-            <elementProp name="eventTags" elementType="Argument">
-              <stringProp name="Argument.name">eventTags</stringProp>
-              <stringProp name="Argument.value"></stringProp>
-              <stringProp name="Argument.metadata">=</stringProp>
+            <elementProp name="recordSubSamples" elementType="Argument">
+              <stringProp name="Argument.name">recordSubSamples</stringProp>
+              <stringProp name="Argument.value">true</stringProp>
             </elementProp>
           </collectionProp>
         </elementProp>
-        <stringProp name="classname">org.apache.jmeter.visualizers.backend.influxdb.InfluxdbBackendListenerClient</stringProp>
+        <stringProp name="classname">rocks.nt.apm.jmeter.JMeterInfluxDBBackendListenerClient</stringProp>
       </BackendListener>
       <hashTree/>
       <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
@@ -426,10 +428,10 @@
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename">${c_cfg_TestID}.jtl</stringProp>
+        <stringProp name="filename">${c_cfg_TestName}_${__time(yyMMdd-HHmm)}.jtl</stringProp>
       </ResultCollector>
       <hashTree/>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Result Tree" enabled="true">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Result Tree" enabled="false">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>

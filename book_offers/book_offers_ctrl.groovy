@@ -32,7 +32,7 @@ start {
       variable(name: 'c_cfg_TestID', value: '${c_cfg_TestName}${c_cfg_TimeTag}', description: 'Test ID, for identification and reporting purpose')
     }
 
-    csv name: 'CSV book_offers', file: '../common/book_offers.csv', variables: ["acct","vCurrency","vIssuer"]
+    csv name: 'CSV book_offers', file: '../common/book_offers.csv', variables: ["acct","vCurrency","vIssuer","ledgerHash","ledgerIndex"]
 
     debug '---- default request settings ----', enabled: false
     defaults(protocol: '${c_app_protocol}', domain: '${c_app_host_name}', port:  '${c_app_host_port}')
@@ -65,6 +65,7 @@ start {
     }
 
   // common file-end configuration
+  //insert 'fragments/stationary-end.groovy'
   insert 'common/stationary-end.groovy'
   }
 }

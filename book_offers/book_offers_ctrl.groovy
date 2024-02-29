@@ -33,6 +33,10 @@ start {
     // common file-beg configuration
     insert 'common/stationary-beg.groovy'
 
+    check_response applyTo: 'parent', {
+      text() excludes ',\\"status\\":\\"error\\",\\"type\\":\\"response\\"'
+    }
+
     debug '---- Thread Groups starts ----', enabled: false
     group(name: 'Thread Group', delay: '${c_lt_delay}', delayedStart: true,
       users: '${c_lt_users}', rampUp: '${c_lt_ramp}', keepUser: false,

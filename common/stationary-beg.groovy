@@ -17,7 +17,7 @@ fragment {
     check_response {
       status() eq 200 or 302
     }
-    check_response applyTo: 'parent', {
-      text() excludes '${c_app_error_kw}'
-    }
+    // check_response applyTo: 'parent', {
+    //   text() excludes '${c_app_error_kw}'
+    // }
 }

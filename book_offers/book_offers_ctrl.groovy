@@ -3,9 +3,14 @@
 
 @groovy.transform.BaseScript net.simonix.dsl.jmeter.TestScript script
 
-import load_settings
+import groovy.yaml.*
+def slurper = new YamlSlurper()
 
 start {
+  def load_testname = 'book_offers'
+  def load_settings = slurper.parse("load_settings.yaml" as File)
+  def load_setting = load_settings.settings[load_testname]
+
   plan {
     variables {
       // using __env() custom JMeter Functions, https://jmeter-plugins.org/wiki/Functions/
@@ -13,11 +18,11 @@ start {
       variable(name: 'c_app_host_port', value: '${__env(c_app_host_port, , 51234)}', description: 'Test server host port')
       variable(name: 'c_app_protocol', value: '${__env(c_app_protocol, , http)}', description: 'Test server protocol')
       variable(name: 'c_app_error_kw', value: '${__P(c_app_error_kw,Wrong)}', description: 'keyword indicates wrong application returns')
-      variable(name: 'c_lt_users', value: '${__P(c_lt_users, ' + load_settings.v.book_offers.users + ')}', description: 'loadtest users')
-      variable(name: 'c_lt_ramp', value: '${__P(c_lt_ramp, ' + load_settings.v.book_offers.ramp + ')}', description: 'loadtest ramp up in seconds')
-      variable(name: 'c_lt_loops', value: '${__P(c_lt_loops, ' + load_settings.v.book_offers.loops + ')}', description: 'loadtest loops')
-      variable(name: 'c_lt_duration', value: '${__P(c_lt_duration, ' + load_settings.v.book_offers.duration + ')}', description: 'loadtest duration in seconds')
-      variable(name: 'c_lt_delay', value: '${__P(c_lt_delay, ' + load_settings.v.book_offers.delay + ')}', description: 'thread delay in seconds')
+      variable(name: 'c_lt_users', value: '${__P(c_lt_users, ' + load_setting.users + ')}', description: 'loadtest users')
+      variable(name: 'c_lt_ramp', value: '${__P(c_lt_ramp, ' + load_setting.ramp + ')}', description: 'loadtest ramp up in seconds')
+      variable(name: 'c_lt_loops', value: '${__P(c_lt_loops, ' + load_setting.loops + ')}', description: 'loadtest loops')
+      variable(name: 'c_lt_duration', value: '${__P(c_lt_duration, ' + load_setting.duration + ')}', description: 'loadtest duration in seconds')
+      variable(name: 'c_lt_delay', value: '${__P(c_lt_delay, ' + load_setting.delay + ')}', description: 'thread delay in seconds')
       variable(name: 'c_tt_range', value: '${__P(c_tt_range, 2000)}', description: 'Think Time: Maximum random number of ms to delay')
       variable(name: 'c_tt_delay', value: '${__P(c_tt_delay, 500)}', description: 'Think Time: Ms to delay in addition to random time')
       variable(name: 'c_pt_range', value: '${__P(c_pt_range, 12000)}', description: 'Pace Time: Maximum random number of ms to delay')

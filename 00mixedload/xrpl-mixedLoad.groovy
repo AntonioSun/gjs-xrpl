@@ -105,13 +105,20 @@ start {
       }
    }
 
+    group(name: 'Thread Group book_offers', delay: load_setting["book_offers"].delay, delayedStart: true,
+      users: load_setting["book_offers"].users, rampUp: load_setting["book_offers"].ramp, keepUser: false,
+      duration: load_setting["book_offers"].duration, loops: load_setting["book_offers"].loops,
+      scheduler: load_setting["book_offers"].scheduler, enabled: load_setting["book_offers"].enabled) {
+
+      insert 'book_offers/book_offers_ins.groovy'
+    }
+
     group(name: 'Thread Group ledger_data', delay: load_setting["ledger_data"].delay, delayedStart: true,
       users: load_setting["ledger_data"].users, rampUp: load_setting["ledger_data"].ramp, keepUser: false,
       duration: load_setting["ledger_data"].duration, loops: load_setting["ledger_data"].loops,
       scheduler: load_setting["ledger_data"].scheduler, enabled: load_setting["ledger_data"].enabled) {
 
-      // cannot use "../"
-      insert 'Ledger_data/ledger_data_ins.groovy'
+      insert 'ledger_data/ledger_data_ins.groovy'
     }
 
   // common file-end configuration

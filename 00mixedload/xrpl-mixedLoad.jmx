@@ -259,7 +259,7 @@
         </TestAction>
         <hashTree>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Pace Time" enabled="true">
-            <stringProp name="ConstantTimer.delay">${c_tt_delay}</stringProp>
+            <stringProp name="ConstantTimer.delay">${c_pt_delay}</stringProp>
             <stringProp name="RandomTimer.range">${c_tt_range}</stringProp>
           </UniformRandomTimer>
           <hashTree/>
@@ -325,7 +325,7 @@
         </TestAction>
         <hashTree>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Pace Time" enabled="true">
-            <stringProp name="ConstantTimer.delay">${c_tt_delay}</stringProp>
+            <stringProp name="ConstantTimer.delay">${c_pt_delay}</stringProp>
             <stringProp name="RandomTimer.range">${c_tt_range}</stringProp>
           </UniformRandomTimer>
           <hashTree/>
@@ -391,8 +391,95 @@
         </TestAction>
         <hashTree>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Pace Time" enabled="true">
+            <stringProp name="ConstantTimer.delay">${c_pt_delay}</stringProp>
+            <stringProp name="RandomTimer.range">${c_tt_range}</stringProp>
+          </UniformRandomTimer>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group book_offers" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">30</stringProp>
+        <boolProp name="ThreadGroup.delayedStart">true</boolProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
+        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+        <stringProp name="ThreadGroup.duration">120</stringProp>
+        <stringProp name="ThreadGroup.delay">0</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random ledger index number" enabled="true">
+          <stringProp name="minimumValue">30000000</stringProp>
+          <stringProp name="maximumValue">85478162</stringProp>
+          <boolProp name="perThread">true</boolProp>
+          <stringProp name="variableName">ledgerIndex</stringProp>
+          <stringProp name="outputFormat"></stringProp>
+          <stringProp name="randomSeed"></stringProp>
+        </RandomVariableConfig>
+        <hashTree/>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="--== Tx: book_offers ==--" enabled="false">
+          <boolProp name="displayJMeterProperties">true</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Tx01 book_offers" enabled="true">
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          <boolProp name="TransactionController.parent">true</boolProp>
+        </TransactionController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Tx01r book_offers, random ledger" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&quot;method&quot;:&quot;book_offers&quot;,&quot;params&quot;: [{&quot;ledger_index&quot;: &quot;${ledgerIndex}&quot;,&quot;taker&quot;: &quot;${acct}&quot;,&quot;taker_gets&quot;: {&quot;currency&quot;: &quot;${vCurrency}&quot;,&quot;issuer&quot;: &quot;${vIssuer}&quot;},&quot;taker_pays&quot;: {&quot;currency&quot;: &quot;XRP&quot;}}]}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+        </hashTree>
+        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Think Time Flow Control" enabled="false">
+          <intProp name="ActionProcessor.action">1</intProp>
+          <intProp name="ActionProcessor.target">0</intProp>
+          <stringProp name="ActionProcessor.duration">0</stringProp>
+        </TestAction>
+        <hashTree>
+          <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Think Time" enabled="true">
             <stringProp name="ConstantTimer.delay">${c_tt_delay}</stringProp>
             <stringProp name="RandomTimer.range">${c_tt_range}</stringProp>
+          </UniformRandomTimer>
+          <hashTree/>
+        </hashTree>
+        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Pace Time Flow Control" enabled="true">
+          <intProp name="ActionProcessor.action">1</intProp>
+          <intProp name="ActionProcessor.target">0</intProp>
+          <stringProp name="ActionProcessor.duration">0</stringProp>
+        </TestAction>
+        <hashTree>
+          <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Pace Time" enabled="true">
+            <stringProp name="ConstantTimer.delay">${c_pt_delay}</stringProp>
+            <stringProp name="RandomTimer.range">${c_pt_range}</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
@@ -480,7 +567,7 @@
           </TestAction>
           <hashTree>
             <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Pace Time" enabled="true">
-              <stringProp name="ConstantTimer.delay">${c_tt_delay}</stringProp>
+              <stringProp name="ConstantTimer.delay">${c_pt_delay}</stringProp>
               <stringProp name="RandomTimer.range">${c_tt_range}</stringProp>
             </UniformRandomTimer>
             <hashTree/>

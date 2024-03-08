@@ -1,6 +1,4 @@
-
-fragment {
-    simple {
+    fragment {
 
       // Defines a 'Random Variable' config element
       random name: 'Random ledger index number', variable: 'ledgerIndex', minimum: 30000000, maximum: 85478162, perUser: true
@@ -20,8 +18,7 @@ fragment {
       }
 
       flow (name: 'Pace Time Flow Control') {
-        uniform_timer (name: 'Pace Time', delay: '${c_tt_delay}', range: '${c_tt_range}')
+        uniform_timer (name: 'Pace Time', delay: '${c_pt_delay}', range: '${c_pt_range}')
       }
 
     }
-}

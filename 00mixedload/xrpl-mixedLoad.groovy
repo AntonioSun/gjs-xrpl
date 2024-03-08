@@ -63,7 +63,7 @@ start {
       }
 
       flow (name: 'Pace Time Flow Control') {
-        uniform_timer (name: 'Pace Time', delay: '${c_tt_delay}', range: '${c_tt_range}')
+        uniform_timer (name: 'Pace Time', delay: '${c_pt_delay}', range: '${c_tt_range}')
       }
       // end group
     }
@@ -82,7 +82,7 @@ start {
 
       }
       flow (name: 'Pace Time Flow Control') {
-        uniform_timer (name: 'Pace Time', delay: '${c_tt_delay}', range: '${c_tt_range}')
+        uniform_timer (name: 'Pace Time', delay: '${c_pt_delay}', range: '${c_tt_range}')
       }
     }
 
@@ -101,7 +101,7 @@ start {
       }
 
       flow (name: 'Pace Time Flow Control') {
-        uniform_timer (name: 'Pace Time', delay: '${c_tt_delay}', range: '${c_tt_range}')
+        uniform_timer (name: 'Pace Time', delay: '${c_pt_delay}', range: '${c_tt_range}')
       }
    }
 

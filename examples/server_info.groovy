@@ -69,7 +69,7 @@ start {
       }
 
       flow (name: 'Pace Time Flow Control Action') {
-        uniform_timer (name: 'Pace Time', delay: '${c_tt_delay}', range: '${c_tt_range}')
+        uniform_timer (name: 'Pace Time', delay: '${c_pt_delay}', range: '${c_tt_range}')
       }
       // end group
     }

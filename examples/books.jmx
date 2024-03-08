@@ -544,12 +544,12 @@
             </elementProp>
             <elementProp name="influxDBUser" elementType="Argument">
               <stringProp name="Argument.name">influxDBUser</stringProp>
-              <stringProp name="Argument.value">admin</stringProp>
+              <stringProp name="Argument.value">jmwriter</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="influxDBPassword" elementType="Argument">
               <stringProp name="Argument.name">influxDBPassword</stringProp>
-              <stringProp name="Argument.value">Admin4perf@Ripp13%123</stringProp>
+              <stringProp name="Argument.value">61pug4LZ04=NK4d2jLVb1</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="influxDBDatabase" elementType="Argument">

@@ -1,6 +1,4 @@
-
-fragment {
-    simple {
+    fragment {
 
       // Defines a 'Random Variable' config element
       random name: 'Random ledger index number', variable: 'ledgerIndex', minimum: 30000000, maximum: 85478162, perUser: true
@@ -24,4 +22,3 @@ fragment {
       }
 
     }
-}

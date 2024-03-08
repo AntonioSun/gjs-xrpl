@@ -3,13 +3,16 @@
 
 @groovy.transform.BaseScript net.simonix.dsl.jmeter.TestScript script
 
-import load_settings
+import groovy.yaml.*
+def slurper = new YamlSlurper()
 
 start {
 
   // develop stage, 'dev', 'alpha', ... or 'prod'
   def stage  =  System.env['TEST_STAGE'] ?: 'dev'
   def notProd = stage != 'prod'
+  def load_settings = slurper.parse("load_settings.yaml" as File)
+  def load_setting = load_settings.settings
 
   plan {
     variables {
@@ -40,10 +43,10 @@ start {
     insert 'common/stationary-beg.groovy'
 
     debug '---- Thread Groups starts ----', enabled: false
-    group(name: 'Thread Group server_info', delay: load_settings.v.server_info.delay, delayedStart: true,
-      users: load_settings.v.server_info.users, rampUp: load_settings.v.server_info.ramp, keepUser: false,
-      duration: load_settings.v.server_info.duration, loops: load_settings.v.server_info.loops,
-      scheduler: load_settings.v.server_info.scheduler, enabled: load_settings.v.server_info.enabled) {
+    group(name: 'Thread Group server_info', delay: load_setting["server_info"].delay, delayedStart: true,
+      users: load_setting["server_info"].users, rampUp: load_setting["server_info"].ramp, keepUser: false,
+      duration: load_setting["server_info"].duration, loops: load_setting["server_info"].loops,
+      scheduler: load_setting["server_info"].scheduler, enabled: load_setting["server_info"].enabled) {
 
       debug '--== Tx: server_info ==--', displayJMeterVariables: true, displayJMeterProperties: true, enabled: false
       transaction('Tx01 server_info', generate: true) {
@@ -65,10 +68,10 @@ start {
       // end group
     }
 
-    group(name: 'Thread Group account_info', delay: load_settings.v.account_info.delay, delayedStart: true,
-      users: load_settings.v.account_info.users, rampUp: load_settings.v.account_info.ramp, keepUser: false,
-      duration: load_settings.v.account_info.duration, loops: load_settings.v.account_info.loops,
-      scheduler: load_settings.v.account_info.scheduler, enabled: load_settings.v.account_info.enabled) {
+    group(name: 'Thread Group account_info', delay: load_setting["account_info"].delay, delayedStart: true,
+      users: load_setting["account_info"].users, rampUp: load_setting["account_info"].ramp, keepUser: false,
+      duration: load_setting["account_info"].duration, loops: load_setting["account_info"].loops,
+      scheduler: load_setting["account_info"].scheduler, enabled: load_setting["account_info"].enabled) {
 
       debug '--== Tx: account_info ==--', displayJMeterVariables: true, displayJMeterProperties: true, enabled: false
       transaction('Tx01 account_info', generate: true) {
@@ -83,10 +86,10 @@ start {
       }
     }
 
-    group(name: 'Thread Group nft_info', delay: load_settings.v.nft_info.delay, delayedStart: true,
-      users: load_settings.v.nft_info.users, rampUp: load_settings.v.nft_info.ramp, keepUser: false,
-      duration: load_settings.v.nft_info.duration, loops: load_settings.v.nft_info.loops,
-      scheduler: load_settings.v.nft_info.scheduler, enabled: load_settings.v.nft_info.enabled) {
+    group(name: 'Thread Group nft_info', delay: load_setting["nft_info"].delay, delayedStart: true,
+      users: load_setting["nft_info"].users, rampUp: load_setting["nft_info"].ramp, keepUser: false,
+      duration: load_setting["nft_info"].duration, loops: load_setting["nft_info"].loops,
+      scheduler: load_setting["nft_info"].scheduler, enabled: load_setting["nft_info"].enabled) {
 
       debug '--== Tx: nft_info ==--', displayJMeterVariables: true, displayJMeterProperties: true, enabled: false
       transaction('Tx01 nft_info', generate: true) {
@@ -102,10 +105,10 @@ start {
       }
    }
 
-    group(name: 'Thread Group ledger_data', delay: load_settings.v.ledger_data.delay, delayedStart: true,
-      users: load_settings.v.ledger_data.users, rampUp: load_settings.v.ledger_data.ramp, keepUser: false,
-      duration: load_settings.v.ledger_data.duration, loops: load_settings.v.ledger_data.loops,
-      scheduler: load_settings.v.ledger_data.scheduler, enabled: load_settings.v.ledger_data.enabled) {
+    group(name: 'Thread Group ledger_data', delay: load_setting["ledger_data"].delay, delayedStart: true,
+      users: load_setting["ledger_data"].users, rampUp: load_setting["ledger_data"].ramp, keepUser: false,
+      duration: load_setting["ledger_data"].duration, loops: load_setting["ledger_data"].loops,
+      scheduler: load_setting["ledger_data"].scheduler, enabled: load_setting["ledger_data"].enabled) {
 
       // cannot use "../"
       insert 'Ledger_data/ledger_data_ins.groovy'

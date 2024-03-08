@@ -18,7 +18,7 @@ start {
   insert 'fragments/stationary-beg.groovy'
 
   debug '---- Thread Groups starts ----', enabled: false
-  group(name: 'Thread Group 1', users: 12, rampUp: 30) {
+  group(name: 'TGroup-1', users: 12, rampUp: 30) {
     cookies()
 
     // insert login fragment
@@ -30,7 +30,7 @@ start {
   }
 
   insert 'fragments/group.groovy', variables:
-     ["var_inner_tg_name": 'Thread Group 2', "var_inner_users": 10, "var_inner_duration": 20, "var_inner_loops": -1]
+     ["var_inner_tg_name": 'TGroup-2', "var_inner_users": 10, "var_inner_duration": 20, "var_inner_loops": -1]
 
   // common file-end configuration
   insert 'fragments/stationary-end.groovy'

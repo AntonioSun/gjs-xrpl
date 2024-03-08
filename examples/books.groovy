@@ -26,7 +26,7 @@ start {
       variable(name: 'p_session_password_', value: 'john')
       }
 
-    group(name: 'Thread Group', delay: '${c_lt_delay}', delayedStart: true,
+    group(name: 'TGroup', delay: '${c_lt_delay}', delayedStart: true,
       users: '${c_lt_users}', rampUp: '${c_lt_ramp}', keepUser: false,
       loops: '${c_lt_loops}', duration: '${c_lt_duration}', scheduler: true) {
 

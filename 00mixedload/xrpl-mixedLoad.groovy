@@ -43,7 +43,7 @@ start {
     insert 'common/stationary-beg.groovy'
 
     debug '---- Thread Groups starts ----', enabled: false
-    group(name: 'Thread Group server_info', delay: load_setting["server_info"].delay, delayedStart: true,
+    group(name: 'TGroup-server_info', delay: load_setting["server_info"].delay, delayedStart: true,
       users: load_setting["server_info"].users, rampUp: load_setting["server_info"].ramp, keepUser: false,
       duration: load_setting["server_info"].duration, loops: load_setting["server_info"].loops,
       scheduler: load_setting["server_info"].scheduler, enabled: load_setting["server_info"].enabled) {
@@ -68,7 +68,7 @@ start {
       // end group
     }
 
-    group(name: 'Thread Group account_info', delay: load_setting["account_info"].delay, delayedStart: true,
+    group(name: 'TGroup-account_info', delay: load_setting["account_info"].delay, delayedStart: true,
       users: load_setting["account_info"].users, rampUp: load_setting["account_info"].ramp, keepUser: false,
       duration: load_setting["account_info"].duration, loops: load_setting["account_info"].loops,
       scheduler: load_setting["account_info"].scheduler, enabled: load_setting["account_info"].enabled) {
@@ -76,7 +76,7 @@ start {
       insert 'inc_ledger_validated/account_info.groovy'
     }
 
-    group(name: 'Thread Group nft_info', delay: load_setting["nft_info"].delay, delayedStart: true,
+    group(name: 'TGroup-nft_info', delay: load_setting["nft_info"].delay, delayedStart: true,
       users: load_setting["nft_info"].users, rampUp: load_setting["nft_info"].ramp, keepUser: false,
       duration: load_setting["nft_info"].duration, loops: load_setting["nft_info"].loops,
       scheduler: load_setting["nft_info"].scheduler, enabled: load_setting["nft_info"].enabled) {
@@ -84,7 +84,7 @@ start {
       insert 'inc_ledger_validated/nft_info.groovy'
    }
 
-    group(name: 'Thread Group book_offers', delay: load_setting["book_offers"].delay, delayedStart: true,
+    group(name: 'TGroup-book_offers', delay: load_setting["book_offers"].delay, delayedStart: true,
       users: load_setting["book_offers"].users, rampUp: load_setting["book_offers"].ramp, keepUser: false,
       duration: load_setting["book_offers"].duration, loops: load_setting["book_offers"].loops,
       scheduler: load_setting["book_offers"].scheduler, enabled: load_setting["book_offers"].enabled) {
@@ -92,7 +92,7 @@ start {
       insert 'book_offers/book_offers_ins.groovy'
     }
 
-    group(name: 'Thread Group ledger_data', delay: load_setting["ledger_data"].delay, delayedStart: true,
+    group(name: 'TGroup-ledger_data', delay: load_setting["ledger_data"].delay, delayedStart: true,
       users: load_setting["ledger_data"].users, rampUp: load_setting["ledger_data"].ramp, keepUser: false,
       duration: load_setting["ledger_data"].duration, loops: load_setting["ledger_data"].loops,
       scheduler: load_setting["ledger_data"].scheduler, enabled: load_setting["ledger_data"].enabled) {

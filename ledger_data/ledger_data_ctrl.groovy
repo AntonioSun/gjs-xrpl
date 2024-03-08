@@ -55,7 +55,7 @@ start {
     }
 
     debug '---- Thread Groups starts ----', enabled: false
-    group(name: 'Thread Group', delay: load_settings.v.ledger_data.delay, delayedStart: true,
+    group(name: 'TGroup', delay: load_settings.v.ledger_data.delay, delayedStart: true,
       users: load_settings.v.ledger_data.users, rampUp: load_settings.v.ledger_data.ramp, keepUser: false,
       duration: load_settings.v.ledger_data.duration, loops: load_settings.v.ledger_data.loops,
       scheduler: load_settings.v.ledger_data.scheduler, enabled: load_settings.v.ledger_data.enabled) {

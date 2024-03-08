@@ -73,17 +73,7 @@ start {
       duration: load_setting["account_info"].duration, loops: load_setting["account_info"].loops,
       scheduler: load_setting["account_info"].scheduler, enabled: load_setting["account_info"].enabled) {
 
-      debug '--== Tx: account_info ==--', displayJMeterVariables: true, displayJMeterProperties: true, enabled: false
-      transaction('Tx01 account_info', generate: true) {
-
-        http (method: 'POST', path: '/', name: 'Tx01r account_info') {
-          body '''{"method":"account_info","params": [{"account":"${s_account}","ledger_index":"validated","queue":false}]}'''
-        }
-
-      }
-      flow (name: 'Pace Time Flow Control') {
-        uniform_timer (name: 'Pace Time', delay: '${c_pt_delay}', range: '${c_tt_range}')
-      }
+      insert 'inc_ledger_validated/account_info.groovy'
     }
 
     group(name: 'Thread Group nft_info', delay: load_setting["nft_info"].delay, delayedStart: true,
@@ -91,18 +81,7 @@ start {
       duration: load_setting["nft_info"].duration, loops: load_setting["nft_info"].loops,
       scheduler: load_setting["nft_info"].scheduler, enabled: load_setting["nft_info"].enabled) {
 
-      debug '--== Tx: nft_info ==--', displayJMeterVariables: true, displayJMeterProperties: true, enabled: false
-      transaction('Tx01 nft_info', generate: true) {
-
-        http (method: 'POST', path: '/', name: 'Tx01r nft_info') {
-          body '''{"method":"nft_info","params": [{"nft_id":"${s_nft_id}"}]}'''
-        }
-
-      }
-
-      flow (name: 'Pace Time Flow Control') {
-        uniform_timer (name: 'Pace Time', delay: '${c_pt_delay}', range: '${c_tt_range}')
-      }
+      insert 'inc_ledger_validated/nft_info.groovy'
    }
 
     group(name: 'Thread Group book_offers', delay: load_setting["book_offers"].delay, delayedStart: true,

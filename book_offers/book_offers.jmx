@@ -185,7 +185,7 @@
         <boolProp name="displaySystemProperties">false</boolProp>
       </DebugSampler>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TGroup" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <stringProp name="ThreadGroup.num_threads">${c_lt_users}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${c_lt_ramp}</stringProp>
@@ -244,6 +244,7 @@
             <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="TestPlan.comments">https://xrpl.org/book_offers.html</stringProp>
           </HTTPSamplerProxy>
           <hashTree/>
         </hashTree>

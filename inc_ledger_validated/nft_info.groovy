@@ -2,7 +2,8 @@
       debug '--== Tx: nft_info ==--', displayJMeterVariables: true, displayJMeterProperties: true, enabled: false
       transaction('Tx01 nft_info', generate: true) {
 
-        http (method: 'POST', path: '/', name: 'Tx01r nft_info') {
+        http (method: 'POST', path: '/', name: 'Tx01r nft_info',
+              comments: 'https://xrpl.org/nft_info.html') {
           body '''{"method":"nft_info","params": [{"nft_id":"${s_nft_id}"}]}'''
         }
 

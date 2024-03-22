@@ -76,6 +76,27 @@ start {
       insert 'inc_ledger_validated/account_info.groovy'
     }
 
+    group(name: 'TGroup-fee', delay: load_setting["fee"].delay, delayedStart: true,
+      users: load_setting["fee"].users, rampUp: load_setting["fee"].ramp, keepUser: false,
+      duration: load_setting["fee"].duration, loops: load_setting["fee"].loops,
+      scheduler: load_setting["fee"].scheduler, enabled: load_setting["fee"].enabled) {
+      insert 'inc_ledger_validated/fee.groovy'
+    }
+
+    group(name: 'TGroup-ledger_current', delay: load_setting["ledger_current"].delay, delayedStart: true,
+      users: load_setting["ledger_current"].users, rampUp: load_setting["ledger_current"].ramp, keepUser: false,
+      duration: load_setting["ledger_current"].duration, loops: load_setting["ledger_current"].loops,
+      scheduler: load_setting["ledger_current"].scheduler, enabled: load_setting["ledger_current"].enabled) {
+      insert 'inc_ledger_validated/ledger_current.groovy'
+    }
+
+    group(name: 'TGroup-ledger_closed', delay: load_setting["ledger_closed"].delay, delayedStart: true,
+      users: load_setting["ledger_closed"].users, rampUp: load_setting["ledger_closed"].ramp, keepUser: false,
+      duration: load_setting["ledger_closed"].duration, loops: load_setting["ledger_closed"].loops,
+      scheduler: load_setting["ledger_closed"].scheduler, enabled: load_setting["ledger_closed"].enabled) {
+      insert 'inc_ledger_validated/ledger_closed.groovy'
+    }
+
     group(name: 'TGroup-nft_info', delay: load_setting["nft_info"].delay, delayedStart: true,
       users: load_setting["nft_info"].users, rampUp: load_setting["nft_info"].ramp, keepUser: false,
       duration: load_setting["nft_info"].duration, loops: load_setting["nft_info"].loops,

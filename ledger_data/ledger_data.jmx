@@ -176,7 +176,7 @@
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TGroup-ledger_data" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">30</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
         <boolProp name="ThreadGroup.delayedStart">true</boolProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
@@ -254,8 +254,8 @@
         </TestAction>
         <hashTree>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Pace Time" enabled="true">
-            <stringProp name="ConstantTimer.delay">${c_pt_delay}</stringProp>
-            <stringProp name="RandomTimer.range">${c_tt_range}</stringProp>
+            <stringProp name="ConstantTimer.delay">12000</stringProp>
+            <stringProp name="RandomTimer.range">3000.0</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>

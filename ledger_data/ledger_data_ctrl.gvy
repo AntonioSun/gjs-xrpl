@@ -41,7 +41,7 @@ start {
     }
 
     debug '---- Thread Groups starts ----', enabled: false
-    insert 'ledger_data_ins.groovy', variables:
+    insert 'ledger_data_ins.gvy', variables:
      ["vf_name": 'TGroup-ledger_data', "vf_enabled": load_setting["ledger_data"].enabled, "vf_delay": load_setting["ledger_data"].delay,
       "vf_users": load_setting["ledger_data"].users, "vf_rampUp": load_setting["ledger_data"].ramp,
       "vf_duration": load_setting["ledger_data"].duration, "vf_loops": load_setting["ledger_data"].loops,

@@ -40,7 +40,7 @@ start {
     csv name: 'CSV nft_ids', file: '../common/nft_ids.csv', variables: ['s_nft_id']
 
     // common file-beg configuration
-    insert 'common/stationary-beg.groovy'
+    insert 'common/stationary-beg.gvy'
 
     debug '---- Thread Groups starts ----', enabled: false
     group(name: 'TGroup-server_info', delay: load_setting["server_info"].delay, delayedStart: true,
@@ -73,23 +73,23 @@ start {
       duration: load_setting["account_info"].duration, loops: load_setting["account_info"].loops,
       scheduler: load_setting["account_info"].scheduler, enabled: load_setting["account_info"].enabled) {
 
-      insert 'inc_ledger_validated/account_info.groovy'
+      insert 'inc_ledger_validated/account_info.gvy'
     }
 
     group(name: 'TGroup-fee', delay: load_setting["fee"].delay, delayedStart: true,
       users: load_setting["fee"].users, rampUp: load_setting["fee"].ramp, keepUser: false,
       duration: load_setting["fee"].duration, loops: load_setting["fee"].loops,
       scheduler: load_setting["fee"].scheduler, enabled: load_setting["fee"].enabled) {
-      insert 'inc_ledger_validated/fee.groovy'
+      insert 'inc_ledger_validated/fee.gvy'
     }
 
-    insert 'inc_ledger_validated/ledger_current.groovy', variables:
+    insert 'inc_ledger_validated/ledger_current.gvy', variables:
      ["vf_name": 'TGroup-ledger_current', "vf_enabled": load_setting["ledger_current"].enabled, "vf_delay": load_setting["ledger_current"].delay,
       "vf_users": load_setting["ledger_current"].users, "vf_rampUp": load_setting["ledger_current"].ramp,
       "vf_duration": load_setting["ledger_current"].duration, "vf_loops": load_setting["ledger_current"].loops,
       "vf_pt_delay": load_setting["ledger_current"].pt_delay,  "vf_pt_range": load_setting["ledger_current"].pt_range]
 
-    insert 'inc_ledger_validated/ledger_closed.groovy', variables:
+    insert 'inc_ledger_validated/ledger_closed.gvy', variables:
      ["vf_name": 'TGroup-ledger_closed', "vf_enabled": load_setting["ledger_closed"].enabled, "vf_delay": load_setting["ledger_closed"].delay,
       "vf_users": load_setting["ledger_closed"].users, "vf_rampUp": load_setting["ledger_closed"].ramp,
       "vf_duration": load_setting["ledger_closed"].duration, "vf_loops": load_setting["ledger_closed"].loops,
@@ -100,7 +100,7 @@ start {
       duration: load_setting["nft_info"].duration, loops: load_setting["nft_info"].loops,
       scheduler: load_setting["nft_info"].scheduler, enabled: load_setting["nft_info"].enabled) {
 
-      insert 'inc_ledger_validated/nft_info.groovy'
+      insert 'inc_ledger_validated/nft_info.gvy'
    }
 
     group(name: 'TGroup-book_offers', delay: load_setting["book_offers"].delay, delayedStart: true,
@@ -108,16 +108,16 @@ start {
       duration: load_setting["book_offers"].duration, loops: load_setting["book_offers"].loops,
       scheduler: load_setting["book_offers"].scheduler, enabled: load_setting["book_offers"].enabled) {
 
-      insert 'book_offers/book_offers_ins.groovy'
+      insert 'book_offers/book_offers_ins.gvy'
     }
 
-    insert 'ledger_data/ledger_data_ins.groovy', variables:
+    insert 'ledger_data/ledger_data_ins.gvy', variables:
      ["vf_name": 'TGroup-ledger_data', "vf_enabled": load_setting["ledger_data"].enabled, "vf_delay": load_setting["ledger_data"].delay,
       "vf_users": load_setting["ledger_data"].users, "vf_rampUp": load_setting["ledger_data"].ramp,
       "vf_duration": load_setting["ledger_data"].duration, "vf_loops": load_setting["ledger_data"].loops,
       "vf_pt_delay": load_setting["ledger_data"].pt_delay,  "vf_pt_range": load_setting["ledger_data"].pt_range]
 
   // common file-end configuration
-  insert 'common/stationary-end.groovy'
+  insert 'common/stationary-end.gvy'
   }
 }

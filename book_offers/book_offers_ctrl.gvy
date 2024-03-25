@@ -36,7 +36,7 @@ start {
     csv name: 'CSV book_offers', file: '../common/book_offers.csv', variables: ["acct","vCurrency","vIssuer","ledgerHash","ledgerIndex"]
 
     // common file-beg configuration
-    insert 'common/stationary-beg.groovy'
+    insert 'common/stationary-beg.gvy'
 
     check_response applyTo: 'parent', {
       text() excludes ',\\"status\\":\\"error\\",\\"type\\":\\"response\\"'
@@ -47,10 +47,10 @@ start {
       users: '${c_lt_users}', rampUp: '${c_lt_ramp}', keepUser: false,
       loops: '${c_lt_loops}', duration: '${c_lt_duration}', scheduler: true) {
 
-      insert 'book_offers_ins.groovy'
+      insert 'book_offers_ins.gvy'
     }
 
   // common file-end configuration
-  insert 'common/stationary-end.groovy'
+  insert 'common/stationary-end.gvy'
   }
 }

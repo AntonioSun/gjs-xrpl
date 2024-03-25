@@ -4,7 +4,7 @@ fragment {
         cookies(name: 'cookies manager')
 
         // insert login fragment
-        insert 'fragments/login.groovy'
+        insert 'fragments/login.gvy'
 
         http 'GET /api/books', {
             params values: [ limit: '10' ]

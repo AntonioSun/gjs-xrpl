@@ -34,7 +34,7 @@ start {
       }
 
     // common file-beg configuration
-    insert 'common/stationary-beg.groovy'
+    insert 'common/stationary-beg.gvy'
 
     check_response applyTo: 'parent', {
       text() excludes ',\\"status\\":\\"error\\",\\"type\\":\\"response\\"'
@@ -48,6 +48,6 @@ start {
       "vf_pt_delay": load_setting["ledger_data"].pt_delay,  "vf_pt_range": load_setting["ledger_data"].pt_range]
 
     // common file-end configuration
-    insert 'common/stationary-end.groovy'
+    insert 'common/stationary-end.gvy'
   }
 }

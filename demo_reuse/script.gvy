@@ -15,24 +15,24 @@ start {
     }
 
   // common file-beg configuration
-  insert 'fragments/stationary-beg.groovy'
+  insert 'fragments/stationary-beg.gvy'
 
   debug '---- Thread Groups starts ----', enabled: false
   group(name: 'TGroup-1', users: 12, rampUp: 30) {
     cookies()
 
     // insert login fragment
-    insert 'fragments/login.groovy'
+    insert 'fragments/login.gvy'
 
     http('GET /api/books') {
         params values: [ limit: '10' ]
     }
   }
 
-  insert 'fragments/group.groovy', variables:
+  insert 'fragments/group.gvy', variables:
      ["vf_name": 'TGroup-2', "vf_users": 10, "vf_duration": 20, "vf_loops": -1]
 
   // common file-end configuration
-  insert 'fragments/stationary-end.groovy'
+  insert 'fragments/stationary-end.gvy'
   }
 }

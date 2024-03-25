@@ -1,4 +1,7 @@
-    fragment {
+  fragment {
+    group name: vf_name, loops: vf_loops, users: vf_users, duration: vf_duration,
+      delay: vf_delay, keepUser: false, delayedStart: true, scheduler: true, {
+
       debug '--== Tx: ledger_closed ==--', displayJMeterVariables: true, displayJMeterProperties: true, enabled: false
       transaction('Tx01 ledger_closed', generate: true) {
 
@@ -10,6 +13,7 @@
       }
 
       flow (name: 'Pace Time Flow Control') {
-        uniform_timer (name: 'Pace Time', delay: '${c_pt_delay}', range: '${c_tt_range}')
+        uniform_timer (name: 'Pace Time', delay: vf_pt_delay, range: vf_pt_range)
       }
     }
+  }

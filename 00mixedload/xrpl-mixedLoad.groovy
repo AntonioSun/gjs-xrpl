@@ -83,19 +83,17 @@ start {
       insert 'inc_ledger_validated/fee.groovy'
     }
 
-    group(name: 'TGroup-ledger_current', delay: load_setting["ledger_current"].delay, delayedStart: true,
-      users: load_setting["ledger_current"].users, rampUp: load_setting["ledger_current"].ramp, keepUser: false,
-      duration: load_setting["ledger_current"].duration, loops: load_setting["ledger_current"].loops,
-      scheduler: load_setting["ledger_current"].scheduler, enabled: load_setting["ledger_current"].enabled) {
-      insert 'inc_ledger_validated/ledger_current.groovy'
-    }
+    insert 'inc_ledger_validated/ledger_current.groovy', variables:
+     ["vf_name": 'TGroup-ledger_current', "vf_enabled": load_setting["ledger_current"].enabled, "vf_delay": load_setting["ledger_current"].delay,
+      "vf_users": load_setting["ledger_current"].users, "vf_rampUp": load_setting["ledger_current"].ramp,
+      "vf_duration": load_setting["ledger_current"].duration, "vf_loops": load_setting["ledger_current"].loops,
+      "vf_pt_delay": load_setting["ledger_current"].pt_delay,  "vf_pt_range": load_setting["ledger_current"].pt_range]
 
-    group(name: 'TGroup-ledger_closed', delay: load_setting["ledger_closed"].delay, delayedStart: true,
-      users: load_setting["ledger_closed"].users, rampUp: load_setting["ledger_closed"].ramp, keepUser: false,
-      duration: load_setting["ledger_closed"].duration, loops: load_setting["ledger_closed"].loops,
-      scheduler: load_setting["ledger_closed"].scheduler, enabled: load_setting["ledger_closed"].enabled) {
-      insert 'inc_ledger_validated/ledger_closed.groovy'
-    }
+    insert 'inc_ledger_validated/ledger_closed.groovy', variables:
+     ["vf_name": 'TGroup-ledger_closed', "vf_enabled": load_setting["ledger_closed"].enabled, "vf_delay": load_setting["ledger_closed"].delay,
+      "vf_users": load_setting["ledger_closed"].users, "vf_rampUp": load_setting["ledger_closed"].ramp,
+      "vf_duration": load_setting["ledger_closed"].duration, "vf_loops": load_setting["ledger_closed"].loops,
+      "vf_pt_delay": load_setting["ledger_closed"].pt_delay,  "vf_pt_range": load_setting["ledger_closed"].pt_range]
 
     group(name: 'TGroup-nft_info', delay: load_setting["nft_info"].delay, delayedStart: true,
       users: load_setting["nft_info"].users, rampUp: load_setting["nft_info"].ramp, keepUser: false,

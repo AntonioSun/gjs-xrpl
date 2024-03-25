@@ -1,9 +1,9 @@
 settings:
-        server_info:  { enabled: true, users: 1, ramp: 30, delay: 0, loops: -1, duration: 120, scheduler: true }
-        account_info: { enabled: true, users: 1, ramp: 30, delay: 0, loops: -1, duration: 120, scheduler: true }
-        fee:          { enabled: true, users: 1, ramp: 30, delay: 0, loops: -1, duration: 120, scheduler: true }
+        server_info:    { enabled: true, users: 1, ramp: 30, delay: 0, loops: -1, duration: 120, scheduler: true }
+        account_info:   { enabled: true, users: 1, ramp: 30, delay: 0, loops: -1, duration: 120, scheduler: true }
+        fee:            { enabled: true, users: 1, ramp: 30, delay: 0, loops: -1, duration: 120, scheduler: true }
         ledger_current: { enabled: true, users: 1, ramp: 30, delay: 0, loops: -1, duration: 120, scheduler: true }
-        ledger_closed: { enabled: true, users: 1, ramp: 30, delay: 0, loops: -1, duration: 120, scheduler: true }
-        nft_info:     { enabled: true, users: 1, ramp: 30, delay: 0, loops: -1, duration: 120, scheduler: true }
-        ledger_data:  { enabled: true, users: 1, ramp: 30, delay: 0, loops: -1, duration: 120, scheduler: true }
-        book_offers:  { enabled: true, users: 1, ramp: 30, delay: 0, loops: -1, duration: 120, scheduler: true }
+        ledger_closed:  { enabled: true, users: 1, ramp: 30, delay: 0, loops: -1, duration: 120, scheduler: true }
+        nft_info:       { enabled: true, users: 1, ramp: 30, delay: 0, loops: -1, duration: 120, scheduler: true }
+        ledger_data:    { enabled: true, users: 1, ramp: 30, delay: 0, loops: -1, duration: 120, scheduler: true }
+        book_offers:    { enabled: true, users: 1, ramp: 30, delay: 0, loops: -1, duration: 120, scheduler: true }

@@ -1,5 +1,5 @@
 fragment {
-    group name: var_inner_tg_name, loops: var_inner_loops, users: var_inner_users, duration: var_inner_duration, 
+    group name: vf_name, loops: vf_loops, users: vf_users, duration: vf_duration,
       keepUser: false, delayedStart: true, scheduler: true, {
         cookies(name: 'cookies manager')
 

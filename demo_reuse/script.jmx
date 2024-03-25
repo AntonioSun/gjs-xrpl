@@ -136,7 +136,7 @@
         <boolProp name="displaySystemProperties">false</boolProp>
       </DebugSampler>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group 1" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TGroup-1" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <stringProp name="ThreadGroup.num_threads">12</stringProp>
         <stringProp name="ThreadGroup.ramp_time">30</stringProp>
@@ -225,7 +225,7 @@
         </HTTPSamplerProxy>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group 2" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TGroup-2" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <stringProp name="ThreadGroup.num_threads">10</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
@@ -356,7 +356,7 @@
             </elementProp>
             <elementProp name="influxDBPassword" elementType="Argument">
               <stringProp name="Argument.name">influxDBPassword</stringProp>
-              <stringProp name="Argument.value">61pug4LZ04=NK4d2jLVb1</stringProp>
+              <stringProp name="Argument.value">Admin...</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="influxDBDatabase" elementType="Argument">

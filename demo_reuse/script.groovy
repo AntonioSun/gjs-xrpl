@@ -30,7 +30,7 @@ start {
   }
 
   insert 'fragments/group.groovy', variables:
-     ["var_inner_tg_name": 'TGroup-2', "var_inner_users": 10, "var_inner_duration": 20, "var_inner_loops": -1]
+     ["vf_name": 'TGroup-2', "vf_users": 10, "vf_duration": 20, "vf_loops": -1]
 
   // common file-end configuration
   insert 'fragments/stationary-end.groovy'

@@ -113,13 +113,11 @@ start {
       insert 'book_offers/book_offers_ins.groovy'
     }
 
-    group(name: 'TGroup-ledger_data', delay: load_setting["ledger_data"].delay, delayedStart: true,
-      users: load_setting["ledger_data"].users, rampUp: load_setting["ledger_data"].ramp, keepUser: false,
-      duration: load_setting["ledger_data"].duration, loops: load_setting["ledger_data"].loops,
-      scheduler: load_setting["ledger_data"].scheduler, enabled: load_setting["ledger_data"].enabled) {
-
-      insert 'ledger_data/ledger_data_ins.groovy'
-    }
+    insert 'ledger_data/ledger_data_ins.groovy', variables:
+     ["vf_name": 'TGroup-ledger_data', "vf_enabled": load_setting["ledger_data"].enabled, "vf_delay": load_setting["ledger_data"].delay,
+      "vf_users": load_setting["ledger_data"].users, "vf_rampUp": load_setting["ledger_data"].ramp,
+      "vf_duration": load_setting["ledger_data"].duration, "vf_loops": load_setting["ledger_data"].loops,
+      "vf_pt_delay": load_setting["ledger_data"].pt_delay,  "vf_pt_range": load_setting["ledger_data"].pt_range]
 
   // common file-end configuration
   insert 'common/stationary-end.groovy'

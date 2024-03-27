@@ -16,7 +16,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="c_app_host_name" elementType="Argument">
             <stringProp name="Argument.name">c_app_host_name</stringProp>
-            <stringProp name="Argument.value">${__env(c_app_host_name, , s1.ripple.com)}</stringProp>
+            <stringProp name="Argument.value">${__env(c_app_host_name, , 172.16.0.167)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Test server host name</stringProp>
           </elementProp>
@@ -104,17 +104,17 @@
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Influxdb server host name</stringProp>
           </elementProp>
-          <elementProp name="p_session_email" elementType="Argument">
-            <stringProp name="Argument.name">p_session_email</stringProp>
-            <stringProp name="Argument.value">john</stringProp>
+          <elementProp name="p_acct_dest" elementType="Argument">
+            <stringProp name="Argument.name">p_acct_dest</stringProp>
+            <stringProp name="Argument.value">rMQ98K56yXJbDGv49ZSmW51sLn94Xe1mu1</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="Argument.desc"></stringProp>
+            <stringProp name="Argument.desc">Destination address to receive any leftover XRP after deleting</stringProp>
           </elementProp>
-          <elementProp name="p_session_password" elementType="Argument">
-            <stringProp name="Argument.name">p_session_password</stringProp>
-            <stringProp name="Argument.value">john</stringProp>
+          <elementProp name="p_del_fee" elementType="Argument">
+            <stringProp name="Argument.name">p_del_fee</stringProp>
+            <stringProp name="Argument.value">20</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="Argument.desc"></stringProp>
+            <stringProp name="Argument.desc">Fee of deleting account (2000000)</stringProp>
           </elementProp>
         </collectionProp>
       </Arguments>
@@ -122,7 +122,7 @@
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Tx_AccountDelete" enabled="true">
         <stringProp name="filename">Tx_AccountDelete.csv</stringProp>
         <stringProp name="fileEncoding">UTF-8</stringProp>
-        <stringProp name="variableNames">acct,vCurrency,vIssuer,ledgerHash,ledgerIndex</stringProp>
+        <stringProp name="variableNames">s_account,s_secret</stringProp>
         <boolProp name="ignoreFirstLine">false</boolProp>
         <stringProp name="delimiter">,</stringProp>
         <boolProp name="quotedData">false</boolProp>
@@ -200,15 +200,6 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random ledger index number" enabled="true">
-          <stringProp name="minimumValue">30000000</stringProp>
-          <stringProp name="maximumValue">85478162</stringProp>
-          <boolProp name="perThread">true</boolProp>
-          <stringProp name="variableName">ledgerIndex</stringProp>
-          <stringProp name="outputFormat"></stringProp>
-          <stringProp name="randomSeed"></stringProp>
-        </RandomVariableConfig>
-        <hashTree/>
         <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="--== Tx: Tx_AccountDelete ==--" enabled="false">
           <boolProp name="displayJMeterProperties">true</boolProp>
           <boolProp name="displayJMeterVariables">true</boolProp>
@@ -220,13 +211,28 @@
           <boolProp name="TransactionController.parent">true</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Tx01r Tx_AccountDelete, random ledger" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Tx01r Tx_AccountDelete" enabled="true">
             <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
               <collectionProp name="Arguments.arguments">
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">{&quot;method&quot;:&quot;Tx_AccountDelete&quot;,&quot;params&quot;: [{&quot;ledger_index&quot;: &quot;${ledgerIndex}&quot;,&quot;taker&quot;: &quot;${acct}&quot;,&quot;taker_gets&quot;: {&quot;currency&quot;: &quot;${vCurrency}&quot;,&quot;issuer&quot;: &quot;${vIssuer}&quot;},&quot;taker_pays&quot;: {&quot;currency&quot;: &quot;XRP&quot;}}]}</stringProp>
+                  <stringProp name="Argument.value">{&#xd;
+  &quot;method&quot;: &quot;submit&quot;,&#xd;
+  &quot;params&quot;: [&#xd;
+    {&#xd;
+      &quot;offline&quot;: false,&#xd;
+      &quot;secret&quot;: &quot;${s_secret}&quot;,&#xd;
+      &quot;fail_hard&quot;: true,&#xd;
+      &quot;tx_json&quot;: {&#xd;
+        &quot;TransactionType&quot;: &quot;AccountDelete&quot;,&#xd;
+        &quot;Account&quot;: &quot;${s_account}&quot;,&#xd;
+        &quot;Destination&quot;: &quot;${p_acct_dest}&quot;,&#xd;
+        &quot;Fee&quot;: &quot;${p_del_fee}&quot;&#xd;
+      }&#xd;
+    }&#xd;
+  ]&#xd;
+}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
               </collectionProp>
@@ -244,9 +250,16 @@
             <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
-            <stringProp name="TestPlan.comments">https://xrpl.org/Tx_AccountDelete.html</stringProp>
+            <stringProp name="TestPlan.comments">https://xrpl.org/</stringProp>
           </HTTPSamplerProxy>
-          <hashTree/>
+          <hashTree>
+            <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="Json JMES Path Extractor" enabled="true">
+              <stringProp name="JMESExtractor.matchNumber">1</stringProp>
+              <stringProp name="JMESExtractor.referenceName">p_result</stringProp>
+              <stringProp name="JMESExtractor.jmesPathExpr">result.engine_result</stringProp>
+            </JMESPathExtractor>
+            <hashTree/>
+          </hashTree>
         </hashTree>
         <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Think Time Flow Control" enabled="false">
           <intProp name="ActionProcessor.action">1</intProp>

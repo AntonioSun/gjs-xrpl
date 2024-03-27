@@ -46,13 +46,13 @@
           </elementProp>
           <elementProp name="c_lt_ramp" elementType="Argument">
             <stringProp name="Argument.name">c_lt_ramp</stringProp>
-            <stringProp name="Argument.value">${__P(c_lt_ramp, 10)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_lt_ramp, 30)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">loadtest ramp up in seconds</stringProp>
           </elementProp>
           <elementProp name="c_lt_loops" elementType="Argument">
             <stringProp name="Argument.name">c_lt_loops</stringProp>
-            <stringProp name="Argument.value">${__P(c_lt_loops, 1)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_lt_loops, -1)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">loadtest loops</stringProp>
           </elementProp>
@@ -64,7 +64,7 @@
           </elementProp>
           <elementProp name="c_lt_delay" elementType="Argument">
             <stringProp name="Argument.name">c_lt_delay</stringProp>
-            <stringProp name="Argument.value">${__P(c_lt_delay, 10)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_lt_delay, 0)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">thread delay in seconds</stringProp>
           </elementProp>
@@ -120,7 +120,7 @@
       </Arguments>
       <hashTree/>
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Tx_AccountDelete" enabled="true">
-        <stringProp name="filename">../common/Tx_AccountDelete.csv</stringProp>
+        <stringProp name="filename">Tx_AccountDelete.csv</stringProp>
         <stringProp name="fileEncoding">UTF-8</stringProp>
         <stringProp name="variableNames">acct,vCurrency,vIssuer,ledgerHash,ledgerIndex</stringProp>
         <boolProp name="ignoreFirstLine">false</boolProp>
@@ -185,7 +185,7 @@
         <boolProp name="displaySystemProperties">false</boolProp>
       </DebugSampler>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TGroup" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TGroup-Tx_AccountDelete" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <stringProp name="ThreadGroup.num_threads">${c_lt_users}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${c_lt_ramp}</stringProp>

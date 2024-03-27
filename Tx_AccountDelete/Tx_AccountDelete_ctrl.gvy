@@ -9,7 +9,7 @@ def slurper = new YamlSlurper()
 start {
   def load_testname = 'Tx_AccountDelete'
   def load_settings = slurper.parse("load_settings.yaml" as File)
-  def load_setting = load_settings.settings[load_testname]
+  def load_setting = load_settings.settings
 
   plan {
     variables {
@@ -18,11 +18,11 @@ start {
       variable(name: 'c_app_host_port', value: '${__env(c_app_host_port, , 51234)}', description: 'Test server host port')
       variable(name: 'c_app_protocol', value: '${__env(c_app_protocol, , http)}', description: 'Test server protocol')
       variable(name: 'c_app_error_kw', value: '${__P(c_app_error_kw,Wrong)}', description: 'keyword indicates wrong application returns')
-      variable(name: 'c_lt_users', value: '${__P(c_lt_users, ' + load_setting.users + ')}', description: 'loadtest users')
-      variable(name: 'c_lt_ramp', value: '${__P(c_lt_ramp, ' + load_setting.ramp + ')}', description: 'loadtest ramp up in seconds')
-      variable(name: 'c_lt_loops', value: '${__P(c_lt_loops, ' + load_setting.loops + ')}', description: 'loadtest loops')
-      variable(name: 'c_lt_duration', value: '${__P(c_lt_duration, ' + load_setting.duration + ')}', description: 'loadtest duration in seconds')
-      variable(name: 'c_lt_delay', value: '${__P(c_lt_delay, ' + load_setting.delay + ')}', description: 'thread delay in seconds')
+      variable(name: 'c_lt_users', value: '${__P(c_lt_users, ' + load_setting[load_testname].users + ')}', description: 'loadtest users')
+      variable(name: 'c_lt_ramp', value: '${__P(c_lt_ramp, ' + load_setting[load_testname].ramp + ')}', description: 'loadtest ramp up in seconds')
+      variable(name: 'c_lt_loops', value: '${__P(c_lt_loops, ' + load_setting[load_testname].loops + ')}', description: 'loadtest loops')
+      variable(name: 'c_lt_duration', value: '${__P(c_lt_duration, ' + load_setting[load_testname].duration + ')}', description: 'loadtest duration in seconds')
+      variable(name: 'c_lt_delay', value: '${__P(c_lt_delay, ' + load_setting[load_testname].delay + ')}', description: 'thread delay in seconds')
       variable(name: 'c_tt_range', value: '${__P(c_tt_range, 2000)}', description: 'Think Time: Maximum random number of ms to delay')
       variable(name: 'c_tt_delay', value: '${__P(c_tt_delay, 500)}', description: 'Think Time: Ms to delay in addition to random time')
       variable(name: 'c_pt_range', value: '${__P(c_pt_range, 12000)}', description: 'Pace Time: Maximum random number of ms to delay')
@@ -33,7 +33,7 @@ start {
       variable(name: 'p_session_password', value: 'john')
       }
 
-    csv name: 'CSV Tx_AccountDelete', file: '../common/Tx_AccountDelete.csv', variables: ["acct","vCurrency","vIssuer","ledgerHash","ledgerIndex"]
+    csv name: 'CSV Tx_AccountDelete', file: 'Tx_AccountDelete.csv', variables: ["acct","vCurrency","vIssuer","ledgerHash","ledgerIndex"]
 
     // common file-beg configuration
     insert 'common/stationary-beg.gvy'
@@ -43,12 +43,11 @@ start {
     }
 
     debug '---- Thread Groups starts ----', enabled: false
-    group(name: 'TGroup', delay: '${c_lt_delay}', delayedStart: true,
-      users: '${c_lt_users}', rampUp: '${c_lt_ramp}', keepUser: false,
-      loops: '${c_lt_loops}', duration: '${c_lt_duration}', scheduler: true) {
-
-      insert 'Tx_AccountDelete_ins.gvy'
-    }
+    insert 'Tx_AccountDelete_ins.gvy', variables: [
+      "vf_name": 'TGroup-Tx_AccountDelete', "vf_enabled": true, "vf_delay": '${c_lt_delay}',
+      "vf_users": '${c_lt_users}', "vf_rampUp": '${c_lt_ramp}',
+      "vf_loops": '${c_lt_loops}', "vf_duration": '${c_lt_duration}',
+      "vf_pt_delay": '${c_pt_delay}',  "vf_pt_range": '${c_pt_range}']
 
   // common file-end configuration
   insert 'common/stationary-end.gvy'

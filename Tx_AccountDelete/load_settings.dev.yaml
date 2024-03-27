@@ -1,2 +1,2 @@
 settings:
-  Tx_AccountDelete: { users: 1, ramp: 10, delay: 10, loops: 1, duration: 120, scheduler: true, enabled: true }
+  Tx_AccountDelete:    { enabled: true, users: 1, ramp: 30, duration: 120, pt_delay: 12000, pt_range: 3000, delay: 0, loops: -1 }

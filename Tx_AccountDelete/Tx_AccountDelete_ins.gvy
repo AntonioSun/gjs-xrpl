@@ -1,4 +1,6 @@
-    fragment {
+  fragment {
+    group name: vf_name, loops: vf_loops, users: vf_users, duration: vf_duration,
+      rampUp: vf_rampUp, delay: vf_delay, keepUser: false, delayedStart: true, scheduler: true, {
 
       // Defines a 'Random Variable' config element
       random name: 'Random ledger index number', variable: 'ledgerIndex', minimum: 30000000, maximum: 85478162, perUser: true
@@ -19,7 +21,8 @@
       }
 
       flow (name: 'Pace Time Flow Control') {
-        uniform_timer (name: 'Pace Time', delay: '${c_pt_delay}', range: '${c_pt_range}')
+        uniform_timer (name: 'Pace Time', delay: vf_pt_delay, range: vf_pt_range)
       }
 
     }
+  }

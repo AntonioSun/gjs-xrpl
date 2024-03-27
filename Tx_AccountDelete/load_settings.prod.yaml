@@ -1,0 +1,9 @@
+settings:
+  Tx_AccountDelete:
+    users: 20
+    ramp: 360
+    delay: 0
+    loops: -1
+    duration: 720
+    scheduler: true
+    enabled: true

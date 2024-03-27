@@ -3,15 +3,30 @@
       rampUp: vf_rampUp, delay: vf_delay, keepUser: false, delayedStart: true, scheduler: true, {
 
       // Defines a 'Random Variable' config element
-      random name: 'Random ledger index number', variable: 'ledgerIndex', minimum: 30000000, maximum: 85478162, perUser: true
+      //random name: 'Random ledger index number', variable: 'ledgerIndex', minimum: 30000000, maximum: 85478162, perUser: true
 
       debug '--== Tx: Tx_AccountDelete ==--', displayJMeterVariables: true, displayJMeterProperties: true, enabled: false
       transaction('Tx01 Tx_AccountDelete', generate: true) {
         
-        http (method: 'POST', path: '/', name: 'Tx01r Tx_AccountDelete, random ledger',
-              comments: 'https://xrpl.org/Tx_AccountDelete.html') {
-          body '''{"method":"Tx_AccountDelete","params": [{"ledger_index": "${ledgerIndex}","taker": "${acct}","taker_gets": {"currency": "${vCurrency}","issuer": "${vIssuer}"},"taker_pays": {"currency": "XRP"}}]}'''
-          //extract_jmes expression: 'book.id', variable: 'p_bookId'
+        http (method: 'POST', path: '/', name: 'Tx01r Tx_AccountDelete',
+              comments: 'https://xrpl.org/') {
+          body '''{
+  "method": "submit",
+  "params": [
+    {
+      "offline": false,
+      "secret": "${s_secret}",
+      "fail_hard": true,
+      "tx_json": {
+        "TransactionType": "AccountDelete",
+        "Account": "${s_account}",
+        "Destination": "${p_acct_dest}",
+        "Fee": "${p_del_fee}"
+      }
+    }
+  ]
+}'''
+          extract_jmes expression: 'result.engine_result', variable: 'p_result'
         }
     
       }

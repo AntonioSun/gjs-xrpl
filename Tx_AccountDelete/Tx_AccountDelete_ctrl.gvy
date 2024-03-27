@@ -14,7 +14,7 @@ start {
   plan {
     variables {
       // using __env() custom JMeter Functions, https://jmeter-plugins.org/wiki/Functions/
-      variable(name: 'c_app_host_name', value: '${__env(c_app_host_name, , s1.ripple.com)}', description: 'Test server host name')
+      variable(name: 'c_app_host_name', value: '${__env(c_app_host_name, , 172.16.0.167)}', description: 'Test server host name')
       variable(name: 'c_app_host_port', value: '${__env(c_app_host_port, , 51234)}', description: 'Test server host port')
       variable(name: 'c_app_protocol', value: '${__env(c_app_protocol, , http)}', description: 'Test server protocol')
       variable(name: 'c_app_error_kw', value: '${__P(c_app_error_kw,Wrong)}', description: 'keyword indicates wrong application returns')
@@ -29,11 +29,11 @@ start {
       variable(name: 'c_pt_delay', value: '${__P(c_pt_delay, 3000)}', description: 'Pace Time: Ms to delay in addition to random time')
       variable(name: 'c_cfg_TestName', value: 'Tx_AccountDelete', description: 'Test name to identify different tests')
       variable(name: 'c_cfg_Influxdb', value: '${__env(c_cfg_Influxdb, , localhost)}', description: 'Influxdb server host name')
-      variable(name: 'p_session_email', value: 'john')
-      variable(name: 'p_session_password', value: 'john')
+      variable(name: 'p_acct_dest', value: 'rMQ98K56yXJbDGv49ZSmW51sLn94Xe1mu1', description: 'Destination address to receive any leftover XRP after deleting')
+      variable(name: 'p_del_fee', value: '20', description: 'Fee of deleting account (2000000)')
       }
 
-    csv name: 'CSV Tx_AccountDelete', file: 'Tx_AccountDelete.csv', variables: ["acct","vCurrency","vIssuer","ledgerHash","ledgerIndex"]
+    csv name: 'CSV Tx_AccountDelete', file: 'Tx_AccountDelete.csv', variables: ["s_account","s_secret"]
 
     // common file-beg configuration
     insert 'common/stationary-beg.gvy'

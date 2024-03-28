@@ -104,18 +104,6 @@
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Influxdb server host name</stringProp>
           </elementProp>
-          <elementProp name="p_acct_dest" elementType="Argument">
-            <stringProp name="Argument.name">p_acct_dest</stringProp>
-            <stringProp name="Argument.value">rMQ98K56yXJbDGv49ZSmW51sLn94Xe1mu1</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="Argument.desc">Destination address to receive any leftover XRP after deleting</stringProp>
-          </elementProp>
-          <elementProp name="p_del_fee" elementType="Argument">
-            <stringProp name="Argument.name">p_del_fee</stringProp>
-            <stringProp name="Argument.value">20</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="Argument.desc">Fee of deleting account (2000000)</stringProp>
-          </elementProp>
         </collectionProp>
       </Arguments>
       <hashTree/>
@@ -126,8 +114,8 @@
         <boolProp name="ignoreFirstLine">false</boolProp>
         <stringProp name="delimiter">,</stringProp>
         <boolProp name="quotedData">false</boolProp>
-        <boolProp name="recycle">true</boolProp>
-        <boolProp name="stopThread">false</boolProp>
+        <boolProp name="recycle">false</boolProp>
+        <boolProp name="stopThread">true</boolProp>
         <stringProp name="shareMode">shareMode.all</stringProp>
       </CSVDataSet>
       <hashTree/>
@@ -196,7 +184,7 @@
         <stringProp name="ThreadGroup.delay">${c_lt_delay}</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">${c_lt_loops}</stringProp>
+          <intProp name="LoopController.loops">-1</intProp>
         </elementProp>
       </ThreadGroup>
       <hashTree>

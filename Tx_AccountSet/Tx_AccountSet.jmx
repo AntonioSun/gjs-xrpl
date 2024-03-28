@@ -82,13 +82,13 @@
           </elementProp>
           <elementProp name="c_pt_range" elementType="Argument">
             <stringProp name="Argument.name">c_pt_range</stringProp>
-            <stringProp name="Argument.value">${__P(c_pt_range, 12000)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_pt_range, 800)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Pace Time: Maximum random number of ms to delay</stringProp>
           </elementProp>
           <elementProp name="c_pt_delay" elementType="Argument">
             <stringProp name="Argument.name">c_pt_delay</stringProp>
-            <stringProp name="Argument.value">${__P(c_pt_delay, 3000)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_pt_delay, 200)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Pace Time: Ms to delay in addition to random time</stringProp>
           </elementProp>
@@ -171,7 +171,7 @@
       <hashTree/>
       <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Check Text" enabled="true">
         <collectionProp name="Asserion.test_strings">
-          <stringProp name="-561901683">,\&quot;status\&quot;:\&quot;error\&quot;,\&quot;type\&quot;:\&quot;response\&quot;</stringProp>
+          <stringProp name="-1693821378">,\&quot;error_code\&quot;:</stringProp>
         </collectionProp>
         <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
         <intProp name="Assertion.test_type">6</intProp>
@@ -225,10 +225,9 @@
       &quot;secret&quot;: &quot;${s_secret}&quot;,&#xd;
       &quot;fail_hard&quot;: true,&#xd;
       &quot;tx_json&quot;: {&#xd;
-        &quot;TransactionType&quot;: &quot;AccountDelete&quot;,&#xd;
+        &quot;TransactionType&quot;: &quot;AccountSet&quot;,&#xd;
         &quot;Account&quot;: &quot;${s_account}&quot;,&#xd;
-        &quot;Destination&quot;: &quot;${p_acct_dest}&quot;,&#xd;
-        &quot;Fee&quot;: &quot;${p_del_fee}&quot;&#xd;
+        &quot;SetFlag&quot;: 8&#xd;
       }&#xd;
     }&#xd;
   ]&#xd;

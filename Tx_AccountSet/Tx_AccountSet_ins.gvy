@@ -18,10 +18,9 @@
       "secret": "${s_secret}",
       "fail_hard": true,
       "tx_json": {
-        "TransactionType": "AccountDelete",
+        "TransactionType": "AccountSet",
         "Account": "${s_account}",
-        "Destination": "${p_acct_dest}",
-        "Fee": "${p_del_fee}"
+        "SetFlag": 8
       }
     }
   ]

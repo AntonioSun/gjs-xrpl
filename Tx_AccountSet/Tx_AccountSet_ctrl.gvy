@@ -25,8 +25,8 @@ start {
       variable(name: 'c_lt_delay', value: '${__P(c_lt_delay, ' + load_setting[load_testname].delay + ')}', description: 'thread delay in seconds')
       variable(name: 'c_tt_range', value: '${__P(c_tt_range, 2000)}', description: 'Think Time: Maximum random number of ms to delay')
       variable(name: 'c_tt_delay', value: '${__P(c_tt_delay, 500)}', description: 'Think Time: Ms to delay in addition to random time')
-      variable(name: 'c_pt_range', value: '${__P(c_pt_range, 12000)}', description: 'Pace Time: Maximum random number of ms to delay')
-      variable(name: 'c_pt_delay', value: '${__P(c_pt_delay, 3000)}', description: 'Pace Time: Ms to delay in addition to random time')
+      variable(name: 'c_pt_range', value: '${__P(c_pt_range, 800)}', description: 'Pace Time: Maximum random number of ms to delay')
+      variable(name: 'c_pt_delay', value: '${__P(c_pt_delay, 200)}', description: 'Pace Time: Ms to delay in addition to random time')
       variable(name: 'c_cfg_TestName', value: 'Tx_AccountSet', description: 'Test name to identify different tests')
       variable(name: 'c_cfg_Influxdb', value: '${__env(c_cfg_Influxdb, , localhost)}', description: 'Influxdb server host name')
       variable(name: 'p_acct_dest', value: 'rMQ98K56yXJbDGv49ZSmW51sLn94Xe1mu1', description: 'Destination address to receive any leftover XRP after deleting')
@@ -39,7 +39,7 @@ start {
     insert 'common/stationary-beg.gvy'
 
     check_response applyTo: 'parent', {
-      text() excludes ',\\"status\\":\\"error\\",\\"type\\":\\"response\\"'
+      text() excludes ',\\"error_code\\":'
     }
 
     debug '---- Thread Groups starts ----', enabled: false

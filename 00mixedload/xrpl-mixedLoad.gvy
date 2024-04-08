@@ -17,7 +17,7 @@ start {
   plan {
     variables {
       // using __env() custom JMeter Functions, https://jmeter-plugins.org/wiki/Functions/
-      variable(name: 'c_app_host_name', value: '${__env(c_app_host_name, , s1.ripple.com)}', description: 'Test server host name')
+      variable(name: 'c_app_host_name', value: '${__env(c_app_host_name, , 172.16.0.167)}', description: 'Test server host name')
       variable(name: 'c_app_host_port', value: '${__env(c_app_host_port, , 51234)}', description: 'Test server host port')
       variable(name: 'c_app_protocol', value: '${__env(c_app_protocol, , http)}', description: 'Test server protocol')
       variable(name: 'c_app_error_kw', value: '${__P(c_app_error_kw,Wrong)}', description: 'keyword indicates wrong application returns')
@@ -30,7 +30,7 @@ start {
       variable(name: 'c_tt_delay', value: '${__P(c_tt_delay, 500)}', description: 'Think Time: Ms to delay in addition to random time')
       variable(name: 'c_pt_range', value: '${__P(c_pt_range, 12000)}', description: 'Pace Time: Maximum random number of ms to delay')
       variable(name: 'c_pt_delay', value: '${__P(c_pt_delay, 3000)}', description: 'Pace Time: Ms to delay in addition to random time')
-      variable(name: 'c_cfg_TestName', value: 'server_info', description: 'Test name to identify different tests')
+      variable(name: 'c_cfg_TestName', value: 'xrpl-mixedload', description: 'Test name to identify different tests')
       variable(name: 'c_cfg_Influxdb', value: '${__env(c_cfg_Influxdb, , localhost)}', description: 'Influxdb server host name')
       variable(name: 'p_session_email', value: 'john')
       variable(name: 'p_session_password', value: 'john')
@@ -43,10 +43,10 @@ start {
     insert 'common/stationary-beg.gvy'
 
     debug '---- Thread Groups starts ----', enabled: false
-    group(name: 'TGroup-server_info', delay: load_setting["server_info"].delay, delayedStart: true,
+    group(name: 'TGroup-server_info', delay: load_setting["server_info"].delay, delayedStart: true, scheduler: true,
       users: load_setting["server_info"].users, rampUp: load_setting["server_info"].ramp, keepUser: false,
       duration: load_setting["server_info"].duration, loops: load_setting["server_info"].loops,
-      scheduler: load_setting["server_info"].scheduler, enabled: load_setting["server_info"].enabled) {
+      enabled: load_setting["server_info"].enabled) {
 
       debug '--== Tx: server_info ==--', displayJMeterVariables: true, displayJMeterProperties: true, enabled: false
       transaction('Tx01 server_info', generate: true) {
@@ -63,23 +63,23 @@ start {
       }
 
       flow (name: 'Pace Time Flow Control') {
-        uniform_timer (name: 'Pace Time', delay: '${c_pt_delay}', range: '${c_tt_range}')
+        uniform_timer (name: 'Pace Time', delay: load_setting["server_info"].pt_delay, range: load_setting["server_info"].pt_range)
       }
       // end group
     }
 
-    group(name: 'TGroup-account_info', delay: load_setting["account_info"].delay, delayedStart: true,
+    group(name: 'TGroup-account_info', delay: load_setting["account_info"].delay, delayedStart: true, scheduler: true,
       users: load_setting["account_info"].users, rampUp: load_setting["account_info"].ramp, keepUser: false,
       duration: load_setting["account_info"].duration, loops: load_setting["account_info"].loops,
-      scheduler: load_setting["account_info"].scheduler, enabled: load_setting["account_info"].enabled) {
+      enabled: load_setting["account_info"].enabled) {
 
       insert 'inc_ledger_validated/account_info.gvy'
     }
 
-    group(name: 'TGroup-fee', delay: load_setting["fee"].delay, delayedStart: true,
+    group(name: 'TGroup-fee', delay: load_setting["fee"].delay, delayedStart: true, scheduler: true,
       users: load_setting["fee"].users, rampUp: load_setting["fee"].ramp, keepUser: false,
       duration: load_setting["fee"].duration, loops: load_setting["fee"].loops,
-      scheduler: load_setting["fee"].scheduler, enabled: load_setting["fee"].enabled) {
+      enabled: load_setting["fee"].enabled) {
       insert 'inc_ledger_validated/fee.gvy'
     }
 
@@ -95,18 +95,18 @@ start {
       "vf_duration": load_setting["ledger_closed"].duration, "vf_loops": load_setting["ledger_closed"].loops,
       "vf_pt_delay": load_setting["ledger_closed"].pt_delay,  "vf_pt_range": load_setting["ledger_closed"].pt_range]
 
-    group(name: 'TGroup-nft_info', delay: load_setting["nft_info"].delay, delayedStart: true,
+    group(name: 'TGroup-nft_info', delay: load_setting["nft_info"].delay, delayedStart: true, scheduler: true,
       users: load_setting["nft_info"].users, rampUp: load_setting["nft_info"].ramp, keepUser: false,
       duration: load_setting["nft_info"].duration, loops: load_setting["nft_info"].loops,
-      scheduler: load_setting["nft_info"].scheduler, enabled: load_setting["nft_info"].enabled) {
+      enabled: load_setting["nft_info"].enabled) {
 
       insert 'inc_ledger_validated/nft_info.gvy'
    }
 
-    group(name: 'TGroup-book_offers', delay: load_setting["book_offers"].delay, delayedStart: true,
+    group(name: 'TGroup-book_offers', delay: load_setting["book_offers"].delay, delayedStart: true, scheduler: true,
       users: load_setting["book_offers"].users, rampUp: load_setting["book_offers"].ramp, keepUser: false,
       duration: load_setting["book_offers"].duration, loops: load_setting["book_offers"].loops,
-      scheduler: load_setting["book_offers"].scheduler, enabled: load_setting["book_offers"].enabled) {
+      enabled: load_setting["book_offers"].enabled) {
 
       insert 'book_offers/book_offers_ins.gvy'
     }

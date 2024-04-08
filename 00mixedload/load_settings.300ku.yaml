@@ -1,0 +1,9 @@
+settings:
+        server_info:    { enabled: true, users: 145, ramp: 30, duration: 126, pt_delay:   120, pt_range:   10, delay: 0, loops: -1 }
+        account_info:   { enabled: true, users: 100, ramp: 30, duration: 126, pt_delay:   120, pt_range:   10, delay: 0, loops: -1 }
+        fee:            { enabled: true, users:  80, ramp: 30, duration: 126, pt_delay:   120, pt_range:   10, delay: 0, loops: -1 }
+        ledger_current: { enabled: true, users:   7, ramp: 30, duration: 126, pt_delay:   120, pt_range:   10, delay: 0, loops: -1 }
+        ledger_closed:  { enabled: true, users:   7, ramp: 30, duration: 126, pt_delay:   120, pt_range:   10, delay: 0, loops: -1 }
+        nft_info:      { enabled: false, users:  20, ramp: 30, duration: 126, pt_delay:   120, pt_range:   10, delay: 0, loops: -1 }
+        ledger_data:    { enabled: true, users:   7, ramp: 30, duration: 126, pt_delay:   120, pt_range:   10, delay: 0, loops: -1 }
+        book_offers:   { enabled: false, users: 180, ramp: 30, duration: 126, pt_delay:   120, pt_range:   10, delay: 0, loops: -1 }

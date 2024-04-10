@@ -179,11 +179,31 @@
         <boolProp name="Assertion.assume_success">false</boolProp>
       </ResponseAssertion>
       <hashTree/>
+      <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Check Text" enabled="true">
+        <collectionProp name="Asserion.test_strings">
+          <stringProp name="-1693821378">,\&quot;error_code\&quot;:</stringProp>
+        </collectionProp>
+        <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+        <intProp name="Assertion.test_type">6</intProp>
+        <stringProp name="Assertion.custom_message"></stringProp>
+        <boolProp name="Assertion.assume_success">false</boolProp>
+      </ResponseAssertion>
+      <hashTree/>
       <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="---- Thread Groups starts ----" enabled="false">
         <boolProp name="displayJMeterProperties">false</boolProp>
         <boolProp name="displayJMeterVariables">true</boolProp>
         <boolProp name="displaySystemProperties">false</boolProp>
       </DebugSampler>
+      <hashTree/>
+      <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Check Text" enabled="true">
+        <collectionProp name="Asserion.test_strings">
+          <stringProp name="-330869302">:\&quot;telINSUF_FEE_P\&quot;,</stringProp>
+        </collectionProp>
+        <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+        <intProp name="Assertion.test_type">6</intProp>
+        <stringProp name="Assertion.custom_message"></stringProp>
+        <boolProp name="Assertion.assume_success">false</boolProp>
+      </ResponseAssertion>
       <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TGroup-Tx_AccountDelete" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>

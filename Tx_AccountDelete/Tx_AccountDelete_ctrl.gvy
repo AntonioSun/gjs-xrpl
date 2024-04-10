@@ -41,6 +41,9 @@ start {
     check_response applyTo: 'parent', {
       text() excludes ',\\"status\\":\\"error\\",\\"type\\":\\"response\\"'
     }
+    check_response applyTo: 'parent', {
+      text() excludes ',\\"error_code\\":'
+    }
 
     debug '---- Thread Groups starts ----', enabled: false
     insert 'Tx_AccountDelete_ins.gvy', variables: [

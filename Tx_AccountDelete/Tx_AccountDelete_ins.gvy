@@ -1,4 +1,8 @@
   fragment {
+    check_response applyTo: 'parent', {
+      text() excludes ':\\"telINSUF_FEE_P\\",'
+    }
+
     group name: vf_name, loops: vf_loops, users: vf_users, duration: vf_duration,
       rampUp: vf_rampUp, delay: vf_delay, keepUser: false, delayedStart: true, scheduler: true, {
 

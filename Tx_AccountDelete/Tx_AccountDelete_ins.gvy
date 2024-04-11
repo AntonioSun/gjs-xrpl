@@ -1,7 +1,4 @@
   fragment {
-    check_response applyTo: 'parent', {
-      text() excludes ':\\"telINSUF_FEE_P\\",'
-    }
 
     group name: vf_name, loops: vf_loops, users: vf_users, duration: vf_duration,
       rampUp: vf_rampUp, delay: vf_delay, keepUser: false, delayedStart: true, scheduler: true, {
@@ -31,8 +28,13 @@
   ]
 }'''
           extract_jmes expression: 'result.engine_result', variable: 'p_result'
+          check_response applyTo: 'parent', {
+            text() includes '"status":"success"'
+          }
+              check_response applyTo: 'parent', {
+            text() excludes ':\\"telINSUF_FEE_P\\",'
+          }
         }
-    
       }
 
       flow (name: 'Think Time Flow Control', enabled: false) {

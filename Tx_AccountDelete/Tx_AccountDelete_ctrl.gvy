@@ -30,7 +30,7 @@ start {
       variable(name: 'c_cfg_TestName', value: 'Tx_AccountDelete', description: 'Test name to identify different tests')
       variable(name: 'c_cfg_Influxdb', value: '${__env(c_cfg_Influxdb, , localhost)}', description: 'Influxdb server host name')
       variable(name: 'p_acct_dest', value: 'rMQ98K56yXJbDGv49ZSmW51sLn94Xe1mu1', description: 'Destination address to receive any leftover XRP after deleting')
-      variable(name: 'p_del_fee', value: '20', description: 'Fee of deleting account (2000000)')
+      variable(name: 'p_del_fee', value: '${__P(p_del_fee, 20)}', description: 'Fee of deleting account (2000000)')
       }
 
     csv name: 'CSV Tx_AccountDelete', file: 'Tx_AccountDelete.csv', variables: ["s_account","s_secret"]

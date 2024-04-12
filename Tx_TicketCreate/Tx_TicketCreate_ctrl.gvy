@@ -33,7 +33,7 @@ start {
       variable(name: 'p_tx_fee', value: '${__P(p_tx_fee, 10)}', description: 'Fee for TicketCreate')
       }
 
-    csv name: 'CSV Tx_TicketCreate', file: 'Tx_TicketCreate.csv', variables: ["s_account","s_secret"]
+    csv name: 'CSV Tx_TicketCreate', file: 'Tx_TicketCreate.csv', variables: ["s_account","s_secret"], recycle: false, stopUser: true
 
     // common file-beg configuration
     insert 'common/stationary-beg.gvy'

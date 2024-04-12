@@ -1,2 +1,2 @@
 settings:
-  Tx_AccountDelete:    { enabled: true, users: 1, ramp: 30, duration: 120, pt_delay: 12000, pt_range: 3000, delay: 0, loops: -1 }
+  Tx_AccountDelete:    { enabled: true, users: 1, ramp: 36, duration: 126, pt_delay: 1000, pt_range: 30, delay: 0, loops: -1 }

@@ -1,0 +1,2 @@
+settings:
+  Tx_TicketCreate:    { enabled: true, users: 16, ramp: 64, duration: 36000, pt_delay: 150, pt_range: 20, delay: 0, loops: -1 }

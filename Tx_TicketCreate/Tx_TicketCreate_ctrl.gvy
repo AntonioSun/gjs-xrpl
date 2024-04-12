@@ -7,7 +7,7 @@ import groovy.yaml.*
 def slurper = new YamlSlurper()
 
 start {
-  def load_testname = 'Tx_AccountDelete'
+  def load_testname = 'Tx_TicketCreate'
   def load_settings = slurper.parse("load_settings.yaml" as File)
   def load_setting = load_settings.settings
 
@@ -27,13 +27,13 @@ start {
       variable(name: 'c_tt_delay', value: '${__P(c_tt_delay, 50)}', description: 'Think Time: Ms to delay in addition to random time')
       variable(name: 'c_pt_range', value: '${__P(c_pt_range, 1000)}', description: 'Pace Time: Maximum random number of ms to delay')
       variable(name: 'c_pt_delay', value: '${__P(c_pt_delay, 30)}', description: 'Pace Time: Ms to delay in addition to random time')
-      variable(name: 'c_cfg_TestName', value: 'Tx_AccountDelete', description: 'Test name to identify different tests')
+      variable(name: 'c_cfg_TestName', value: 'Tx_TicketCreate', description: 'Test name to identify different tests')
       variable(name: 'c_cfg_Influxdb', value: '${__env(c_cfg_Influxdb, , localhost)}', description: 'Influxdb server host name')
       variable(name: 'p_acct_dest', value: 'rMQ98K56yXJbDGv49ZSmW51sLn94Xe1mu1', description: 'Destination address to receive any leftover XRP after deleting')
       variable(name: 'p_del_fee', value: '${__P(p_del_fee, 20)}', description: 'Fee of deleting account (2000000)')
       }
 
-    csv name: 'CSV Tx_AccountDelete', file: 'Tx_AccountDelete.csv', variables: ["s_account","s_secret"]
+    csv name: 'CSV Tx_TicketCreate', file: 'Tx_TicketCreate.csv', variables: ["s_account","s_secret"]
 
     // common file-beg configuration
     insert 'common/stationary-beg.gvy'
@@ -49,8 +49,8 @@ start {
     }
 
     debug '---- Thread Groups starts ----', enabled: false
-    insert 'Tx_AccountDelete_ins.gvy', variables: [
-      "vf_name": 'TGroup-Tx_AccountDelete', "vf_enabled": true, "vf_delay": '${c_lt_delay}',
+    insert 'Tx_TicketCreate_ins.gvy', variables: [
+      "vf_name": 'TGroup-Tx_TicketCreate', "vf_enabled": true, "vf_delay": '${c_lt_delay}',
       "vf_users": '${c_lt_users}', "vf_rampUp": '${c_lt_ramp}',
       "vf_loops": '${c_lt_loops}', "vf_duration": '${c_lt_duration}',
       "vf_pt_delay": '${c_pt_delay}',  "vf_pt_range": '${c_pt_range}']

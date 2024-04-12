@@ -1,5 +1,5 @@
   fragment {
-    check_response applyTo: 'parent', {
+    check_response applyTo: 'children', {
       text() excludes ':\\"telINSUF_FEE_P\\",'
     }
 

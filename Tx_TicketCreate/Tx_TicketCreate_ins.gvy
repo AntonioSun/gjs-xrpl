@@ -22,20 +22,18 @@
       "secret": "${s_secret}",
       "fail_hard": true,
       "tx_json": {
-        "TransactionType": "AccountDelete",
+        "TransactionType": "TicketCreate",
         "Account": "${s_account}",
-        "Destination": "${p_acct_dest}",
-        "Fee": "${p_del_fee}"
+        "TicketCount": 1,
+        "Fee": "${p_tx_fee}"
       }
     }
   ]
 }'''
           extract_jmes expression: 'result.engine_result', variable: 'p_result'
         }
-    
       }
-
-      flow (name: 'Think Time Flow Control', enabled: false) {
+      flow (name: 'Think Time Flow Control') {
         uniform_timer (name: 'Think Time', delay: '${c_tt_delay}', range: '${c_tt_range}')
       }
 

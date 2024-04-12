@@ -30,7 +30,7 @@ start {
       variable(name: 'c_cfg_TestName', value: 'Tx_TicketCreate', description: 'Test name to identify different tests')
       variable(name: 'c_cfg_Influxdb', value: '${__env(c_cfg_Influxdb, , localhost)}', description: 'Influxdb server host name')
       variable(name: 'p_acct_dest', value: 'rMQ98K56yXJbDGv49ZSmW51sLn94Xe1mu1', description: 'Destination address to receive any leftover XRP after deleting')
-      variable(name: 'p_del_fee', value: '${__P(p_del_fee, 20)}', description: 'Fee of deleting account (2000000)')
+      variable(name: 'p_tx_fee', value: '${__P(p_tx_fee, 10)}', description: 'Fee for TicketCreate')
       }
 
     csv name: 'CSV Tx_TicketCreate', file: 'Tx_TicketCreate.csv', variables: ["s_account","s_secret"]
@@ -39,13 +39,10 @@ start {
     insert 'common/stationary-beg.gvy'
 
     check_response applyTo: 'children', {
-      text() includes '"status":"success"'
+      text() includes ',"engine_result_code":0,'
     }
     check_response applyTo: 'children', {
-      text() excludes ',\\"status\\":\\"error\\",\\"type\\":\\"response\\"'
-    }
-    check_response applyTo: 'children', {
-      text() excludes ',\\"error_code\\":'
+      text() excludes ',"error_code":'
     }
 
     debug '---- Thread Groups starts ----', enabled: false

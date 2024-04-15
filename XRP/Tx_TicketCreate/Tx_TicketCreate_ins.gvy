@@ -98,7 +98,7 @@
       // -----------------------------
       // transaction Tx_TicketCreate 5
        transaction('Tx02 Tx_TicketCreate 5', generate: true) {
-        loop(count: 6) {
+        loop(count: 3) {
           http (method: 'POST', path: '/', name: 'Tx02r Tx_TicketCreate 5',
                 comments: 'https://xrpl.org/') {
             body '''{

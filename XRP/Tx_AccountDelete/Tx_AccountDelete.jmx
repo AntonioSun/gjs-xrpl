@@ -46,7 +46,7 @@
           </elementProp>
           <elementProp name="c_lt_ramp" elementType="Argument">
             <stringProp name="Argument.name">c_lt_ramp</stringProp>
-            <stringProp name="Argument.value">${__P(c_lt_ramp, 30)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_lt_ramp, 36)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">loadtest ramp up in seconds</stringProp>
           </elementProp>
@@ -58,7 +58,7 @@
           </elementProp>
           <elementProp name="c_lt_duration" elementType="Argument">
             <stringProp name="Argument.name">c_lt_duration</stringProp>
-            <stringProp name="Argument.value">${__P(c_lt_duration, 120)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_lt_duration, 126)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">loadtest duration in seconds</stringProp>
           </elementProp>
@@ -70,25 +70,25 @@
           </elementProp>
           <elementProp name="c_tt_range" elementType="Argument">
             <stringProp name="Argument.name">c_tt_range</stringProp>
-            <stringProp name="Argument.value">${__P(c_tt_range, 2000)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_tt_range, 200)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Think Time: Maximum random number of ms to delay</stringProp>
           </elementProp>
           <elementProp name="c_tt_delay" elementType="Argument">
             <stringProp name="Argument.name">c_tt_delay</stringProp>
-            <stringProp name="Argument.value">${__P(c_tt_delay, 500)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_tt_delay, 50)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Think Time: Ms to delay in addition to random time</stringProp>
           </elementProp>
           <elementProp name="c_pt_range" elementType="Argument">
             <stringProp name="Argument.name">c_pt_range</stringProp>
-            <stringProp name="Argument.value">${__P(c_pt_range, 12000)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_pt_range, 1000)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Pace Time: Maximum random number of ms to delay</stringProp>
           </elementProp>
           <elementProp name="c_pt_delay" elementType="Argument">
             <stringProp name="Argument.name">c_pt_delay</stringProp>
-            <stringProp name="Argument.value">${__P(c_pt_delay, 3000)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_pt_delay, 30)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Pace Time: Ms to delay in addition to random time</stringProp>
           </elementProp>
@@ -131,6 +131,18 @@
         <stringProp name="shareMode">shareMode.all</stringProp>
       </CSVDataSet>
       <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Hosts" enabled="true">
+        <stringProp name="filename">../../common/ch_servers.csv</stringProp>
+        <stringProp name="fileEncoding">UTF-8</stringProp>
+        <stringProp name="variableNames">s_hlabel,c_app_host_name</stringProp>
+        <boolProp name="ignoreFirstLine">false</boolProp>
+        <stringProp name="delimiter">,</stringProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="shareMode">shareMode.group</stringProp>
+      </CSVDataSet>
+      <hashTree/>
       <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="---- default request settings ----" enabled="false">
         <boolProp name="displayJMeterProperties">false</boolProp>
         <boolProp name="displayJMeterVariables">true</boolProp>
@@ -171,7 +183,7 @@
       <hashTree/>
       <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Check Text" enabled="true">
         <collectionProp name="Asserion.test_strings">
-          <stringProp name="-1088026059">&quot;status&quot;:&quot;success&quot;</stringProp>
+          <stringProp name="1338110620">,&quot;engine_result_code&quot;:0,</stringProp>
         </collectionProp>
         <stringProp name="Assertion.scope">children</stringProp>
         <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
@@ -182,18 +194,7 @@
       <hashTree/>
       <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Check Text" enabled="true">
         <collectionProp name="Asserion.test_strings">
-          <stringProp name="-561901683">,\&quot;status\&quot;:\&quot;error\&quot;,\&quot;type\&quot;:\&quot;response\&quot;</stringProp>
-        </collectionProp>
-        <stringProp name="Assertion.scope">children</stringProp>
-        <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-        <intProp name="Assertion.test_type">6</intProp>
-        <stringProp name="Assertion.custom_message"></stringProp>
-        <boolProp name="Assertion.assume_success">false</boolProp>
-      </ResponseAssertion>
-      <hashTree/>
-      <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Check Text" enabled="true">
-        <collectionProp name="Asserion.test_strings">
-          <stringProp name="-1693821378">,\&quot;error_code\&quot;:</stringProp>
+          <stringProp name="2076492178">,&quot;error_code&quot;:</stringProp>
         </collectionProp>
         <stringProp name="Assertion.scope">children</stringProp>
         <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>

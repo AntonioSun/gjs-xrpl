@@ -34,18 +34,16 @@ start {
       }
 
     csv name: 'CSV Tx_AccountDelete', file: 'Tx_AccountDelete.csv', variables: ["s_account","s_secret"]
+    csv name: 'CSV Hosts', file: '../../common/ch_servers.csv', variables: ["s_hlabel","c_app_host_name"], shareMode: "group"
 
     // common file-beg configuration
     insert 'common/stationary-beg.gvy'
 
     check_response applyTo: 'children', {
-      text() includes '"status":"success"'
+      text() includes ',"engine_result_code":0,'
     }
     check_response applyTo: 'children', {
-      text() excludes ',\\"status\\":\\"error\\",\\"type\\":\\"response\\"'
-    }
-    check_response applyTo: 'children', {
-      text() excludes ',\\"error_code\\":'
+      text() excludes ',"error_code":'
     }
 
     debug '---- Thread Groups starts ----', enabled: false

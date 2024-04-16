@@ -33,7 +33,6 @@ start {
       variable(name: 'p_del_fee', value: '${__P(p_del_fee, 20)}', description: 'Fee of deleting account (2000000)')
       }
 
-    csv name: 'CSV Tx_AccountDelete', file: 'Tx_AccountDelete.csv', variables: ["s_account","s_secret"]
     csv name: 'CSV Hosts', file: '../../common/ch_servers.csv', variables: ["s_hlabel","c_app_host_name"], shareMode: "group"
 
     // common file-beg configuration
@@ -47,8 +46,8 @@ start {
     }
 
     debug '---- Thread Groups starts ----', enabled: false
-    insert 'Tx_AccountDelete_ins.gvy', variables: [
-      "vf_name": 'TGroup-Tx_AccountDelete', "vf_enabled": true, "vf_delay": '${c_lt_delay}',
+    insert 'Tx_AccountDelete_ins.gvy', variables: ["vf_csv": 'Tx_AccountDelete0.csv',
+      "vf_name": 'TGroup0', "vf_enabled": true, "vf_delay": '${c_lt_delay}',
       "vf_users": '${c_lt_users}', "vf_rampUp": '${c_lt_ramp}',
       "vf_loops": '${c_lt_loops}', "vf_duration": '${c_lt_duration}',
       "vf_pt_delay": '${c_pt_delay}',  "vf_pt_range": '${c_pt_range}']

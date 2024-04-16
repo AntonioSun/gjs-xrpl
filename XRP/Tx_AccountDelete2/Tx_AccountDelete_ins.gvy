@@ -3,15 +3,16 @@
     group name: vf_name, loops: vf_loops, users: vf_users, duration: vf_duration,
       rampUp: vf_rampUp, delay: vf_delay, keepUser: false, delayedStart: true, scheduler: true, {
 
-      csv name: 'CSV '+ vf_csv, file: vf_csv, variables: ["s_account","s_secret"], recycle: false, stopUser: true
+      vf_csv = 'Tx_AccountDelete' + vf_tg_id
+      csv name: 'CSV '+ vf_csv, file: vf_csv + '.csv', variables: ["s_account","s_secret"], recycle: false, stopUser: true
 
       // Defines a 'Random Variable' config element
       //random name: 'Random ledger index number', variable: 'ledgerIndex', minimum: 30000000, maximum: 85478162, perUser: true
 
       debug '--== Tx: Tx_AccountDelete ==--', displayJMeterVariables: true, displayJMeterProperties: true, enabled: false
-      transaction('Tx01 Tx_AccountDelete', generate: true) {
+      transaction('TG'+ vf_tg_id+ '-Tx01 Tx_AccountDelete', generate: true) {
         
-        http (method: 'POST', path: '/', name: 'Tx01r Tx_AccountDelete',
+        http (method: 'POST', path: '/', name: 'TG'+ vf_tg_id+ '-Tx01r Tx_AccountDelete',
               comments: 'https://xrpl.org/') {
           body '''{
   "method": "submit",

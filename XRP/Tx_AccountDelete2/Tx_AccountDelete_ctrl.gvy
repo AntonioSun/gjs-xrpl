@@ -42,12 +42,22 @@ start {
       text() includes ',"engine_result_code":0,'
     }
     check_response applyTo: 'children', {
+      text() excludes ':\\"telINSUF_FEE_P\\",'
+    }
+    check_response applyTo: 'children', {
       text() excludes ',"error_code":'
     }
 
     debug '---- Thread Groups starts ----', enabled: false
+    // 0: test those accounts without objects
     insert 'Tx_AccountDelete_ins.gvy', variables: ["vf_csv": 'Tx_AccountDelete0.csv',
       "vf_name": 'TGroup0', "vf_enabled": true, "vf_delay": '${c_lt_delay}',
+      "vf_users": '${c_lt_users}', "vf_rampUp": '${c_lt_ramp}',
+      "vf_loops": '${c_lt_loops}', "vf_duration": '${c_lt_duration}',
+      "vf_pt_delay": '${c_pt_delay}',  "vf_pt_range": '${c_pt_range}']
+    // 1: test those accounts with objects
+    insert 'Tx_AccountDelete_ins.gvy', variables: ["vf_csv": 'Tx_AccountDelete1.csv',
+      "vf_name": 'TGroup1', "vf_enabled": true, "vf_delay": '${c_lt_delay}',
       "vf_users": '${c_lt_users}', "vf_rampUp": '${c_lt_ramp}',
       "vf_loops": '${c_lt_loops}', "vf_duration": '${c_lt_duration}',
       "vf_pt_delay": '${c_pt_delay}',  "vf_pt_range": '${c_pt_range}']

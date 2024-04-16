@@ -1,13 +1,9 @@
   fragment {
 
-    check_response applyTo: 'children', {
-      text() excludes ':\\"telINSUF_FEE_P\\",'
-    }
-
     group name: vf_name, loops: vf_loops, users: vf_users, duration: vf_duration,
       rampUp: vf_rampUp, delay: vf_delay, keepUser: false, delayedStart: true, scheduler: true, {
 
-      csv name: 'CSV Tx_AccountDelete', file: vf_csv, variables: ["s_account","s_secret"]
+      csv name: 'CSV '+ vf_csv, file: vf_csv, variables: ["s_account","s_secret"], recycle: false, stopUser: true
 
       // Defines a 'Random Variable' config element
       //random name: 'Random ledger index number', variable: 'ledgerIndex', minimum: 30000000, maximum: 85478162, perUser: true

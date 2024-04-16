@@ -34,6 +34,7 @@ start {
       }
 
     csv name: 'CSV Tx_TicketCreate', file: 'Tx_TicketCreate.csv', variables: ["s_account","s_secret"], recycle: false, stopUser: true
+    csv name: 'CSV Hosts', file: '../../common/ch_servers.csv', variables: ["s_hlabel","c_app_host_name"], shareMode: "group"
 
     // common file-beg configuration
     insert 'common/stationary-beg.gvy'

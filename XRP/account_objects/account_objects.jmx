@@ -235,7 +235,7 @@
               <collectionProp name="Arguments.arguments">
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">{&quot;method&quot;:&quot;account_objects&quot;,&quot;params&quot;: [{&quot;account&quot;:&quot;${s_account}&quot;,&quot;ledger_index&quot;:&quot;validated&quot;,&quot;queue&quot;:false}]}</stringProp>
+                  <stringProp name="Argument.value">{&quot;method&quot;:&quot;account_objects&quot;,&quot;params&quot;: [{&quot;account&quot;:&quot;${s_account}&quot;,&quot;ledger_index&quot;:&quot;validated&quot;,&quot;limit&quot;: 300}]}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
               </collectionProp>

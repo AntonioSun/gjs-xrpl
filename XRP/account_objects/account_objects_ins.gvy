@@ -5,7 +5,7 @@
         
         http (method: 'POST', path: '/', name: 'Tx01r account_objects',
               comments: 'https://xrpl.org/account_objects.html') {
-          body '''{"method":"account_objects","params": [{"account":"${s_account}","ledger_index":"validated","queue":false}]}'''
+          body '''{"method":"account_objects","params": [{"account":"${s_account}","ledger_index":"validated","limit": 300}]}'''
           extract_jmes expression: 'result', variable: 'p_result'
           extract_jmes expression: 'result.error', variable: 'p_error'
         }

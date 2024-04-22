@@ -258,14 +258,14 @@
           <hashTree>
             <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="Json JMES Path Extractor" enabled="true">
               <stringProp name="JMESExtractor.matchNumber">1</stringProp>
-              <stringProp name="JMESExtractor.referenceName">p_result</stringProp>
-              <stringProp name="JMESExtractor.jmesPathExpr">result</stringProp>
+              <stringProp name="JMESExtractor.referenceName">p_error</stringProp>
+              <stringProp name="JMESExtractor.jmesPathExpr">result.error</stringProp>
             </JMESPathExtractor>
             <hashTree/>
             <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="Json JMES Path Extractor" enabled="true">
               <stringProp name="JMESExtractor.matchNumber">1</stringProp>
-              <stringProp name="JMESExtractor.referenceName">p_error</stringProp>
-              <stringProp name="JMESExtractor.jmesPathExpr">result.error</stringProp>
+              <stringProp name="JMESExtractor.referenceName">p_objects</stringProp>
+              <stringProp name="JMESExtractor.jmesPathExpr">length(result.account_objects)</stringProp>
             </JMESPathExtractor>
             <hashTree/>
           </hashTree>

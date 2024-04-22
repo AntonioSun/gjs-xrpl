@@ -1,6 +1,6 @@
-// TicketCreate1
-// TicketCreate with a *single* API request
-// instead of requesting batches of tickets of various sizes.
+// TicketCreate1C
+// TicketCreate with a *single* API request from CSV file
+// instead using UDV.
 
 @GrabConfig(systemClassLoader = true)
 @Grab('net.simonix.scripts:groovy-jmeter')
@@ -35,10 +35,10 @@ start {
       variable(name: 'c_cfg_Influxdb', value: '${__env(c_cfg_Influxdb, , localhost)}', description: 'Influxdb server host name')
       variable(name: 'p_acct_dest', value: 'rMQ98K56yXJbDGv49ZSmW51sLn94Xe1mu1', description: 'Destination address to receive any leftover XRP after deleting')
       variable(name: 'p_tx_fee', value: '${__P(p_tx_fee, 10)}', description: 'Fee for TicketCreate')
-      variable(name: 'p_counts', value: '${__P(p_counts, 80)}', description: 'Counts of TicketCreate')
+      variable(name: 's_secret', value: 'dummypass', description: 'dummy pass for each account')
       }
 
-    csv name: 'CSV Tx_TicketCreate1', file: 'Tx_TicketCreate1.csv', variables: ["s_account","s_secret"], recycle: false, stopUser: true
+    csv name: 'CSV Tx_TicketCreate', file: 'Tx_TicketCreate1C.csv', variables: ["s_account","p_counts"], recycle: false, stopUser: true
     csv name: 'CSV Hosts', file: '../../common/ch_servers.csv', variables: ["s_hlabel","c_app_host_name"], shareMode: "group"
 
     // common file-beg configuration

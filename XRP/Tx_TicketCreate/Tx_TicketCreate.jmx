@@ -262,7 +262,7 @@
       &quot;tx_json&quot;: {&#xd;
         &quot;TransactionType&quot;: &quot;TicketCreate&quot;,&#xd;
         &quot;Account&quot;: &quot;${s_account}&quot;,&#xd;
-        &quot;TicketCount&quot;: 1,&#xd;
+        &quot;TicketCount&quot;: 10,&#xd;
         &quot;Fee&quot;: &quot;${p_tx_fee}&quot;&#xd;
       }&#xd;
     }&#xd;
@@ -329,7 +329,7 @@
       &quot;tx_json&quot;: {&#xd;
         &quot;TransactionType&quot;: &quot;TicketCreate&quot;,&#xd;
         &quot;Account&quot;: &quot;${s_account}&quot;,&#xd;
-        &quot;TicketCount&quot;: 2,&#xd;
+        &quot;TicketCount&quot;: 20,&#xd;
         &quot;Fee&quot;: &quot;${p_tx_fee}&quot;&#xd;
       }&#xd;
     }&#xd;
@@ -396,7 +396,7 @@
       &quot;tx_json&quot;: {&#xd;
         &quot;TransactionType&quot;: &quot;TicketCreate&quot;,&#xd;
         &quot;Account&quot;: &quot;${s_account}&quot;,&#xd;
-        &quot;TicketCount&quot;: 3,&#xd;
+        &quot;TicketCount&quot;: 30,&#xd;
         &quot;Fee&quot;: &quot;${p_tx_fee}&quot;&#xd;
       }&#xd;
     }&#xd;
@@ -442,17 +442,17 @@
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Tx02 Tx_TicketCreate 5" enabled="true">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Tx02 Tx_TicketCreate x2" enabled="true">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
           <boolProp name="TransactionController.parent">true</boolProp>
         </TransactionController>
         <hashTree>
           <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
             <boolProp name="LoopController.continue_forever">true</boolProp>
-            <stringProp name="LoopController.loops">3</stringProp>
+            <stringProp name="LoopController.loops">2</stringProp>
           </LoopController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Tx02r Tx_TicketCreate 5" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Tx02r Tx_TicketCreate x2" enabled="true">
               <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
               <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
                 <collectionProp name="Arguments.arguments">
@@ -468,7 +468,7 @@
         &quot;tx_json&quot;: {&#xd;
           &quot;TransactionType&quot;: &quot;TicketCreate&quot;,&#xd;
           &quot;Account&quot;: &quot;${s_account}&quot;,&#xd;
-          &quot;TicketCount&quot;: 5,&#xd;
+          &quot;TicketCount&quot;: 10,&#xd;
           &quot;Fee&quot;: &quot;${p_tx_fee}&quot;&#xd;
         }&#xd;
       }&#xd;
@@ -618,6 +618,7 @@
           </value>
         </objProp>
         <stringProp name="filename">${c_cfg_TestName}_${__time(yyMMdd-HHmm)}.jtl</stringProp>
+        <boolProp name="useGroupName">true</boolProp>
       </ResultCollector>
       <hashTree/>
       <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Result Tree" enabled="false">

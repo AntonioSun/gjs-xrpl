@@ -24,7 +24,7 @@
       "tx_json": {
         "TransactionType": "TicketCreate",
         "Account": "${s_account}",
-        "TicketCount": 1,
+        "TicketCount": 10,
         "Fee": "${p_tx_fee}"
       }
     }
@@ -53,7 +53,7 @@
       "tx_json": {
         "TransactionType": "TicketCreate",
         "Account": "${s_account}",
-        "TicketCount": 2,
+        "TicketCount": 20,
         "Fee": "${p_tx_fee}"
       }
     }
@@ -82,7 +82,7 @@
       "tx_json": {
         "TransactionType": "TicketCreate",
         "Account": "${s_account}",
-        "TicketCount": 3,
+        "TicketCount": 30,
         "Fee": "${p_tx_fee}"
       }
     }
@@ -97,9 +97,9 @@
 
       // -----------------------------
       // transaction Tx_TicketCreate 5
-       transaction('Tx02 Tx_TicketCreate 5', generate: true) {
-        loop(count: 3) {
-          http (method: 'POST', path: '/', name: 'Tx02r Tx_TicketCreate 5',
+       transaction('Tx02 Tx_TicketCreate x2', generate: true) {
+        loop(count: 2) {
+          http (method: 'POST', path: '/', name: 'Tx02r Tx_TicketCreate x2',
                 comments: 'https://xrpl.org/') {
             body '''{
     "method": "submit",
@@ -111,7 +111,7 @@
         "tx_json": {
           "TransactionType": "TicketCreate",
           "Account": "${s_account}",
-          "TicketCount": 5,
+          "TicketCount": 10,
           "Fee": "${p_tx_fee}"
         }
       }

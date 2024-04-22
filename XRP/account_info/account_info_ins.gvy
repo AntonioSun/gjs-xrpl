@@ -1,17 +1,14 @@
     fragment {
 
-      // Defines a 'Random Variable' config element
-      random name: 'Random ledger index number', variable: 'ledgerIndex', minimum: 30000000, maximum: 85478162, perUser: true
-
       debug '--== Tx: account_info ==--', displayJMeterVariables: true, displayJMeterProperties: true, enabled: false
       transaction('Tx01 account_info', generate: true) {
         
-        http (method: 'POST', path: '/', name: 'Tx01r account_info, random ledger',
+        http (method: 'POST', path: '/', name: 'Tx01r account_info',
               comments: 'https://xrpl.org/account_info.html') {
-          body '''{"method":"account_info","params": [{"ledger_index": "${ledgerIndex}","taker": "${acct}","taker_gets": {"currency": "${vCurrency}","issuer": "${vIssuer}"},"taker_pays": {"currency": "XRP"}}]}'''
-          //extract_jmes expression: 'book.id', variable: 'p_bookId'
+          body '''{"method":"account_info","params": [{"account":"${s_account}","ledger_index":"validated","queue":false}]}'''
+          extract_jmes expression: 'result', variable: 'p_result'
+          extract_jmes expression: 'result.error', variable: 'p_error'
         }
-    
       }
 
       flow (name: 'Think Time Flow Control', enabled: false) {

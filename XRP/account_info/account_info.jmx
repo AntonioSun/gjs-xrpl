@@ -16,7 +16,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="c_app_host_name" elementType="Argument">
             <stringProp name="Argument.name">c_app_host_name</stringProp>
-            <stringProp name="Argument.value">${__env(c_app_host_name, , s1.ripple.com)}</stringProp>
+            <stringProp name="Argument.value">${__env(c_app_host_name, , 172.16.0.167)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Test server host name</stringProp>
           </elementProp>
@@ -40,13 +40,13 @@
           </elementProp>
           <elementProp name="c_lt_users" elementType="Argument">
             <stringProp name="Argument.name">c_lt_users</stringProp>
-            <stringProp name="Argument.value">${__P(c_lt_users, 1)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_lt_users, 10)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">loadtest users</stringProp>
           </elementProp>
           <elementProp name="c_lt_ramp" elementType="Argument">
             <stringProp name="Argument.name">c_lt_ramp</stringProp>
-            <stringProp name="Argument.value">${__P(c_lt_ramp, 10)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_lt_ramp, 30)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">loadtest ramp up in seconds</stringProp>
           </elementProp>
@@ -64,31 +64,31 @@
           </elementProp>
           <elementProp name="c_lt_delay" elementType="Argument">
             <stringProp name="Argument.name">c_lt_delay</stringProp>
-            <stringProp name="Argument.value">${__P(c_lt_delay, 10)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_lt_delay, 0)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">thread delay in seconds</stringProp>
           </elementProp>
           <elementProp name="c_tt_range" elementType="Argument">
             <stringProp name="Argument.name">c_tt_range</stringProp>
-            <stringProp name="Argument.value">${__P(c_tt_range, 2000)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_tt_range, 200)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Think Time: Maximum random number of ms to delay</stringProp>
           </elementProp>
           <elementProp name="c_tt_delay" elementType="Argument">
             <stringProp name="Argument.name">c_tt_delay</stringProp>
-            <stringProp name="Argument.value">${__P(c_tt_delay, 500)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_tt_delay, 50)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Think Time: Ms to delay in addition to random time</stringProp>
           </elementProp>
           <elementProp name="c_pt_range" elementType="Argument">
             <stringProp name="Argument.name">c_pt_range</stringProp>
-            <stringProp name="Argument.value">${__P(c_pt_range, 12000)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_pt_range, 1000)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Pace Time: Maximum random number of ms to delay</stringProp>
           </elementProp>
           <elementProp name="c_pt_delay" elementType="Argument">
             <stringProp name="Argument.name">c_pt_delay</stringProp>
-            <stringProp name="Argument.value">${__P(c_pt_delay, 3000)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_pt_delay, 30)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Pace Time: Ms to delay in addition to random time</stringProp>
           </elementProp>
@@ -104,31 +104,37 @@
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Influxdb server host name</stringProp>
           </elementProp>
-          <elementProp name="p_session_email" elementType="Argument">
-            <stringProp name="Argument.name">p_session_email</stringProp>
-            <stringProp name="Argument.value">john</stringProp>
+          <elementProp name="c_app_kw_expect" elementType="Argument">
+            <stringProp name="Argument.name">c_app_kw_expect</stringProp>
+            <stringProp name="Argument.value">${__P(c_app_kw_expect,tesSUCCESS)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="Argument.desc"></stringProp>
-          </elementProp>
-          <elementProp name="p_session_password" elementType="Argument">
-            <stringProp name="Argument.name">p_session_password</stringProp>
-            <stringProp name="Argument.value">john</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="Argument.desc"></stringProp>
+            <stringProp name="Argument.desc">application keyword expected</stringProp>
           </elementProp>
         </collectionProp>
       </Arguments>
       <hashTree/>
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV account_info" enabled="true">
-        <stringProp name="filename">../common/account_info.csv</stringProp>
+        <stringProp name="filename">account_info.csv</stringProp>
         <stringProp name="fileEncoding">UTF-8</stringProp>
-        <stringProp name="variableNames">acct,vCurrency,vIssuer,ledgerHash,ledgerIndex</stringProp>
+        <stringProp name="variableNames">s_account,s_secret</stringProp>
         <boolProp name="ignoreFirstLine">false</boolProp>
         <stringProp name="delimiter">,</stringProp>
         <boolProp name="quotedData">false</boolProp>
         <boolProp name="recycle">true</boolProp>
         <boolProp name="stopThread">false</boolProp>
         <stringProp name="shareMode">shareMode.all</stringProp>
+      </CSVDataSet>
+      <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Hosts" enabled="true">
+        <stringProp name="filename">../../common/ch_servers.csv</stringProp>
+        <stringProp name="fileEncoding">UTF-8</stringProp>
+        <stringProp name="variableNames">s_hlabel,c_app_host_name</stringProp>
+        <boolProp name="ignoreFirstLine">false</boolProp>
+        <stringProp name="delimiter">,</stringProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="shareMode">shareMode.group</stringProp>
       </CSVDataSet>
       <hashTree/>
       <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="---- default request settings ----" enabled="false">
@@ -171,8 +177,20 @@
       <hashTree/>
       <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Check Text" enabled="true">
         <collectionProp name="Asserion.test_strings">
-          <stringProp name="-561901683">,\&quot;status\&quot;:\&quot;error\&quot;,\&quot;type\&quot;:\&quot;response\&quot;</stringProp>
+          <stringProp name="-177466133">,&quot;status&quot;:&quot;success&quot;,</stringProp>
         </collectionProp>
+        <stringProp name="Assertion.scope">children</stringProp>
+        <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+        <intProp name="Assertion.test_type">2</intProp>
+        <stringProp name="Assertion.custom_message"></stringProp>
+        <boolProp name="Assertion.assume_success">false</boolProp>
+      </ResponseAssertion>
+      <hashTree/>
+      <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Check Text" enabled="true">
+        <collectionProp name="Asserion.test_strings">
+          <stringProp name="2076492178">,&quot;error_code&quot;:</stringProp>
+        </collectionProp>
+        <stringProp name="Assertion.scope">children</stringProp>
         <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
         <intProp name="Assertion.test_type">6</intProp>
         <stringProp name="Assertion.custom_message"></stringProp>
@@ -200,15 +218,6 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random ledger index number" enabled="true">
-          <stringProp name="minimumValue">30000000</stringProp>
-          <stringProp name="maximumValue">85478162</stringProp>
-          <boolProp name="perThread">true</boolProp>
-          <stringProp name="variableName">ledgerIndex</stringProp>
-          <stringProp name="outputFormat"></stringProp>
-          <stringProp name="randomSeed"></stringProp>
-        </RandomVariableConfig>
-        <hashTree/>
         <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="--== Tx: account_info ==--" enabled="false">
           <boolProp name="displayJMeterProperties">true</boolProp>
           <boolProp name="displayJMeterVariables">true</boolProp>
@@ -220,13 +229,13 @@
           <boolProp name="TransactionController.parent">true</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Tx01r account_info, random ledger" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Tx01r account_info" enabled="true">
             <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
               <collectionProp name="Arguments.arguments">
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">{&quot;method&quot;:&quot;account_info&quot;,&quot;params&quot;: [{&quot;ledger_index&quot;: &quot;${ledgerIndex}&quot;,&quot;taker&quot;: &quot;${acct}&quot;,&quot;taker_gets&quot;: {&quot;currency&quot;: &quot;${vCurrency}&quot;,&quot;issuer&quot;: &quot;${vIssuer}&quot;},&quot;taker_pays&quot;: {&quot;currency&quot;: &quot;XRP&quot;}}]}</stringProp>
+                  <stringProp name="Argument.value">{&quot;method&quot;:&quot;account_info&quot;,&quot;params&quot;: [{&quot;account&quot;:&quot;${s_account}&quot;,&quot;ledger_index&quot;:&quot;validated&quot;,&quot;queue&quot;:false}]}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
               </collectionProp>
@@ -246,7 +255,20 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
             <stringProp name="TestPlan.comments">https://xrpl.org/account_info.html</stringProp>
           </HTTPSamplerProxy>
-          <hashTree/>
+          <hashTree>
+            <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="Json JMES Path Extractor" enabled="true">
+              <stringProp name="JMESExtractor.matchNumber">1</stringProp>
+              <stringProp name="JMESExtractor.referenceName">p_result</stringProp>
+              <stringProp name="JMESExtractor.jmesPathExpr">result</stringProp>
+            </JMESPathExtractor>
+            <hashTree/>
+            <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="Json JMES Path Extractor" enabled="true">
+              <stringProp name="JMESExtractor.matchNumber">1</stringProp>
+              <stringProp name="JMESExtractor.referenceName">p_error</stringProp>
+              <stringProp name="JMESExtractor.jmesPathExpr">result.error</stringProp>
+            </JMESPathExtractor>
+            <hashTree/>
+          </hashTree>
         </hashTree>
         <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Think Time Flow Control" enabled="false">
           <intProp name="ActionProcessor.action">1</intProp>

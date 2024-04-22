@@ -40,25 +40,25 @@
           </elementProp>
           <elementProp name="c_lt_users" elementType="Argument">
             <stringProp name="Argument.name">c_lt_users</stringProp>
-            <stringProp name="Argument.value">${__P(c_lt_users, 1)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_lt_users, 10)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">loadtest users</stringProp>
           </elementProp>
           <elementProp name="c_lt_ramp" elementType="Argument">
             <stringProp name="Argument.name">c_lt_ramp</stringProp>
-            <stringProp name="Argument.value">${__P(c_lt_ramp, 36)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_lt_ramp, 30)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">loadtest ramp up in seconds</stringProp>
           </elementProp>
           <elementProp name="c_lt_loops" elementType="Argument">
             <stringProp name="Argument.name">c_lt_loops</stringProp>
-            <stringProp name="Argument.value">${__P(c_lt_loops, -1)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_lt_loops, 1)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">loadtest loops</stringProp>
           </elementProp>
           <elementProp name="c_lt_duration" elementType="Argument">
             <stringProp name="Argument.name">c_lt_duration</stringProp>
-            <stringProp name="Argument.value">${__P(c_lt_duration, 126)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_lt_duration, 120)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">loadtest duration in seconds</stringProp>
           </elementProp>
@@ -618,10 +618,9 @@
           </value>
         </objProp>
         <stringProp name="filename">${c_cfg_TestName}_${__time(yyMMdd-HHmm)}.jtl</stringProp>
-        <boolProp name="useGroupName">true</boolProp>
       </ResultCollector>
       <hashTree/>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Result Tree" enabled="false">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Result Tree" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>

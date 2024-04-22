@@ -52,7 +52,7 @@
           </elementProp>
           <elementProp name="c_lt_loops" elementType="Argument">
             <stringProp name="Argument.name">c_lt_loops</stringProp>
-            <stringProp name="Argument.value">${__P(c_lt_loops, 1)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_lt_loops, -1)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">loadtest loops</stringProp>
           </elementProp>
@@ -321,7 +321,7 @@
           <hashTree/>
         </hashTree>
       </hashTree>
-      <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="---- Thread Groups ends ----" enabled="true">
+      <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="---- Thread Groups ends ----" enabled="false">
         <boolProp name="displayJMeterProperties">false</boolProp>
         <boolProp name="displayJMeterVariables">true</boolProp>
         <boolProp name="displaySystemProperties">false</boolProp>
@@ -432,7 +432,7 @@
         <stringProp name="filename">${c_cfg_TestName}_${__time(yyMMdd-HHmm)}.jtl</stringProp>
       </ResultCollector>
       <hashTree/>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Result Tree" enabled="true">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Result Tree" enabled="false">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>

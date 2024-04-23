@@ -6,8 +6,8 @@
         http (method: 'POST', path: '/', name: 'Tx01r account_info',
               comments: 'https://xrpl.org/account_info.html') {
           body '''{"method":"account_info","params": [{"account":"${s_account}","ledger_index":"validated","queue":false}]}'''
-          extract_jmes expression: 'result', variable: 'p_result'
           extract_jmes expression: 'result.error', variable: 'p_error'
+          extract_jmes expression: 'result.status', variable: 'p_result'
         }
       }
 

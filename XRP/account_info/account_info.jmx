@@ -120,8 +120,8 @@
         <boolProp name="ignoreFirstLine">false</boolProp>
         <stringProp name="delimiter">,</stringProp>
         <boolProp name="quotedData">false</boolProp>
-        <boolProp name="recycle">true</boolProp>
-        <boolProp name="stopThread">false</boolProp>
+        <boolProp name="recycle">false</boolProp>
+        <boolProp name="stopThread">true</boolProp>
         <stringProp name="shareMode">shareMode.all</stringProp>
       </CSVDataSet>
       <hashTree/>
@@ -258,14 +258,14 @@
           <hashTree>
             <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="Json JMES Path Extractor" enabled="true">
               <stringProp name="JMESExtractor.matchNumber">1</stringProp>
-              <stringProp name="JMESExtractor.referenceName">p_result</stringProp>
-              <stringProp name="JMESExtractor.jmesPathExpr">result</stringProp>
+              <stringProp name="JMESExtractor.referenceName">p_error</stringProp>
+              <stringProp name="JMESExtractor.jmesPathExpr">result.error</stringProp>
             </JMESPathExtractor>
             <hashTree/>
             <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="Json JMES Path Extractor" enabled="true">
               <stringProp name="JMESExtractor.matchNumber">1</stringProp>
-              <stringProp name="JMESExtractor.referenceName">p_error</stringProp>
-              <stringProp name="JMESExtractor.jmesPathExpr">result.error</stringProp>
+              <stringProp name="JMESExtractor.referenceName">p_result</stringProp>
+              <stringProp name="JMESExtractor.jmesPathExpr">result.status</stringProp>
             </JMESPathExtractor>
             <hashTree/>
           </hashTree>
@@ -406,7 +406,7 @@
         <stringProp name="filename">${c_cfg_TestName}_${__time(yyMMdd-HHmm)}.jtl</stringProp>
       </ResultCollector>
       <hashTree/>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Result Tree" enabled="false">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Result Tree" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>

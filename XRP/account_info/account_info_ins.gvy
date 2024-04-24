@@ -7,7 +7,7 @@
               comments: 'https://xrpl.org/account_info.html') {
           body '''{"method":"account_info","params": [{"account":"${s_account}","ledger_index":"validated","queue":false}]}'''
           extract_jmes expression: 'result.error', variable: 'p_error'
-          extract_jmes expression: 'result.status', variable: 'p_result'
+          extract_jmes expression: 'result.account_data.Balance', variable: 'p_result'
         }
       }
 

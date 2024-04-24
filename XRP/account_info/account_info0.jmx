@@ -265,7 +265,7 @@
             <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="Json JMES Path Extractor" enabled="true">
               <stringProp name="JMESExtractor.matchNumber">1</stringProp>
               <stringProp name="JMESExtractor.referenceName">p_result</stringProp>
-              <stringProp name="JMESExtractor.jmesPathExpr">result.status</stringProp>
+              <stringProp name="JMESExtractor.jmesPathExpr">result.account_data.Balance</stringProp>
             </JMESPathExtractor>
             <hashTree/>
           </hashTree>

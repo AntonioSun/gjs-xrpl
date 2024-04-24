@@ -30,9 +30,9 @@
     }
   ]
 }'''
+          extract_jmes expression: 'result.error', variable: 'p_error'
           extract_jmes expression: 'result.engine_result', variable: 'p_result'
         }
-    
       }
 
       flow (name: 'Think Time Flow Control', enabled: false) {

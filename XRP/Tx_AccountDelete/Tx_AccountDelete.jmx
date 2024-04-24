@@ -126,8 +126,8 @@
         <boolProp name="ignoreFirstLine">false</boolProp>
         <stringProp name="delimiter">,</stringProp>
         <boolProp name="quotedData">false</boolProp>
-        <boolProp name="recycle">true</boolProp>
-        <boolProp name="stopThread">false</boolProp>
+        <boolProp name="recycle">false</boolProp>
+        <boolProp name="stopThread">true</boolProp>
         <stringProp name="shareMode">shareMode.all</stringProp>
       </CSVDataSet>
       <hashTree/>
@@ -231,7 +231,7 @@
         <stringProp name="ThreadGroup.delay">${c_lt_delay}</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">${c_lt_loops}</stringProp>
+          <intProp name="LoopController.loops">-1</intProp>
         </elementProp>
       </ThreadGroup>
       <hashTree>
@@ -288,6 +288,12 @@
             <stringProp name="TestPlan.comments">https://xrpl.org/</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
+            <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="Json JMES Path Extractor" enabled="true">
+              <stringProp name="JMESExtractor.matchNumber">1</stringProp>
+              <stringProp name="JMESExtractor.referenceName">p_error</stringProp>
+              <stringProp name="JMESExtractor.jmesPathExpr">result.error</stringProp>
+            </JMESPathExtractor>
+            <hashTree/>
             <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="Json JMES Path Extractor" enabled="true">
               <stringProp name="JMESExtractor.matchNumber">1</stringProp>
               <stringProp name="JMESExtractor.referenceName">p_result</stringProp>

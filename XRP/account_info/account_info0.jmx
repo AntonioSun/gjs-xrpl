@@ -114,9 +114,9 @@
       </Arguments>
       <hashTree/>
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV account_info" enabled="true">
-        <stringProp name="filename">account_info.csv</stringProp>
+        <stringProp name="filename">account_info0.csv</stringProp>
         <stringProp name="fileEncoding">UTF-8</stringProp>
-        <stringProp name="variableNames">s_account,s_secret</stringProp>
+        <stringProp name="variableNames">s_account</stringProp>
         <boolProp name="ignoreFirstLine">false</boolProp>
         <stringProp name="delimiter">,</stringProp>
         <boolProp name="quotedData">false</boolProp>

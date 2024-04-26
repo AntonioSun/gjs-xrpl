@@ -35,7 +35,7 @@ start {
       variable(name: 'c_app_kw_expect', value: '${__P(c_app_kw_expect,tesSUCCESS)}', description: 'application keyword expected')
       }
 
-    csv name: 'CSV account_info', file: 'account_info.csv', variables: ["s_account","s_secret"], recycle: false, stopUser: true
+    csv name: 'CSV account_info', file: 'account_info0.csv', variables: ["s_account"], recycle: false, stopUser: true
     csv name: 'CSV Hosts', file: '../../common/ch_servers.csv', variables: ["s_hlabel","c_app_host_name"], shareMode: "group"
 
     // common file-beg configuration

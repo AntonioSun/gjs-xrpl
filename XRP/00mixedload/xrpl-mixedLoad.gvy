@@ -42,6 +42,16 @@ start {
     // common file-beg configuration
     insert 'common/stationary-beg.gvy'
 
+    check_response applyTo: 'children', {
+      text() excludes '"error":"(noCurrent|noNetwork)","error_code":'
+    }
+    check_response applyTo: 'children', {
+      text() excludes '"error":".*","error_code":'
+    }
+    check_response applyTo: 'children', {
+      text() includes ',"engine_result_code":0,'
+    }
+
     debug '---- Thread Groups starts ----', enabled: false
     group(name: 'TGroup-server_info', delay: load_setting["server_info"].delay, delayedStart: true, scheduler: true,
       users: load_setting["server_info"].users, rampUp: load_setting["server_info"].ramp, keepUser: false,
@@ -68,20 +78,17 @@ start {
       // end group
     }
 
-    group(name: 'TGroup-account_info', delay: load_setting["account_info"].delay, delayedStart: true, scheduler: true,
-      users: load_setting["account_info"].users, rampUp: load_setting["account_info"].ramp, keepUser: false,
-      duration: load_setting["account_info"].duration, loops: load_setting["account_info"].loops,
-      enabled: load_setting["account_info"].enabled) {
+    insert 'inc_ledger_validated/account_info.gvy', variables:
+     ["vf_name": 'TGroup-account_info', "vf_enabled": load_setting["account_info"].enabled, "vf_delay": load_setting["account_info"].delay,
+      "vf_users": load_setting["account_info"].users, "vf_rampUp": load_setting["account_info"].ramp,
+      "vf_duration": load_setting["account_info"].duration, "vf_loops": load_setting["account_info"].loops,
+      "vf_pt_delay": load_setting["account_info"].pt_delay,  "vf_pt_range": load_setting["account_info"].pt_range]
 
-      insert 'inc_ledger_validated/account_info.gvy'
-    }
-
-    group(name: 'TGroup-fee', delay: load_setting["fee"].delay, delayedStart: true, scheduler: true,
-      users: load_setting["fee"].users, rampUp: load_setting["fee"].ramp, keepUser: false,
-      duration: load_setting["fee"].duration, loops: load_setting["fee"].loops,
-      enabled: load_setting["fee"].enabled) {
-      insert 'inc_ledger_validated/fee.gvy'
-    }
+    insert 'inc_ledger_validated/fee.gvy', variables:
+     ["vf_name": 'TGroup-fee', "vf_enabled": load_setting["fee"].enabled, "vf_delay": load_setting["fee"].delay,
+      "vf_users": load_setting["fee"].users, "vf_rampUp": load_setting["fee"].ramp,
+      "vf_duration": load_setting["fee"].duration, "vf_loops": load_setting["fee"].loops,
+      "vf_pt_delay": load_setting["fee"].pt_delay,  "vf_pt_range": load_setting["fee"].pt_range]
 
     insert 'inc_ledger_validated/ledger_current.gvy', variables:
      ["vf_name": 'TGroup-ledger_current', "vf_enabled": load_setting["ledger_current"].enabled, "vf_delay": load_setting["ledger_current"].delay,
@@ -95,21 +102,17 @@ start {
       "vf_duration": load_setting["ledger_closed"].duration, "vf_loops": load_setting["ledger_closed"].loops,
       "vf_pt_delay": load_setting["ledger_closed"].pt_delay,  "vf_pt_range": load_setting["ledger_closed"].pt_range]
 
-    group(name: 'TGroup-nft_info', delay: load_setting["nft_info"].delay, delayedStart: true, scheduler: true,
-      users: load_setting["nft_info"].users, rampUp: load_setting["nft_info"].ramp, keepUser: false,
-      duration: load_setting["nft_info"].duration, loops: load_setting["nft_info"].loops,
-      enabled: load_setting["nft_info"].enabled) {
+    insert 'inc_ledger_validated/nft_info.gvy', variables:
+     ["vf_name": 'TGroup-nft_info', "vf_enabled": load_setting["nft_info"].enabled, "vf_delay": load_setting["nft_info"].delay,
+      "vf_users": load_setting["nft_info"].users, "vf_rampUp": load_setting["nft_info"].ramp,
+      "vf_duration": load_setting["nft_info"].duration, "vf_loops": load_setting["nft_info"].loops,
+      "vf_pt_delay": load_setting["nft_info"].pt_delay,  "vf_pt_range": load_setting["nft_info"].pt_range]
 
-      insert 'inc_ledger_validated/nft_info.gvy'
-   }
-
-    group(name: 'TGroup-book_offers', delay: load_setting["book_offers"].delay, delayedStart: true, scheduler: true,
-      users: load_setting["book_offers"].users, rampUp: load_setting["book_offers"].ramp, keepUser: false,
-      duration: load_setting["book_offers"].duration, loops: load_setting["book_offers"].loops,
-      enabled: load_setting["book_offers"].enabled) {
-
-      insert 'book_offers/book_offers_ins.gvy'
-    }
+    insert 'book_offers/book_offers_ins.gvy', variables:
+     ["vf_name": 'TGroup-book_offers', "vf_enabled": load_setting["book_offers"].enabled, "vf_delay": load_setting["book_offers"].delay,
+      "vf_users": load_setting["book_offers"].users, "vf_rampUp": load_setting["book_offers"].ramp,
+      "vf_duration": load_setting["book_offers"].duration, "vf_loops": load_setting["book_offers"].loops,
+      "vf_pt_delay": load_setting["book_offers"].pt_delay,  "vf_pt_range": load_setting["book_offers"].pt_range]
 
     insert 'ledger_data/ledger_data_ins.gvy', variables:
      ["vf_name": 'TGroup-ledger_data', "vf_enabled": load_setting["ledger_data"].enabled, "vf_delay": load_setting["ledger_data"].delay,

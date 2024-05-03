@@ -1,4 +1,8 @@
-    fragment {
+  fragment {
+
+    group name: vf_name, loops: vf_loops, users: vf_users, duration: vf_duration,
+      rampUp: vf_rampUp, delay: vf_delay, keepUser: false, delayedStart: true, scheduler: true, {
+
 
       // Defines a 'Random Variable' config element
       random name: 'Random ledger index number', variable: 'ledgerIndex', minimum: 30000000, maximum: 85478162, perUser: true
@@ -9,7 +13,9 @@
         http (method: 'POST', path: '/', name: 'Tx01r book_offers, random ledger',
               comments: 'https://xrpl.org/book_offers.html') {
           body '''{"method":"book_offers","params": [{"ledger_index": "${ledgerIndex}","taker": "${acct}","taker_gets": {"currency": "${vCurrency}","issuer": "${vIssuer}"},"taker_pays": {"currency": "XRP"}}]}'''
-          //extract_jmes expression: 'book.id', variable: 'p_bookId'
+
+          extract_jmes expression: 'result.error', variable: 'p_error'
+          extract_jmes expression: 'result.engine_result', variable: 'p_result'
         }
     
       }
@@ -23,3 +29,4 @@
       }
 
     }
+  }

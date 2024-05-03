@@ -1,6 +1,6 @@
   fragment {
 
-    group name: vf_name, loops: vf_loops, users: vf_users, duration: vf_duration,
+    group name: vf_name, enabled: vf_enabled, loops: vf_loops, users: vf_users, duration: vf_duration,
       rampUp: vf_rampUp, delay: vf_delay, keepUser: false, delayedStart: true, scheduler: true, {
 
       debug '--== Tx: nft_info ==--', displayJMeterVariables: true, displayJMeterProperties: true, enabled: false

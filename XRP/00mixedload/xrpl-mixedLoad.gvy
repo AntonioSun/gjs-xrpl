@@ -53,30 +53,11 @@ start {
     }
 
     debug '---- Thread Groups starts ----', enabled: false
-    group(name: 'TGroup-server_info', delay: load_setting["server_info"].delay, delayedStart: true, scheduler: true,
-      users: load_setting["server_info"].users, rampUp: load_setting["server_info"].ramp, keepUser: false,
-      duration: load_setting["server_info"].duration, loops: load_setting["server_info"].loops,
-      enabled: load_setting["server_info"].enabled) {
-
-      debug '--== Tx: server_info ==--', displayJMeterVariables: true, displayJMeterProperties: true, enabled: false
-      transaction('Tx01 server_info', generate: true) {
-        
-        http (method: 'POST', path: '/', name: 'Tx01r server_info') {
-          body '{"method":"server_info"}'
-          //extract_jmes expression: 'book.id', variable: 'p_bookId'
-        }
-    
-      }
-
-      flow (name: 'Think Time Flow Control', enabled: false) {
-        uniform_timer (name: 'Think Time', delay: '${c_tt_delay}', range: '${c_tt_range}')
-      }
-
-      flow (name: 'Pace Time Flow Control') {
-        uniform_timer (name: 'Pace Time', delay: load_setting["server_info"].pt_delay, range: load_setting["server_info"].pt_range)
-      }
-      // end group
-    }
+    insert 'inc_forwarded/server_info.gvy', variables:
+     ["vf_name": 'TGroup-server_info', "vf_enabled": load_setting["server_info"].enabled, "vf_delay": load_setting["server_info"].delay,
+      "vf_users": load_setting["server_info"].users, "vf_rampUp": load_setting["server_info"].ramp,
+      "vf_duration": load_setting["server_info"].duration, "vf_loops": load_setting["server_info"].loops,
+      "vf_pt_delay": load_setting["server_info"].pt_delay,  "vf_pt_range": load_setting["server_info"].pt_range]
 
     insert 'inc_ledger_validated/account_info.gvy', variables:
      ["vf_name": 'TGroup-account_info', "vf_enabled": load_setting["account_info"].enabled, "vf_delay": load_setting["account_info"].delay,
@@ -84,19 +65,19 @@ start {
       "vf_duration": load_setting["account_info"].duration, "vf_loops": load_setting["account_info"].loops,
       "vf_pt_delay": load_setting["account_info"].pt_delay,  "vf_pt_range": load_setting["account_info"].pt_range]
 
-    insert 'inc_ledger_validated/fee.gvy', variables:
+    insert 'inc_forwarded/fee.gvy', variables:
      ["vf_name": 'TGroup-fee', "vf_enabled": load_setting["fee"].enabled, "vf_delay": load_setting["fee"].delay,
       "vf_users": load_setting["fee"].users, "vf_rampUp": load_setting["fee"].ramp,
       "vf_duration": load_setting["fee"].duration, "vf_loops": load_setting["fee"].loops,
       "vf_pt_delay": load_setting["fee"].pt_delay,  "vf_pt_range": load_setting["fee"].pt_range]
 
-    insert 'inc_ledger_validated/ledger_current.gvy', variables:
+    insert 'inc_forwarded/ledger_current.gvy', variables:
      ["vf_name": 'TGroup-ledger_current', "vf_enabled": load_setting["ledger_current"].enabled, "vf_delay": load_setting["ledger_current"].delay,
       "vf_users": load_setting["ledger_current"].users, "vf_rampUp": load_setting["ledger_current"].ramp,
       "vf_duration": load_setting["ledger_current"].duration, "vf_loops": load_setting["ledger_current"].loops,
       "vf_pt_delay": load_setting["ledger_current"].pt_delay,  "vf_pt_range": load_setting["ledger_current"].pt_range]
 
-    insert 'inc_ledger_validated/ledger_closed.gvy', variables:
+    insert 'inc_forwarded/ledger_closed.gvy', variables:
      ["vf_name": 'TGroup-ledger_closed', "vf_enabled": load_setting["ledger_closed"].enabled, "vf_delay": load_setting["ledger_closed"].delay,
       "vf_users": load_setting["ledger_closed"].users, "vf_rampUp": load_setting["ledger_closed"].ramp,
       "vf_duration": load_setting["ledger_closed"].duration, "vf_loops": load_setting["ledger_closed"].loops,

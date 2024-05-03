@@ -59,12 +59,6 @@ start {
       "vf_duration": load_setting["server_info"].duration, "vf_loops": load_setting["server_info"].loops,
       "vf_pt_delay": load_setting["server_info"].pt_delay,  "vf_pt_range": load_setting["server_info"].pt_range]
 
-    insert 'inc_ledger_validated/account_info.gvy', variables:
-     ["vf_name": 'TGroup-account_info', "vf_enabled": load_setting["account_info"].enabled, "vf_delay": load_setting["account_info"].delay,
-      "vf_users": load_setting["account_info"].users, "vf_rampUp": load_setting["account_info"].ramp,
-      "vf_duration": load_setting["account_info"].duration, "vf_loops": load_setting["account_info"].loops,
-      "vf_pt_delay": load_setting["account_info"].pt_delay,  "vf_pt_range": load_setting["account_info"].pt_range]
-
     insert 'inc_forwarded/fee.gvy', variables:
      ["vf_name": 'TGroup-fee', "vf_enabled": load_setting["fee"].enabled, "vf_delay": load_setting["fee"].delay,
       "vf_users": load_setting["fee"].users, "vf_rampUp": load_setting["fee"].ramp,
@@ -82,6 +76,19 @@ start {
       "vf_users": load_setting["ledger_closed"].users, "vf_rampUp": load_setting["ledger_closed"].ramp,
       "vf_duration": load_setting["ledger_closed"].duration, "vf_loops": load_setting["ledger_closed"].loops,
       "vf_pt_delay": load_setting["ledger_closed"].pt_delay,  "vf_pt_range": load_setting["ledger_closed"].pt_range]
+
+    debug '... validated ledger requests ...', enabled: false
+    insert 'inc_ledger_validated/account_info.gvy', variables:
+     ["vf_name": 'TGroup-account_info', "vf_enabled": load_setting["account_info"].enabled, "vf_delay": load_setting["account_info"].delay,
+      "vf_users": load_setting["account_info"].users, "vf_rampUp": load_setting["account_info"].ramp,
+      "vf_duration": load_setting["account_info"].duration, "vf_loops": load_setting["account_info"].loops,
+      "vf_pt_delay": load_setting["account_info"].pt_delay,  "vf_pt_range": load_setting["account_info"].pt_range]
+
+    insert 'inc_ledger_validated/ledger.gvy', variables:
+     ["vf_name": 'TGroup-ledger', "vf_enabled": load_setting["ledger"].enabled, "vf_delay": load_setting["ledger"].delay,
+      "vf_users": load_setting["ledger"].users, "vf_rampUp": load_setting["ledger"].ramp,
+      "vf_duration": load_setting["ledger"].duration, "vf_loops": load_setting["ledger"].loops,
+      "vf_pt_delay": load_setting["ledger"].pt_delay,  "vf_pt_range": load_setting["ledger"].pt_range]
 
     insert 'inc_ledger_validated/nft_info.gvy', variables:
      ["vf_name": 'TGroup-nft_info', "vf_enabled": load_setting["nft_info"].enabled, "vf_delay": load_setting["nft_info"].delay,
@@ -101,7 +108,26 @@ start {
       "vf_duration": load_setting["ledger_data"].duration, "vf_loops": load_setting["ledger_data"].loops,
       "vf_pt_delay": load_setting["ledger_data"].pt_delay,  "vf_pt_range": load_setting["ledger_data"].pt_range]
 
-  // common file-end configuration
-  insert 'common/stationary-end.gvy'
+    debug '... current ledger requests ...', enabled: false
+    insert 'inc_ledger_current/account_info.gvy', variables:
+     ["vf_name": 'TGroup-account_info', "vf_enabled": load_setting["account_info"].enabled, "vf_delay": load_setting["account_info"].delay,
+      "vf_users": load_setting["account_info"].users, "vf_rampUp": load_setting["account_info"].ramp,
+      "vf_duration": load_setting["account_info"].duration, "vf_loops": load_setting["account_info"].loops,
+      "vf_pt_delay": load_setting["account_info"].pt_delay,  "vf_pt_range": load_setting["account_info"].pt_range]
+
+    insert 'inc_ledger_current/ledger.gvy', variables:
+     ["vf_name": 'TGroup-ledger', "vf_enabled": load_setting["ledger"].enabled, "vf_delay": load_setting["ledger"].delay,
+      "vf_users": load_setting["ledger"].users, "vf_rampUp": load_setting["ledger"].ramp,
+      "vf_duration": load_setting["ledger"].duration, "vf_loops": load_setting["ledger"].loops,
+      "vf_pt_delay": load_setting["ledger"].pt_delay,  "vf_pt_range": load_setting["ledger"].pt_range]
+
+    insert 'inc_ledger_current/server_state.gvy', variables:
+     ["vf_name": 'TGroup-server_state', "vf_enabled": load_setting["server_state"].enabled, "vf_delay": load_setting["server_state"].delay,
+      "vf_users": load_setting["server_state"].users, "vf_rampUp": load_setting["server_state"].ramp,
+      "vf_duration": load_setting["server_state"].duration, "vf_loops": load_setting["server_state"].loops,
+      "vf_pt_delay": load_setting["server_state"].pt_delay,  "vf_pt_range": load_setting["server_state"].pt_range]
+
+    // common file-end configuration
+    insert 'common/stationary-end.gvy'
   }
 }

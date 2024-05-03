@@ -142,7 +142,7 @@ start {
       }
       debug displayJMeterVariables: true, displayJMeterProperties: true, enabled: false
       flow (name: 'Pace Time Flow Control Action') {
-        uniform_timer (name: 'Pace Time', delay: '${c_pt_delay}', range: '${c_tt_range}')
+        uniform_timer (name: 'Pace Time', delay: '${c_pt_delay}', range: '${c_pt_range}')
       }
       // end group
     }

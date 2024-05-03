@@ -8,7 +8,7 @@
 
         http (method: 'POST', path: '/', name: 'Tx01r nft_info',
               comments: 'https://xrpl.org/nft_info.html') {
-          body '''{"method":"nft_info","params": [{"nft_id":"${s_nft_id}"}]}'''
+          body '''{"method":"nft_info","params": [{"nft_id":"${s_nft_id}","ledger_index":"current"}]}'''
 
           extract_jmes expression: 'result.error', variable: 'p_error'
           extract_jmes expression: 'result.engine_result', variable: 'p_result'

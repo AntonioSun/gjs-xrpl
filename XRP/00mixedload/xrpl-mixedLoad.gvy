@@ -18,7 +18,7 @@ start {
     variables {
       // using __env() custom JMeter Functions, https://jmeter-plugins.org/wiki/Functions/
       variable(name: 'c_app_host_name', value: '${__env(c_app_host_name, , 172.16.0.167)}', description: 'Test server host name')
-      variable(name: 'c_app_host_port', value: '${__env(c_app_host_port, , 51234)}', description: 'Test server host port')
+      variable(name: 'c_app_host_port', value: '${__env(c_app_host_port, , 51233)}', description: 'Test server host port')
       variable(name: 'c_app_protocol', value: '${__env(c_app_protocol, , http)}', description: 'Test server protocol')
       variable(name: 'c_app_error_kw', value: '${__P(c_app_error_kw,Wrong)}', description: 'keyword indicates wrong application returns')
       variable(name: 'c_lt_users', value: '${__P(c_lt_users, 10)}', description: 'loadtest users')
@@ -35,8 +35,7 @@ start {
       }
 
     csv name: 'CSV hosts', file: '../../common/clio_servers_ro.csv', variables: ["s_hlabel","c_app_host_name"], shareMode: "group"
-    csv name: 'CSV accounts', file: '../common/accounts.csv', variables: ['s_account']
-    csv name: 'CSV nft_ids', file: '../common/nft_ids.csv', variables: ['s_nft_id']
+    csv name: 'CSV accounts', file: '../../common/accounts.csv', variables: ['s_account']
 
     // common file-beg configuration
     insert 'common/stationary-beg.gvy'

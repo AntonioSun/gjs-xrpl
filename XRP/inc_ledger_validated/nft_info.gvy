@@ -3,6 +3,8 @@
     group name: vf_name, enabled: vf_enabled, loops: vf_loops, users: vf_users, duration: vf_duration,
       rampUp: vf_rampUp, delay: vf_delay, keepUser: false, delayedStart: true, scheduler: true, {
 
+      csv name: 'CSV nft_ids', file: '../../common/nft_ids.csv', variables: ['s_nft_id']
+
       debug '--== Tx: nft_info ==--', displayJMeterVariables: true, displayJMeterProperties: true, enabled: false
       transaction('Tx01 nft_info', generate: true) {
 

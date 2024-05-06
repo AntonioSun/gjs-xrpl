@@ -6,7 +6,7 @@
       debug '--== Tx: ledger ==--', displayJMeterVariables: true, displayJMeterProperties: true, enabled: false
       transaction('Tx01 ledger', generate: true) {
 
-        http (method: 'POST', path: '/', name: 'Tx01r ledger',
+        http (method: 'POST', path: '/', name: 'Tx01r ledger'+vf_suffix,
               comments: 'https://xrpl.org/ledger.html') {
           body '''{"method":"ledger","params": ["ledger_index":"current"]}'''
 

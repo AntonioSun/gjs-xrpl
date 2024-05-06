@@ -6,7 +6,7 @@
       debug '--== Tx: server_state ==--', displayJMeterVariables: true, displayJMeterProperties: true, enabled: false
       transaction('Tx01 server_state', generate: true) {
 
-        http (method: 'POST', path: '/', name: 'Tx01r server_state',
+        http (method: 'POST', path: '/', name: 'Tx01r server_state'+vf_suffix,
               comments: 'https://xrpl.org/server_state.html') {
           body '''{"method":"server_state","params": ["ledger_index":"current"]}'''
 

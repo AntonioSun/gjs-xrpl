@@ -209,11 +209,11 @@
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TGroup-server_info" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <stringProp name="ThreadGroup.num_threads">100</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">360</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${c_lt_ramp}</stringProp>
         <boolProp name="ThreadGroup.delayedStart">true</boolProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">720</stringProp>
+        <stringProp name="ThreadGroup.duration">${c_lt_duration}</stringProp>
         <stringProp name="ThreadGroup.delay">0</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -280,8 +280,8 @@
         </TestAction>
         <hashTree>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Pace Time" enabled="true">
-            <stringProp name="ConstantTimer.delay">${c_pt_delay}</stringProp>
-            <stringProp name="RandomTimer.range">${c_pt_range}</stringProp>
+            <stringProp name="ConstantTimer.delay">12</stringProp>
+            <stringProp name="RandomTimer.range">3.0</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
@@ -289,11 +289,11 @@
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TGroup-fee" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <stringProp name="ThreadGroup.num_threads">5</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">360</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${c_lt_ramp}</stringProp>
         <boolProp name="ThreadGroup.delayedStart">true</boolProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">720</stringProp>
+        <stringProp name="ThreadGroup.duration">${c_lt_duration}</stringProp>
         <stringProp name="ThreadGroup.delay">0</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -360,8 +360,8 @@
         </TestAction>
         <hashTree>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Pace Time" enabled="true">
-            <stringProp name="ConstantTimer.delay">${c_pt_delay}</stringProp>
-            <stringProp name="RandomTimer.range">${c_pt_range}</stringProp>
+            <stringProp name="ConstantTimer.delay">30</stringProp>
+            <stringProp name="RandomTimer.range">3.0</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
@@ -369,11 +369,11 @@
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TGroup-ledger_current" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <stringProp name="ThreadGroup.num_threads">5</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">360</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${c_lt_ramp}</stringProp>
         <boolProp name="ThreadGroup.delayedStart">true</boolProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">720</stringProp>
+        <stringProp name="ThreadGroup.duration">${c_lt_duration}</stringProp>
         <stringProp name="ThreadGroup.delay">0</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -436,11 +436,11 @@
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TGroup-ledger_closed" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <stringProp name="ThreadGroup.num_threads">5</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">360</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${c_lt_ramp}</stringProp>
         <boolProp name="ThreadGroup.delayedStart">true</boolProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">720</stringProp>
+        <stringProp name="ThreadGroup.duration">${c_lt_duration}</stringProp>
         <stringProp name="ThreadGroup.delay">0</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -509,11 +509,11 @@
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TGroup-account_info" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <stringProp name="ThreadGroup.num_threads">100</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">360</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${c_lt_ramp}</stringProp>
         <boolProp name="ThreadGroup.delayedStart">true</boolProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">720</stringProp>
+        <stringProp name="ThreadGroup.duration">${c_lt_duration}</stringProp>
         <stringProp name="ThreadGroup.delay">0</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -580,8 +580,8 @@
         </TestAction>
         <hashTree>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Pace Time" enabled="true">
-            <stringProp name="ConstantTimer.delay">${c_pt_delay}</stringProp>
-            <stringProp name="RandomTimer.range">${c_pt_range}</stringProp>
+            <stringProp name="ConstantTimer.delay">12</stringProp>
+            <stringProp name="RandomTimer.range">3.0</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
@@ -589,11 +589,11 @@
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TGroup-ledger" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <stringProp name="ThreadGroup.num_threads">100</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">360</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${c_lt_ramp}</stringProp>
         <boolProp name="ThreadGroup.delayedStart">true</boolProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">720</stringProp>
+        <stringProp name="ThreadGroup.duration">${c_lt_duration}</stringProp>
         <stringProp name="ThreadGroup.delay">0</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -660,8 +660,8 @@
         </TestAction>
         <hashTree>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Pace Time" enabled="true">
-            <stringProp name="ConstantTimer.delay">${c_pt_delay}</stringProp>
-            <stringProp name="RandomTimer.range">${c_pt_range}</stringProp>
+            <stringProp name="ConstantTimer.delay">60</stringProp>
+            <stringProp name="RandomTimer.range">6.0</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
@@ -669,11 +669,11 @@
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TGroup-nft_info" enabled="false">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">360</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${c_lt_ramp}</stringProp>
         <boolProp name="ThreadGroup.delayedStart">true</boolProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">720</stringProp>
+        <stringProp name="ThreadGroup.duration">${c_lt_duration}</stringProp>
         <stringProp name="ThreadGroup.delay">0</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -752,8 +752,8 @@
         </TestAction>
         <hashTree>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Pace Time" enabled="true">
-            <stringProp name="ConstantTimer.delay">${c_pt_delay}</stringProp>
-            <stringProp name="RandomTimer.range">${c_pt_range}</stringProp>
+            <stringProp name="ConstantTimer.delay">100</stringProp>
+            <stringProp name="RandomTimer.range">20.0</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
@@ -773,11 +773,11 @@
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TGroup-book_offers" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <stringProp name="ThreadGroup.num_threads">50</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">360</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${c_lt_ramp}</stringProp>
         <boolProp name="ThreadGroup.delayedStart">true</boolProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">720</stringProp>
+        <stringProp name="ThreadGroup.duration">${c_lt_duration}</stringProp>
         <stringProp name="ThreadGroup.delay">0</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -865,8 +865,8 @@
         </TestAction>
         <hashTree>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Pace Time" enabled="true">
-            <stringProp name="ConstantTimer.delay">${c_pt_delay}</stringProp>
-            <stringProp name="RandomTimer.range">${c_pt_range}</stringProp>
+            <stringProp name="ConstantTimer.delay">12</stringProp>
+            <stringProp name="RandomTimer.range">3.0</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
@@ -874,11 +874,11 @@
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TGroup-ledger_data" enabled="false">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">360</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${c_lt_ramp}</stringProp>
         <boolProp name="ThreadGroup.delayedStart">true</boolProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">720</stringProp>
+        <stringProp name="ThreadGroup.duration">${c_lt_duration}</stringProp>
         <stringProp name="ThreadGroup.delay">0</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -967,11 +967,11 @@
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TGroup-account_info" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <stringProp name="ThreadGroup.num_threads">100</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">360</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${c_lt_ramp}</stringProp>
         <boolProp name="ThreadGroup.delayedStart">true</boolProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">720</stringProp>
+        <stringProp name="ThreadGroup.duration">${c_lt_duration}</stringProp>
         <stringProp name="ThreadGroup.delay">0</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -1038,8 +1038,8 @@
         </TestAction>
         <hashTree>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Pace Time" enabled="true">
-            <stringProp name="ConstantTimer.delay">${c_pt_delay}</stringProp>
-            <stringProp name="RandomTimer.range">${c_pt_range}</stringProp>
+            <stringProp name="ConstantTimer.delay">12</stringProp>
+            <stringProp name="RandomTimer.range">3.0</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
@@ -1047,11 +1047,11 @@
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TGroup-ledger" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <stringProp name="ThreadGroup.num_threads">100</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">360</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${c_lt_ramp}</stringProp>
         <boolProp name="ThreadGroup.delayedStart">true</boolProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">720</stringProp>
+        <stringProp name="ThreadGroup.duration">${c_lt_duration}</stringProp>
         <stringProp name="ThreadGroup.delay">0</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -1118,8 +1118,8 @@
         </TestAction>
         <hashTree>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Pace Time" enabled="true">
-            <stringProp name="ConstantTimer.delay">${c_pt_delay}</stringProp>
-            <stringProp name="RandomTimer.range">${c_pt_range}</stringProp>
+            <stringProp name="ConstantTimer.delay">60</stringProp>
+            <stringProp name="RandomTimer.range">6.0</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
@@ -1127,11 +1127,11 @@
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TGroup-server_state" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <stringProp name="ThreadGroup.num_threads">2</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">360</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${c_lt_ramp}</stringProp>
         <boolProp name="ThreadGroup.delayedStart">true</boolProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">720</stringProp>
+        <stringProp name="ThreadGroup.duration">${c_lt_duration}</stringProp>
         <stringProp name="ThreadGroup.delay">0</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -1198,8 +1198,8 @@
         </TestAction>
         <hashTree>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Pace Time" enabled="true">
-            <stringProp name="ConstantTimer.delay">${c_pt_delay}</stringProp>
-            <stringProp name="RandomTimer.range">${c_pt_range}</stringProp>
+            <stringProp name="ConstantTimer.delay">12</stringProp>
+            <stringProp name="RandomTimer.range">3.0</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>

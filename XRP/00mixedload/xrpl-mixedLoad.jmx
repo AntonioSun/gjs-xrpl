@@ -151,6 +151,15 @@
         <stringProp name="HTTPSampler.response_timeout"></stringProp>
       </ConfigTestElement>
       <hashTree/>
+      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Headers" enabled="true">
+        <collectionProp name="HeaderManager.headers">
+          <elementProp name="Content-Type" elementType="Header">
+            <stringProp name="Header.name">Content-Type</stringProp>
+            <stringProp name="Header.value">application/json</stringProp>
+          </elementProp>
+        </collectionProp>
+      </HeaderManager>
+      <hashTree/>
       <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="---- default error checkings ----" enabled="false">
         <boolProp name="displayJMeterProperties">false</boolProp>
         <boolProp name="displayJMeterVariables">true</boolProp>
@@ -187,17 +196,6 @@
         <stringProp name="Assertion.scope">children</stringProp>
         <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
         <intProp name="Assertion.test_type">6</intProp>
-        <stringProp name="Assertion.custom_message"></stringProp>
-        <boolProp name="Assertion.assume_success">false</boolProp>
-      </ResponseAssertion>
-      <hashTree/>
-      <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Check Text" enabled="true">
-        <collectionProp name="Asserion.test_strings">
-          <stringProp name="1338110620">,&quot;engine_result_code&quot;:0,</stringProp>
-        </collectionProp>
-        <stringProp name="Assertion.scope">children</stringProp>
-        <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-        <intProp name="Assertion.test_type">2</intProp>
         <stringProp name="Assertion.custom_message"></stringProp>
         <boolProp name="Assertion.assume_success">false</boolProp>
       </ResponseAssertion>
@@ -620,7 +618,7 @@
               <collectionProp name="Arguments.arguments">
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">{&quot;method&quot;:&quot;ledger&quot;,&quot;params&quot;: [&quot;ledger_index&quot;:&quot;validated&quot;]}</stringProp>
+                  <stringProp name="Argument.value">{&quot;method&quot;:&quot;ledger&quot;,&quot;params&quot;: [{&quot;ledger_index&quot;:&quot;validated&quot;}]}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
               </collectionProp>
@@ -760,6 +758,18 @@
           <hashTree/>
         </hashTree>
       </hashTree>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV book_offers" enabled="true">
+        <stringProp name="filename">../../common/book_offers.csv</stringProp>
+        <stringProp name="fileEncoding">UTF-8</stringProp>
+        <stringProp name="variableNames">acct,vCurrency,vIssuer,ledgerHash,ledgerIndex</stringProp>
+        <boolProp name="ignoreFirstLine">false</boolProp>
+        <stringProp name="delimiter">,</stringProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+      </CSVDataSet>
+      <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TGroup-book_offers" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <stringProp name="ThreadGroup.num_threads">50</stringProp>
@@ -795,7 +805,7 @@
           <boolProp name="TransactionController.parent">true</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Tx01r book_offers, random ledger" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Tx01r book_offers" enabled="true">
             <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
               <collectionProp name="Arguments.arguments">
@@ -1066,7 +1076,7 @@
               <collectionProp name="Arguments.arguments">
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">{&quot;method&quot;:&quot;ledger&quot;,&quot;params&quot;: [&quot;ledger_index&quot;:&quot;current&quot;]}</stringProp>
+                  <stringProp name="Argument.value">{&quot;method&quot;:&quot;ledger&quot;,&quot;params&quot;: [{&quot;ledger_index&quot;:&quot;current&quot;}]}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
               </collectionProp>
@@ -1146,7 +1156,7 @@
               <collectionProp name="Arguments.arguments">
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">{&quot;method&quot;:&quot;server_state&quot;,&quot;params&quot;: [&quot;ledger_index&quot;:&quot;current&quot;]}</stringProp>
+                  <stringProp name="Argument.value">{&quot;method&quot;:&quot;server_state&quot;,&quot;params&quot;: [{&quot;ledger_index&quot;:&quot;current&quot;}]}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
               </collectionProp>

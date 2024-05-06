@@ -46,9 +46,9 @@ start {
     check_response applyTo: 'children', {
       text() excludes '"error":".*","error_code":'
     }
-    check_response applyTo: 'children', {
-      text() includes ',"engine_result_code":0,'
-    }
+    // check_response applyTo: 'children', {
+    //   text() includes ',"status":"success",'
+    // } // Not working for server_info
 
     debug '---- Thread Groups starts ----', enabled: false
     insert 'inc_forwarded/server_info.gvy', variables:

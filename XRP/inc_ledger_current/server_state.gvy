@@ -8,7 +8,7 @@
 
         http (method: 'POST', path: '/', name: 'Tx01r server_state'+vf_suffix,
               comments: 'https://xrpl.org/server_state.html') {
-          body '''{"method":"server_state","params": ["ledger_index":"current"]}'''
+          body '''{"method":"server_state","params": [{"ledger_index":"current"}]}'''
 
           extract_jmes expression: 'result.error', variable: 'p_error'
           extract_jmes expression: 'result.engine_result', variable: 'p_result'

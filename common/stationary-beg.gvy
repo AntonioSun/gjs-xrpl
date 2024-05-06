@@ -1,6 +1,9 @@
 fragment {
     debug '---- default request settings ----', enabled: false
     defaults(protocol: '${c_app_protocol}', domain: '${c_app_host_name}', port:  '${c_app_host_port}')
+    headers {
+      header(name: 'Content-Type', value: 'application/json')
+    }
     // headers {
     //   header(name: 'Host', value: '${c_app_host_name}')
     //   header(name: 'Origin', value: '${c_app_host_name}')

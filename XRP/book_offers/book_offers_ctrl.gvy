@@ -33,8 +33,6 @@ start {
       variable(name: 'p_session_password', value: 'john')
       }
 
-    csv name: 'CSV book_offers', file: '../common/book_offers.csv', variables: ["acct","vCurrency","vIssuer","ledgerHash","ledgerIndex"]
-
     // common file-beg configuration
     insert 'common/stationary-beg.gvy'
 

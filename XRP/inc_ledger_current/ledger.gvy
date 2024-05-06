@@ -8,7 +8,7 @@
 
         http (method: 'POST', path: '/', name: 'Tx01r ledger'+vf_suffix,
               comments: 'https://xrpl.org/ledger.html') {
-          body '''{"method":"ledger","params": ["ledger_index":"current"]}'''
+          body '''{"method":"ledger","params": [{"ledger_index":"current"}]}'''
 
           extract_jmes expression: 'result.error', variable: 'p_error'
           extract_jmes expression: 'result.engine_result', variable: 'p_result'

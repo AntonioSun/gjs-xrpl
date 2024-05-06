@@ -43,8 +43,8 @@ start {
     debug '---- Thread Groups starts ----', enabled: false
     insert 'book_offers_ins.gvy', variables:
      ["vf_name": 'TGroup-book_offers', "vf_enabled": load_setting["book_offers"].enabled, "vf_delay": load_setting["book_offers"].delay,
-      "vf_users": load_setting["book_offers"].users, "vf_rampUp": load_setting["book_offers"].ramp,
-      "vf_duration": load_setting["book_offers"].duration, "vf_loops": load_setting["book_offers"].loops,
+      "vf_users": load_setting["book_offers"].users, "vf_loops": -1,
+      "vf_duration": '${c_lt_duration}', "vf_rampUp": '${c_lt_ramp}',
       "vf_pt_delay": load_setting["book_offers"].pt_delay,  "vf_pt_range": load_setting["book_offers"].pt_range]
 
   // common file-end configuration

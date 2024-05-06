@@ -19,7 +19,7 @@
       }
 
       flow (name: 'Pace Time Flow Control') {
-        uniform_timer (name: 'Pace Time', delay: '${c_pt_delay}', range: '${c_pt_range}')
+        uniform_timer (name: 'Pace Time', delay: vf_pt_delay, range: vf_pt_range)
       }
     }
   }

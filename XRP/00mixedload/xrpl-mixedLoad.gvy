@@ -53,26 +53,26 @@ start {
     debug '---- Thread Groups starts ----', enabled: false
     insert 'inc_forwarded/server_info.gvy', variables:
      ["vf_name": 'TGroup-server_info', "vf_enabled": load_setting["server_info"].enabled, "vf_delay": load_setting["server_info"].delay,
-      "vf_users": load_setting["server_info"].users, "vf_rampUp": load_setting["server_info"].ramp,
-      "vf_duration": load_setting["server_info"].duration, "vf_loops": load_setting["server_info"].loops,
+      "vf_users": load_setting["server_info"].users, "vf_loops": -1,
+      "vf_duration": '${c_lt_duration}', "vf_rampUp": '${c_lt_ramp}',
       "vf_pt_delay": load_setting["server_info"].pt_delay,  "vf_pt_range": load_setting["server_info"].pt_range]
 
     insert 'inc_forwarded/fee.gvy', variables:
      ["vf_name": 'TGroup-fee', "vf_enabled": load_setting["fee"].enabled, "vf_delay": load_setting["fee"].delay,
-      "vf_users": load_setting["fee"].users, "vf_rampUp": load_setting["fee"].ramp,
-      "vf_duration": load_setting["fee"].duration, "vf_loops": load_setting["fee"].loops,
+      "vf_users": load_setting["fee"].users, "vf_loops": -1,
+      "vf_duration": '${c_lt_duration}', "vf_rampUp": '${c_lt_ramp}',
       "vf_pt_delay": load_setting["fee"].pt_delay,  "vf_pt_range": load_setting["fee"].pt_range]
 
     insert 'inc_forwarded/ledger_current.gvy', variables:
      ["vf_name": 'TGroup-ledger_current', "vf_enabled": load_setting["ledger_current"].enabled, "vf_delay": load_setting["ledger_current"].delay,
-      "vf_users": load_setting["ledger_current"].users, "vf_rampUp": load_setting["ledger_current"].ramp,
-      "vf_duration": load_setting["ledger_current"].duration, "vf_loops": load_setting["ledger_current"].loops,
+      "vf_users": load_setting["ledger_current"].users, "vf_loops": -1,
+      "vf_duration": '${c_lt_duration}', "vf_rampUp": '${c_lt_ramp}',
       "vf_pt_delay": load_setting["ledger_current"].pt_delay,  "vf_pt_range": load_setting["ledger_current"].pt_range]
 
     insert 'inc_forwarded/ledger_closed.gvy', variables:
      ["vf_name": 'TGroup-ledger_closed', "vf_enabled": load_setting["ledger_closed"].enabled, "vf_delay": load_setting["ledger_closed"].delay,
-      "vf_users": load_setting["ledger_closed"].users, "vf_rampUp": load_setting["ledger_closed"].ramp,
-      "vf_duration": load_setting["ledger_closed"].duration, "vf_loops": load_setting["ledger_closed"].loops,
+      "vf_users": load_setting["ledger_closed"].users, "vf_loops": -1,
+      "vf_duration": '${c_lt_duration}', "vf_rampUp": '${c_lt_ramp}',
       "vf_pt_delay": load_setting["ledger_closed"].pt_delay,  "vf_pt_range": load_setting["ledger_closed"].pt_range]
 
     // -
@@ -81,32 +81,32 @@ start {
     debug '... validated ledger requests ...', enabled: false
     insert 'inc_ledger_validated/account_info.gvy', variables:
      ["vf_name": 'TGroup-account_info', "vf_suffix": 'V', "vf_enabled": load_setting["account_info"].enabled, "vf_delay": load_setting["account_info"].delay,
-      "vf_users": load_setting["account_info"].users, "vf_rampUp": load_setting["account_info"].ramp,
-      "vf_duration": load_setting["account_info"].duration, "vf_loops": load_setting["account_info"].loops,
+      "vf_users": load_setting["account_info"].users, "vf_loops": -1,
+      "vf_duration": '${c_lt_duration}', "vf_rampUp": '${c_lt_ramp}',
       "vf_pt_delay": load_setting["account_info"].pt_delay,  "vf_pt_range": load_setting["account_info"].pt_range]
 
     insert 'inc_ledger_validated/ledger.gvy', variables:
      ["vf_name": 'TGroup-ledger', "vf_suffix": 'V', "vf_enabled": load_setting["ledger"].enabled, "vf_delay": load_setting["ledger"].delay,
-      "vf_users": load_setting["ledger"].users, "vf_rampUp": load_setting["ledger"].ramp,
-      "vf_duration": load_setting["ledger"].duration, "vf_loops": load_setting["ledger"].loops,
+      "vf_users": load_setting["ledger"].users, "vf_loops": -1,
+      "vf_duration": '${c_lt_duration}', "vf_rampUp": '${c_lt_ramp}',
       "vf_pt_delay": load_setting["ledger"].pt_delay,  "vf_pt_range": load_setting["ledger"].pt_range]
 
     insert 'inc_ledger_validated/nft_info.gvy', variables:
      ["vf_name": 'TGroup-nft_info', "vf_suffix": 'V', "vf_enabled": load_setting["nft_info"].enabled, "vf_delay": load_setting["nft_info"].delay,
-      "vf_users": load_setting["nft_info"].users, "vf_rampUp": load_setting["nft_info"].ramp,
-      "vf_duration": load_setting["nft_info"].duration, "vf_loops": load_setting["nft_info"].loops,
+      "vf_users": load_setting["nft_info"].users, "vf_loops": -1,
+      "vf_duration": '${c_lt_duration}', "vf_rampUp": '${c_lt_ramp}',
       "vf_pt_delay": load_setting["nft_info"].pt_delay,  "vf_pt_range": load_setting["nft_info"].pt_range]
 
     insert 'book_offers/book_offers_ins.gvy', variables:
      ["vf_name": 'TGroup-book_offers', "vf_suffix": 'V', "vf_enabled": load_setting["book_offers"].enabled, "vf_delay": load_setting["book_offers"].delay,
-      "vf_users": load_setting["book_offers"].users, "vf_rampUp": load_setting["book_offers"].ramp,
-      "vf_duration": load_setting["book_offers"].duration, "vf_loops": load_setting["book_offers"].loops,
+      "vf_users": load_setting["book_offers"].users, "vf_loops": -1,
+      "vf_duration": '${c_lt_duration}', "vf_rampUp": '${c_lt_ramp}',
       "vf_pt_delay": load_setting["book_offers"].pt_delay,  "vf_pt_range": load_setting["book_offers"].pt_range]
 
     insert 'ledger_data/ledger_data_ins.gvy', variables:
      ["vf_name": 'TGroup-ledger_data', "vf_suffix": 'V', "vf_enabled": load_setting["ledger_data"].enabled, "vf_delay": load_setting["ledger_data"].delay,
-      "vf_users": load_setting["ledger_data"].users, "vf_rampUp": load_setting["ledger_data"].ramp,
-      "vf_duration": load_setting["ledger_data"].duration, "vf_loops": load_setting["ledger_data"].loops,
+      "vf_users": load_setting["ledger_data"].users, "vf_loops": -1,
+      "vf_duration": '${c_lt_duration}', "vf_rampUp": '${c_lt_ramp}',
       "vf_pt_delay": load_setting["ledger_data"].pt_delay,  "vf_pt_range": load_setting["ledger_data"].pt_range]
 
     // -
@@ -115,20 +115,20 @@ start {
     debug '... current ledger requests ...', enabled: false
     insert 'inc_ledger_current/account_info.gvy', variables:
      ["vf_name": 'TGroup-account_info', "vf_suffix": 'C', "vf_enabled": load_setting["account_info"].enabled, "vf_delay": load_setting["account_info"].delay,
-      "vf_users": load_setting["account_info"].users, "vf_rampUp": load_setting["account_info"].ramp,
-      "vf_duration": load_setting["account_info"].duration, "vf_loops": load_setting["account_info"].loops,
+      "vf_users": load_setting["account_info"].users, "vf_loops": -1,
+      "vf_duration": '${c_lt_duration}', "vf_rampUp": '${c_lt_ramp}',
       "vf_pt_delay": load_setting["account_info"].pt_delay,  "vf_pt_range": load_setting["account_info"].pt_range]
 
     insert 'inc_ledger_current/ledger.gvy', variables:
      ["vf_name": 'TGroup-ledger', "vf_suffix": 'C', "vf_enabled": load_setting["ledger"].enabled, "vf_delay": load_setting["ledger"].delay,
-      "vf_users": load_setting["ledger"].users, "vf_rampUp": load_setting["ledger"].ramp,
-      "vf_duration": load_setting["ledger"].duration, "vf_loops": load_setting["ledger"].loops,
+      "vf_users": load_setting["ledger"].users, "vf_loops": -1,
+      "vf_duration": '${c_lt_duration}', "vf_rampUp": '${c_lt_ramp}',
       "vf_pt_delay": load_setting["ledger"].pt_delay,  "vf_pt_range": load_setting["ledger"].pt_range]
 
     insert 'inc_ledger_current/server_state.gvy', variables:
      ["vf_name": 'TGroup-server_state', "vf_suffix": 'C', "vf_enabled": load_setting["server_state"].enabled, "vf_delay": load_setting["server_state"].delay,
-      "vf_users": load_setting["server_state"].users, "vf_rampUp": load_setting["server_state"].ramp,
-      "vf_duration": load_setting["server_state"].duration, "vf_loops": load_setting["server_state"].loops,
+      "vf_users": load_setting["server_state"].users, "vf_loops": -1,
+      "vf_duration": '${c_lt_duration}', "vf_rampUp": '${c_lt_ramp}',
       "vf_pt_delay": load_setting["server_state"].pt_delay,  "vf_pt_range": load_setting["server_state"].pt_range]
 
     // common file-end configuration

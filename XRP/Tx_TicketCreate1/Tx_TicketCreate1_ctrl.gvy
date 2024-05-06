@@ -54,8 +54,8 @@ start {
     debug '---- Thread Groups starts ----', enabled: false
     insert 'Tx_TicketCreate1_ins.gvy', variables: [
       "vf_name": 'TGroup-Tx_TicketCreate1', "vf_enabled": true, "vf_delay": '${c_lt_delay}',
-      "vf_users": '${c_lt_users}', "vf_rampUp": '${c_lt_ramp}',
-      "vf_loops": -1, "vf_duration": '${c_lt_duration}',
+      "vf_users": '${c_lt_users}', "vf_loops": -1,
+      "vf_duration": '${c_lt_duration}', "vf_rampUp": '${c_lt_ramp}',
       "vf_pt_delay": '${c_pt_delay}',  "vf_pt_range": '${c_pt_range}']
 
   // common file-end configuration

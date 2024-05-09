@@ -38,10 +38,10 @@ start {
     // common file-beg configuration
     insert 'common/stationary-beg.gvy'
 
-    check_response applyTo: 'children', {
+    check_response {
       text() includes ',"status":"success",'
     }
-   check_response applyTo: 'children', {
+   check_response {
       text() excludes ',"error_code":'
     }
 

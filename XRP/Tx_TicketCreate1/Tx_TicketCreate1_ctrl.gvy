@@ -44,10 +44,10 @@ start {
     // common file-beg configuration
     insert 'common/stationary-beg.gvy'
 
-    check_response applyTo: 'children', {
+    check_response {
       text() includes ',"engine_result_code":0,'
     }
-    check_response applyTo: 'children', {
+    check_response {
       text() excludes ',"error_code":'
     }
 

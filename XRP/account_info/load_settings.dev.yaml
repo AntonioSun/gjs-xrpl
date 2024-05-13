@@ -1,2 +1,2 @@
 settings:
-  account_info:   { enabled:  true, users: 100, pt_delay:    12, pt_range:    3, delay: 0 }
+  account_info:   { enabled:  true, users: 100, duration: 120, ramp: 60, pt_delay:    12, pt_range:    3, delay: 0 }

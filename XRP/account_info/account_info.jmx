@@ -40,19 +40,19 @@
           </elementProp>
           <elementProp name="c_lt_users" elementType="Argument">
             <stringProp name="Argument.name">c_lt_users</stringProp>
-            <stringProp name="Argument.value">${__P(c_lt_users, 10)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_lt_users, 100)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">loadtest users</stringProp>
           </elementProp>
           <elementProp name="c_lt_ramp" elementType="Argument">
             <stringProp name="Argument.name">c_lt_ramp</stringProp>
-            <stringProp name="Argument.value">${__P(c_lt_ramp, 30)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_lt_ramp, 60)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">loadtest ramp up in seconds</stringProp>
           </elementProp>
           <elementProp name="c_lt_loops" elementType="Argument">
             <stringProp name="Argument.name">c_lt_loops</stringProp>
-            <stringProp name="Argument.value">${__P(c_lt_loops, 1)}</stringProp>
+            <stringProp name="Argument.value">${__P(c_lt_loops, null)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">loadtest loops</stringProp>
           </elementProp>

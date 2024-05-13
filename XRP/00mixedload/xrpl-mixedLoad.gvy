@@ -32,6 +32,8 @@ start {
       variable(name: 'c_pt_delay', value: '${__P(c_pt_delay, 30)}', description: 'Pace Time: Ms to delay in addition to random time')
       variable(name: 'c_cfg_TestName', value: 'xrpl-mixedload', description: 'Test name to identify different tests')
       variable(name: 'c_cfg_Influxdb', value: '${__env(c_cfg_Influxdb, , localhost)}', description: 'Influxdb server host name')
+      variable(name: 'p_ledger_typeC', value: 'current')
+      variable(name: 'p_ledger_typeV', value: 'validated')
       }
 
     csv name: 'CSV hosts', file: '../../common/clio_servers_ro.csv', variables: ["s_hlabel","c_app_host_name"], shareMode: "group"
@@ -82,13 +84,13 @@ start {
     insert 'inc_ledger_validated/account_info.gvy', variables:
      ["vf_name": 'TGroup-account_info', "vf_suffix": 'V', "vf_enabled": load_setting["account_info"].enabled, "vf_delay": load_setting["account_info"].delay,
       "vf_users": load_setting["account_info"].users, "vf_loops": -1,
-      "vf_duration": '${c_lt_duration}', "vf_rampUp": '${c_lt_ramp}',
+      "vf_duration": '${c_lt_duration}', "vf_rampUp": '${c_lt_ramp}', "vf_ledger_type": "p_ledger_typeV",
       "vf_pt_delay": load_setting["account_info"].pt_delay,  "vf_pt_range": load_setting["account_info"].pt_range]
 
     insert 'inc_ledger_validated/ledger.gvy', variables:
      ["vf_name": 'TGroup-ledger', "vf_suffix": 'V', "vf_enabled": load_setting["ledger"].enabled, "vf_delay": load_setting["ledger"].delay,
       "vf_users": load_setting["ledger"].users, "vf_loops": -1,
-      "vf_duration": '${c_lt_duration}', "vf_rampUp": '${c_lt_ramp}',
+      "vf_duration": '${c_lt_duration}', "vf_rampUp": '${c_lt_ramp}', "vf_ledger_type": "p_ledger_typeV",
       "vf_pt_delay": load_setting["ledger"].pt_delay,  "vf_pt_range": load_setting["ledger"].pt_range]
 
     insert 'inc_ledger_validated/nft_info.gvy', variables:
@@ -113,16 +115,16 @@ start {
     // == current ledger requests
     // -
     debug '... current ledger requests ...', enabled: false
-    insert 'inc_ledger_current/account_info.gvy', variables:
+    insert 'inc_ledger_validated/account_info.gvy', variables:
      ["vf_name": 'TGroup-account_info', "vf_suffix": 'C', "vf_enabled": load_setting["account_info"].enabled, "vf_delay": load_setting["account_info"].delay,
       "vf_users": load_setting["account_info"].users, "vf_loops": -1,
-      "vf_duration": '${c_lt_duration}', "vf_rampUp": '${c_lt_ramp}',
+      "vf_duration": '${c_lt_duration}', "vf_rampUp": '${c_lt_ramp}', "vf_ledger_type": "p_ledger_typeC",
       "vf_pt_delay": load_setting["account_info"].pt_delay,  "vf_pt_range": load_setting["account_info"].pt_range]
 
-    insert 'inc_ledger_current/ledger.gvy', variables:
+    insert 'inc_ledger_validated/ledger.gvy', variables:
      ["vf_name": 'TGroup-ledger', "vf_suffix": 'C', "vf_enabled": load_setting["ledger"].enabled, "vf_delay": load_setting["ledger"].delay,
       "vf_users": load_setting["ledger"].users, "vf_loops": -1,
-      "vf_duration": '${c_lt_duration}', "vf_rampUp": '${c_lt_ramp}',
+      "vf_duration": '${c_lt_duration}', "vf_rampUp": '${c_lt_ramp}', "vf_ledger_type": "p_ledger_typeC",
       "vf_pt_delay": load_setting["ledger"].pt_delay,  "vf_pt_range": load_setting["ledger"].pt_range]
 
     insert 'inc_ledger_current/server_state.gvy', variables:

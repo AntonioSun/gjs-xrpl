@@ -104,6 +104,18 @@
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Influxdb server host name</stringProp>
           </elementProp>
+          <elementProp name="p_ledger_typeC" elementType="Argument">
+            <stringProp name="Argument.name">p_ledger_typeC</stringProp>
+            <stringProp name="Argument.value">current</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc"></stringProp>
+          </elementProp>
+          <elementProp name="p_ledger_typeV" elementType="Argument">
+            <stringProp name="Argument.name">p_ledger_typeV</stringProp>
+            <stringProp name="Argument.value">validated</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc"></stringProp>
+          </elementProp>
         </collectionProp>
       </Arguments>
       <hashTree/>
@@ -509,7 +521,7 @@
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{&quot;method&quot;:&quot;account_info&quot;,&quot;params&quot;: [{&quot;account&quot;:&quot;${s_account}&quot;,&quot;ledger_index&quot;:&quot;validated&quot;,&quot;queue&quot;:false}]}</stringProp>
+                <stringProp name="Argument.value">{&quot;method&quot;:&quot;account_info&quot;,&quot;params&quot;: [{&quot;account&quot;:&quot;${s_account}&quot;,&quot;ledger_index&quot;:&quot;${p_ledger_typeV}&quot;,&quot;queue&quot;:false}]}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
@@ -583,7 +595,7 @@
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{&quot;method&quot;:&quot;ledger&quot;,&quot;params&quot;: [{&quot;ledger_index&quot;:&quot;validated&quot;}]}</stringProp>
+                <stringProp name="Argument.value">{&quot;method&quot;:&quot;ledger&quot;,&quot;params&quot;: [{&quot;ledger_index&quot;:&quot;${p_ledger_typeV}&quot;}]}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
@@ -913,7 +925,7 @@
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{&quot;method&quot;:&quot;account_info&quot;,&quot;params&quot;: [{&quot;account&quot;:&quot;${s_account}&quot;,&quot;ledger_index&quot;:&quot;current&quot;,&quot;queue&quot;:false}]}</stringProp>
+                <stringProp name="Argument.value">{&quot;method&quot;:&quot;account_info&quot;,&quot;params&quot;: [{&quot;account&quot;:&quot;${s_account}&quot;,&quot;ledger_index&quot;:&quot;${p_ledger_typeC}&quot;,&quot;queue&quot;:false}]}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
@@ -987,7 +999,7 @@
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{&quot;method&quot;:&quot;ledger&quot;,&quot;params&quot;: [{&quot;ledger_index&quot;:&quot;current&quot;}]}</stringProp>
+                <stringProp name="Argument.value">{&quot;method&quot;:&quot;ledger&quot;,&quot;params&quot;: [{&quot;ledger_index&quot;:&quot;${p_ledger_typeC}&quot;}]}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>

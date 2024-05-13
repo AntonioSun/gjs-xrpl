@@ -6,7 +6,7 @@
 
 
       // Defines a 'Random Variable' config element
-      random name: 'Random ledger index number', variable: 'ledgerIndex', minimum: 30000000, maximum: 85478162, perUser: true
+      random name: 'Random ledger index number', variable: 'ledgerIndex', minimum: 87925128, maximum: 87966421, perUser: true
 
       debug '--== Tx: book_offers ==--', displayJMeterVariables: true, displayJMeterProperties: true, enabled: false
       // transaction('Tx01 book_offers', generate: true) {

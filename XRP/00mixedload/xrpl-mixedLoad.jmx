@@ -756,8 +756,8 @@
       </ThreadGroup>
       <hashTree>
         <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random ledger index number" enabled="true">
-          <stringProp name="minimumValue">30000000</stringProp>
-          <stringProp name="maximumValue">85478162</stringProp>
+          <stringProp name="minimumValue">87925128</stringProp>
+          <stringProp name="maximumValue">87966421</stringProp>
           <boolProp name="perThread">true</boolProp>
           <stringProp name="variableName">ledgerIndex</stringProp>
           <stringProp name="outputFormat"></stringProp>

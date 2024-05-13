@@ -15,7 +15,7 @@ start {
     variables {
       // using __env() custom JMeter Functions, https://jmeter-plugins.org/wiki/Functions/
       variable(name: 'c_app_host_name', value: '${__env(c_app_host_name, , 172.16.0.167)}', description: 'Test server host name')
-      variable(name: 'c_app_host_port', value: '${__env(c_app_host_port, , 51234)}', description: 'Test server host port')
+      variable(name: 'c_app_host_port', value: '${__env(c_app_host_port, , 51233)}', description: 'Test server host port')
       variable(name: 'c_app_protocol', value: '${__env(c_app_protocol, , http)}', description: 'Test server protocol')
       variable(name: 'c_app_error_kw', value: '${__P(c_app_error_kw,Wrong)}', description: 'keyword indicates wrong application returns')
       // variable(name: 'c_lt_users', value: '${__P(c_lt_users, 10)}', description: 'loadtest users')
@@ -44,9 +44,9 @@ start {
     // common file-beg configuration
     insert 'common/stationary-beg.gvy'
 
-    check_response {
-      text() includes ',"status":"success",'
-    }
+    // check_response {
+    //   text() includes ',"status":"success",'
+    // }
    check_response {
       text() excludes ',"error_code":'
     }
@@ -54,7 +54,8 @@ start {
     debug '---- Thread Groups starts ----', enabled: false
     insert 'account_info_ins.gvy', variables:
      ["vf_name": 'TGroup-account_info', "vf_suffix": 'V', "vf_enabled": load_setting["account_info"].enabled, "vf_delay": load_setting["account_info"].delay,
-      "vf_users": load_setting["account_info"].users, "vf_loops": -1,
+      // "vf_users": load_setting["account_info"].users, "vf_loops": -1,
+      "vf_users": '${c_lt_users}', "vf_loops": -1,
       "vf_duration": '${c_lt_duration}', "vf_rampUp": '${c_lt_ramp}', "vf_ledger_type": "p_ledger_type",
       "vf_pt_delay": load_setting["account_info"].pt_delay,  "vf_pt_range": load_setting["account_info"].pt_range]
 

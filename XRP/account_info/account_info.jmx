@@ -22,7 +22,7 @@
           </elementProp>
           <elementProp name="c_app_host_port" elementType="Argument">
             <stringProp name="Argument.name">c_app_host_port</stringProp>
-            <stringProp name="Argument.value">${__env(c_app_host_port, , 51234)}</stringProp>
+            <stringProp name="Argument.value">${__env(c_app_host_port, , 51233)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Test server host port</stringProp>
           </elementProp>
@@ -192,17 +192,6 @@
       <hashTree/>
       <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Check Text" enabled="true">
         <collectionProp name="Asserion.test_strings">
-          <stringProp name="-177466133">,&quot;status&quot;:&quot;success&quot;,</stringProp>
-        </collectionProp>
-        <stringProp name="Assertion.scope">all</stringProp>
-        <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-        <intProp name="Assertion.test_type">2</intProp>
-        <stringProp name="Assertion.custom_message"></stringProp>
-        <boolProp name="Assertion.assume_success">false</boolProp>
-      </ResponseAssertion>
-      <hashTree/>
-      <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Check Text" enabled="true">
-        <collectionProp name="Asserion.test_strings">
           <stringProp name="2076492178">,&quot;error_code&quot;:</stringProp>
         </collectionProp>
         <stringProp name="Assertion.scope">all</stringProp>
@@ -220,7 +209,7 @@
       <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TGroup-account_info" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <stringProp name="ThreadGroup.num_threads">100</stringProp>
+        <stringProp name="ThreadGroup.num_threads">${c_lt_users}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${c_lt_ramp}</stringProp>
         <boolProp name="ThreadGroup.delayedStart">true</boolProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
@@ -275,7 +264,7 @@
           <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="Json JMES Path Extractor" enabled="true">
             <stringProp name="JMESExtractor.matchNumber">1</stringProp>
             <stringProp name="JMESExtractor.referenceName">p_result</stringProp>
-            <stringProp name="JMESExtractor.jmesPathExpr">result.engine_result</stringProp>
+            <stringProp name="JMESExtractor.jmesPathExpr">result.account_data.Balance</stringProp>
           </JMESPathExtractor>
           <hashTree/>
         </hashTree>

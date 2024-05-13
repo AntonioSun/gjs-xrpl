@@ -36,8 +36,8 @@ start {
       variable(name: 'p_ledger_typeV', value: 'validated')
       }
 
-    csv name: 'CSV hosts', file: '../../common/clio_servers_ro.csv', variables: ["s_hlabel","c_app_host_name"], shareMode: "group"
-    csv name: 'CSV accounts', file: '../../common/accounts.csv', variables: ['s_account']
+    csv name: 'CSV hosts', file: 'servers.csv', variables: ["s_hlabel","c_app_host_name"], shareMode: "group"
+    csv name: 'CSV accounts', file: 'accounts.csv', variables: ['s_account']
 
     // common file-beg configuration
     insert 'common/stationary-beg.gvy'

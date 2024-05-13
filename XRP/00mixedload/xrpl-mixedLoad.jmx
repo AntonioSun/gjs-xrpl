@@ -120,7 +120,7 @@
       </Arguments>
       <hashTree/>
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV hosts" enabled="true">
-        <stringProp name="filename">../../common/clio_servers_ro.csv</stringProp>
+        <stringProp name="filename">servers.csv</stringProp>
         <stringProp name="fileEncoding">UTF-8</stringProp>
         <stringProp name="variableNames">s_hlabel,c_app_host_name</stringProp>
         <boolProp name="ignoreFirstLine">false</boolProp>
@@ -132,7 +132,7 @@
       </CSVDataSet>
       <hashTree/>
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV accounts" enabled="true">
-        <stringProp name="filename">../../common/accounts.csv</stringProp>
+        <stringProp name="filename">accounts.csv</stringProp>
         <stringProp name="fileEncoding">UTF-8</stringProp>
         <stringProp name="variableNames">s_account</stringProp>
         <boolProp name="ignoreFirstLine">false</boolProp>

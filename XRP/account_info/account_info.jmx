@@ -110,6 +110,12 @@
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">application keyword expected</stringProp>
           </elementProp>
+          <elementProp name="p_ledger_type" elementType="Argument">
+            <stringProp name="Argument.name">p_ledger_type</stringProp>
+            <stringProp name="Argument.value">${__P(p_ledger_type, validated)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc"></stringProp>
+          </elementProp>
         </collectionProp>
       </Arguments>
       <hashTree/>
@@ -126,7 +132,7 @@
       </CSVDataSet>
       <hashTree/>
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Hosts" enabled="true">
-        <stringProp name="filename">../../common/ch_servers.csv</stringProp>
+        <stringProp name="filename">servers.csv</stringProp>
         <stringProp name="fileEncoding">UTF-8</stringProp>
         <stringProp name="variableNames">s_hlabel,c_app_host_name</stringProp>
         <boolProp name="ignoreFirstLine">false</boolProp>
@@ -157,6 +163,15 @@
         <stringProp name="HTTPSampler.response_timeout"></stringProp>
       </ConfigTestElement>
       <hashTree/>
+      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Headers" enabled="true">
+        <collectionProp name="HeaderManager.headers">
+          <elementProp name="Content-Type" elementType="Header">
+            <stringProp name="Header.name">Content-Type</stringProp>
+            <stringProp name="Header.value">application/json</stringProp>
+          </elementProp>
+        </collectionProp>
+      </HeaderManager>
+      <hashTree/>
       <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="---- default error checkings ----" enabled="false">
         <boolProp name="displayJMeterProperties">false</boolProp>
         <boolProp name="displayJMeterVariables">true</boolProp>
@@ -179,7 +194,7 @@
         <collectionProp name="Asserion.test_strings">
           <stringProp name="-177466133">,&quot;status&quot;:&quot;success&quot;,</stringProp>
         </collectionProp>
-        <stringProp name="Assertion.scope">children</stringProp>
+        <stringProp name="Assertion.scope">all</stringProp>
         <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
         <intProp name="Assertion.test_type">2</intProp>
         <stringProp name="Assertion.custom_message"></stringProp>
@@ -190,7 +205,7 @@
         <collectionProp name="Asserion.test_strings">
           <stringProp name="2076492178">,&quot;error_code&quot;:</stringProp>
         </collectionProp>
-        <stringProp name="Assertion.scope">children</stringProp>
+        <stringProp name="Assertion.scope">all</stringProp>
         <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
         <intProp name="Assertion.test_type">6</intProp>
         <stringProp name="Assertion.custom_message"></stringProp>
@@ -203,15 +218,15 @@
         <boolProp name="displaySystemProperties">false</boolProp>
       </DebugSampler>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TGroup" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TGroup-account_info" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <stringProp name="ThreadGroup.num_threads">${c_lt_users}</stringProp>
+        <stringProp name="ThreadGroup.num_threads">100</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${c_lt_ramp}</stringProp>
         <boolProp name="ThreadGroup.delayedStart">true</boolProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
         <stringProp name="ThreadGroup.duration">${c_lt_duration}</stringProp>
-        <stringProp name="ThreadGroup.delay">${c_lt_delay}</stringProp>
+        <stringProp name="ThreadGroup.delay">0</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <intProp name="LoopController.loops">-1</intProp>
@@ -224,62 +239,44 @@
           <boolProp name="displaySystemProperties">false</boolProp>
         </DebugSampler>
         <hashTree/>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Tx01 account_info" enabled="true">
-          <boolProp name="TransactionController.includeTimers">false</boolProp>
-          <boolProp name="TransactionController.parent">true</boolProp>
-        </TransactionController>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Tx01r account_infoV" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;method&quot;:&quot;account_info&quot;,&quot;params&quot;: [{&quot;account&quot;:&quot;${s_account}&quot;,&quot;ledger_index&quot;:&quot;${p_ledger_type}&quot;,&quot;queue&quot;:false}]}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="TestPlan.comments">https://xrpl.org/account_info.html</stringProp>
+        </HTTPSamplerProxy>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Tx01r account_info" enabled="true">
-            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-              <collectionProp name="Arguments.arguments">
-                <elementProp name="" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">{&quot;method&quot;:&quot;account_info&quot;,&quot;params&quot;: [{&quot;account&quot;:&quot;${s_account}&quot;,&quot;ledger_index&quot;:&quot;validated&quot;,&quot;queue&quot;:false}]}</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                </elementProp>
-              </collectionProp>
-            </elementProp>
-            <stringProp name="HTTPSampler.domain"></stringProp>
-            <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol"></stringProp>
-            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/</stringProp>
-            <stringProp name="HTTPSampler.method">POST</stringProp>
-            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-            <stringProp name="HTTPSampler.response_timeout"></stringProp>
-            <stringProp name="TestPlan.comments">https://xrpl.org/account_info.html</stringProp>
-          </HTTPSamplerProxy>
-          <hashTree>
-            <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="Json JMES Path Extractor" enabled="true">
-              <stringProp name="JMESExtractor.matchNumber">1</stringProp>
-              <stringProp name="JMESExtractor.referenceName">p_error</stringProp>
-              <stringProp name="JMESExtractor.jmesPathExpr">result.error</stringProp>
-            </JMESPathExtractor>
-            <hashTree/>
-            <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="Json JMES Path Extractor" enabled="true">
-              <stringProp name="JMESExtractor.matchNumber">1</stringProp>
-              <stringProp name="JMESExtractor.referenceName">p_result</stringProp>
-              <stringProp name="JMESExtractor.jmesPathExpr">result.account_data.Balance</stringProp>
-            </JMESPathExtractor>
-            <hashTree/>
-          </hashTree>
-        </hashTree>
-        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Think Time Flow Control" enabled="false">
-          <intProp name="ActionProcessor.action">1</intProp>
-          <intProp name="ActionProcessor.target">0</intProp>
-          <stringProp name="ActionProcessor.duration">0</stringProp>
-        </TestAction>
-        <hashTree>
-          <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Think Time" enabled="true">
-            <stringProp name="ConstantTimer.delay">${c_tt_delay}</stringProp>
-            <stringProp name="RandomTimer.range">${c_tt_range}</stringProp>
-          </UniformRandomTimer>
+          <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="Json JMES Path Extractor" enabled="true">
+            <stringProp name="JMESExtractor.matchNumber">1</stringProp>
+            <stringProp name="JMESExtractor.referenceName">p_error</stringProp>
+            <stringProp name="JMESExtractor.jmesPathExpr">result.error</stringProp>
+          </JMESPathExtractor>
+          <hashTree/>
+          <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="Json JMES Path Extractor" enabled="true">
+            <stringProp name="JMESExtractor.matchNumber">1</stringProp>
+            <stringProp name="JMESExtractor.referenceName">p_result</stringProp>
+            <stringProp name="JMESExtractor.jmesPathExpr">result.engine_result</stringProp>
+          </JMESPathExtractor>
           <hashTree/>
         </hashTree>
         <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Pace Time Flow Control" enabled="true">
@@ -289,8 +286,8 @@
         </TestAction>
         <hashTree>
           <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Pace Time" enabled="true">
-            <stringProp name="ConstantTimer.delay">${c_pt_delay}</stringProp>
-            <stringProp name="RandomTimer.range">${c_pt_range}</stringProp>
+            <stringProp name="ConstantTimer.delay">12</stringProp>
+            <stringProp name="RandomTimer.range">3.0</stringProp>
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>

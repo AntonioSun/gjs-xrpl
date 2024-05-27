@@ -2,7 +2,7 @@ fragment {
     backend(name: 'InfluxDb Backend', classname: 'rocks.nt.apm.jmeter.JMeterInfluxDBBackendListenerClient', enabled: false) {
       arguments {
         argument(name: 'testName', value: '${c_cfg_TestName}')
-        argument(name: 'nodeName', value: '${c_cfg_TestName} - users: ${c_lt_users}, duration ${c_lt_duration}, rampup: ${c_lt_ramp}')
+        argument(name: 'nodeName', value: '${c_cfg_TestName} - users: ${c_lt_users}, duration ${c_lt_duration}, rampup: ${c_lt_ramp} (${c_app_testdesc})')
         argument(name: 'runId', value: '''${c_cfg_TestName}_${__time(yyMMdd-HHmm)}''')
         argument(name: 'influxDBHost', value: '${c_cfg_Influxdb}')
         argument(name: 'influxDBPort', value: '8086')

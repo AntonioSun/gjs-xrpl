@@ -32,6 +32,12 @@
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Test server protocol</stringProp>
           </elementProp>
+          <elementProp name="c_app_testdesc" elementType="Argument">
+            <stringProp name="Argument.name">c_app_testdesc</stringProp>
+            <stringProp name="Argument.value">${__env(c_app_testdesc,,)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">Test server protocol</stringProp>
+          </elementProp>
           <elementProp name="c_app_error_kw" elementType="Argument">
             <stringProp name="Argument.name">c_app_error_kw</stringProp>
             <stringProp name="Argument.value">${__P(c_app_error_kw,Wrong)}</stringProp>
@@ -297,7 +303,7 @@
             </elementProp>
             <elementProp name="nodeName" elementType="Argument">
               <stringProp name="Argument.name">nodeName</stringProp>
-              <stringProp name="Argument.value">${c_cfg_TestName} - users: ${c_lt_users}, duration ${c_lt_duration}, rampup: ${c_lt_ramp}</stringProp>
+              <stringProp name="Argument.value">${c_cfg_TestName} - users: ${c_lt_users}, duration ${c_lt_duration}, rampup: ${c_lt_ramp} (${c_app_testdesc})</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="runId" elementType="Argument">

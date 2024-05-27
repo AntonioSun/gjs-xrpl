@@ -20,6 +20,7 @@ start {
       variable(name: 'c_app_host_name', value: '${__env(c_app_host_name, , 172.16.0.167)}', description: 'Test server host name')
       variable(name: 'c_app_host_port', value: '${__env(c_app_host_port, , 51233)}', description: 'Test server host port')
       variable(name: 'c_app_protocol', value: '${__env(c_app_protocol, , http)}', description: 'Test server protocol')
+      variable(name: 'c_app_testdesc', value: '${__env(c_app_testdesc,,)}', description: 'Test server protocol')
       variable(name: 'c_app_error_kw', value: '${__P(c_app_error_kw,Wrong)}', description: 'keyword indicates wrong application returns')
       variable(name: 'c_lt_users', value: '${__P(c_lt_users, 10)}', description: 'loadtest users')
       variable(name: 'c_lt_ramp', value: '${__P(c_lt_ramp, 30)}', description: 'loadtest ramp up in seconds')

@@ -1,9 +1,9 @@
   fragment {
-    csv name: 'CSV book_offers', file: '../../common/book_offers.csv', variables: ["acct","vCurrency","vIssuer","ledgerHash","ledgerIndex"]
 
     group name: vf_name, enabled: vf_enabled, loops: vf_loops, users: vf_users, duration: vf_duration,
       rampUp: vf_rampUp, delay: vf_delay, keepUser: false, delayedStart: true, scheduler: true, {
 
+      csv name: 'CSV book_offers', file: '../../common/book_offers.csv', variables: ["acct","vCurrency","vIssuer","ledgerHash","ledgerIndex"]
 
       // Defines a 'Random Variable' config element
       random name: 'Random ledger index number', variable: 'ledgerIndex', minimum: 87925128, maximum: 87966421, perUser: true

@@ -8,6 +8,9 @@
         http (method: 'POST', path: '/', name: 'Tx01r ledger_current',
               comments: 'https://xrpl.org/ledger_current.html') {
           body '''{"method":"ledger_current","params": [{}]}'''
+
+          extract_jmes expression: 'result.error', variable: 'p_error'
+          extract_jmes expression: 'result.engine_result', variable: 'p_result'
         }
 
       // }

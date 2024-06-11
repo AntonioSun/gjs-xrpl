@@ -419,7 +419,20 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
           <stringProp name="TestPlan.comments">https://xrpl.org/ledger_current.html</stringProp>
         </HTTPSamplerProxy>
-        <hashTree/>
+        <hashTree>
+          <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="Json JMES Path Extractor" enabled="true">
+            <stringProp name="JMESExtractor.matchNumber">1</stringProp>
+            <stringProp name="JMESExtractor.referenceName">p_error</stringProp>
+            <stringProp name="JMESExtractor.jmesPathExpr">result.error</stringProp>
+          </JMESPathExtractor>
+          <hashTree/>
+          <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="Json JMES Path Extractor" enabled="true">
+            <stringProp name="JMESExtractor.matchNumber">1</stringProp>
+            <stringProp name="JMESExtractor.referenceName">p_result</stringProp>
+            <stringProp name="JMESExtractor.jmesPathExpr">result.engine_result</stringProp>
+          </JMESPathExtractor>
+          <hashTree/>
+        </hashTree>
         <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Pace Time Flow Control" enabled="true">
           <intProp name="ActionProcessor.action">1</intProp>
           <intProp name="ActionProcessor.target">0</intProp>
@@ -480,7 +493,20 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
           <stringProp name="TestPlan.comments">https://xrpl.org/ledger_closed.html</stringProp>
         </HTTPSamplerProxy>
-        <hashTree/>
+        <hashTree>
+          <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="Json JMES Path Extractor" enabled="true">
+            <stringProp name="JMESExtractor.matchNumber">1</stringProp>
+            <stringProp name="JMESExtractor.referenceName">p_error</stringProp>
+            <stringProp name="JMESExtractor.jmesPathExpr">result.error</stringProp>
+          </JMESPathExtractor>
+          <hashTree/>
+          <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="Json JMES Path Extractor" enabled="true">
+            <stringProp name="JMESExtractor.matchNumber">1</stringProp>
+            <stringProp name="JMESExtractor.referenceName">p_result</stringProp>
+            <stringProp name="JMESExtractor.jmesPathExpr">result.engine_result</stringProp>
+          </JMESPathExtractor>
+          <hashTree/>
+        </hashTree>
         <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Pace Time Flow Control" enabled="true">
           <intProp name="ActionProcessor.action">1</intProp>
           <intProp name="ActionProcessor.target">0</intProp>

@@ -39,13 +39,13 @@ start {
     // common file-beg configuration
     insert 'common/stationary-beg.gvy'
 
-    check_response {
+    check_response applyTo: 'children', {
       text() excludes '"error":"(noCurrent|noNetwork)","error_code":'
     }
-    check_response {
+    check_response applyTo: 'children', {
       text() excludes '"error":".*","error_code":'
     }
-    check_response {
+    check_response applyTo: 'children', {
       text() includes ',"engine_result_code":0,'
     }
 

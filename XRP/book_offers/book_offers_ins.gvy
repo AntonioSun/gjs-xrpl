@@ -21,9 +21,9 @@
     
       }
 
-      flow (name: 'Think Time Flow Control', enabled: false) {
-        uniform_timer (name: 'Think Time', delay: '${c_tt_delay}', range: '${c_tt_range}')
-      }
+      // flow (name: 'Think Time Flow Control', enabled: false) {
+      //   uniform_timer (name: 'Think Time', delay: '${c_tt_delay}', range: '${c_tt_range}')
+      // }
 
       flow (name: 'Pace Time Flow Control') {
         uniform_timer (name: 'Pace Time', delay: vf_pt_delay, range: vf_pt_range)

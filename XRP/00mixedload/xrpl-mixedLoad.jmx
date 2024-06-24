@@ -692,7 +692,7 @@
             <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="Json JMES Path Extractor" enabled="true">
               <stringProp name="JMESExtractor.matchNumber">1</stringProp>
               <stringProp name="JMESExtractor.referenceName">p_result</stringProp>
-              <stringProp name="JMESExtractor.jmesPathExpr">result.engine_result</stringProp>
+              <stringProp name="JMESExtractor.jmesPathExpr">result.status</stringProp>
             </JMESPathExtractor>
             <hashTree/>
           </hashTree>
@@ -885,7 +885,7 @@
             <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="Json JMES Path Extractor" enabled="true">
               <stringProp name="JMESExtractor.matchNumber">1</stringProp>
               <stringProp name="JMESExtractor.referenceName">p_result</stringProp>
-              <stringProp name="JMESExtractor.jmesPathExpr">result.engine_result</stringProp>
+              <stringProp name="JMESExtractor.jmesPathExpr">result.ledger_index</stringProp>
             </JMESPathExtractor>
             <hashTree/>
           </hashTree>
@@ -963,7 +963,20 @@
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
           </HTTPSamplerProxy>
-          <hashTree/>
+          <hashTree>
+            <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="Json JMES Path Extractor" enabled="true">
+              <stringProp name="JMESExtractor.matchNumber">1</stringProp>
+              <stringProp name="JMESExtractor.referenceName">p_error</stringProp>
+              <stringProp name="JMESExtractor.jmesPathExpr">result.error</stringProp>
+            </JMESPathExtractor>
+            <hashTree/>
+            <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="Json JMES Path Extractor" enabled="true">
+              <stringProp name="JMESExtractor.matchNumber">1</stringProp>
+              <stringProp name="JMESExtractor.referenceName">p_result</stringProp>
+              <stringProp name="JMESExtractor.jmesPathExpr">result.ledger_index</stringProp>
+            </JMESPathExtractor>
+            <hashTree/>
+          </hashTree>
         </hashTree>
         <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Pace Time Flow Control" enabled="true">
           <intProp name="ActionProcessor.action">1</intProp>
@@ -1126,7 +1139,7 @@
             <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="Json JMES Path Extractor" enabled="true">
               <stringProp name="JMESExtractor.matchNumber">1</stringProp>
               <stringProp name="JMESExtractor.referenceName">p_result</stringProp>
-              <stringProp name="JMESExtractor.jmesPathExpr">result.engine_result</stringProp>
+              <stringProp name="JMESExtractor.jmesPathExpr">result.status</stringProp>
             </JMESPathExtractor>
             <hashTree/>
           </hashTree>
@@ -1206,7 +1219,7 @@
             <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="Json JMES Path Extractor" enabled="true">
               <stringProp name="JMESExtractor.matchNumber">1</stringProp>
               <stringProp name="JMESExtractor.referenceName">p_result</stringProp>
-              <stringProp name="JMESExtractor.jmesPathExpr">result.engine_result</stringProp>
+              <stringProp name="JMESExtractor.jmesPathExpr">result.status</stringProp>
             </JMESPathExtractor>
             <hashTree/>
           </hashTree>

@@ -16,7 +16,7 @@
           body '''{"method":"book_offers","params": [{"ledger_index": "${ledgerIndex}","taker": "${acct}","taker_gets": {"currency": "${vCurrency}","issuer": "${vIssuer}"},"taker_pays": {"currency": "XRP"}}]}'''
 
           extract_jmes expression: 'result.error', variable: 'p_error'
-          extract_jmes expression: 'result.engine_result', variable: 'p_result'
+          extract_jmes expression: 'result.ledger_index', variable: 'p_result'
         }
     
       }

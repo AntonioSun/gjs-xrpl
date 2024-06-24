@@ -11,8 +11,11 @@
         http (method: 'POST', path: '/', name: 'Tx01r ledger_data') {
           body '''{"method":"ledger_data","params": [{"ledger_index":"${ledgerIndex}","binary":false}]}'''
           //extract_jmes expression: 'book.id', variable: 'p_bookId'
-        }
-    
+
+          extract_jmes expression: 'result.error', variable: 'p_error'
+          extract_jmes expression: 'result.ledger_index', variable: 'p_result'
+       }
+
       }
 
       // flow (name: 'Think Time Flow Control', enabled: false) {

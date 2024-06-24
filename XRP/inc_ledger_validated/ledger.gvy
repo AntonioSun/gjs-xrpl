@@ -11,7 +11,7 @@
           body '''{"method":"ledger","params": [{"ledger_index":"${'''+vf_ledger_type+'''}"}]}'''
 
           extract_jmes expression: 'result.error', variable: 'p_error'
-          extract_jmes expression: 'result.engine_result', variable: 'p_result'
+          extract_jmes expression: 'result.status', variable: 'p_result'
         }
 
       }

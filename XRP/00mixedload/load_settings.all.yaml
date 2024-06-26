@@ -1,11 +1,11 @@
 settings:
-        server_info:    { enabled:  true, users: 105, pt_delay:    51, pt_range:    3, delay: 0 }
-        server_state:   { enabled:  true, users:   2, pt_delay:   160, pt_range:   20, delay: 0 }
-        account_info:   { enabled:  true, users: 100, pt_delay:    12, pt_range:    3, delay: 0 }
-        fee:            { enabled:  true, users:   5, pt_delay:    30, pt_range:    3, delay: 0 }
-        ledger:         { enabled:  true, users:  30, pt_delay:     3, pt_range:    1, delay: 0 }
-        ledger_current: { enabled:  true, users:   5, pt_delay:    60, pt_range:    6, delay: 0 }
-        ledger_closed:  { enabled:  true, users:   5, pt_delay:    60, pt_range:    6, delay: 0 }
-        nft_info:       { enabled:  true, users:   1, pt_delay:   100, pt_range:   20, delay: 0 }
-        ledger_data:    { enabled:  true, users:   1, pt_delay:   100, pt_range:   20, delay: 0 }
-        book_offers:    { enabled:  true, users:  30, pt_delay:  1200, pt_range:   20, delay: 0 }
+        server_info:    { enabled:  true, users: 300, pt_delay:    50, pt_range:   20, delay: 0 }
+        server_state:   { enabled:  true, users:  25, pt_delay:  1000, pt_range:   20, delay: 0 }
+        account_info:   { enabled:  true, users:  60, pt_delay:    50, pt_range:   20, delay: 0 }
+        fee:            { enabled:  true, users:  20, pt_delay:  1000, pt_range:   20, delay: 0 }
+        ledger:         { enabled:  true, users: 138, pt_delay:   450, pt_range:   20, delay: 0 }
+        ledger_current: { enabled:  true, users:  15, pt_delay:  1000, pt_range:   20, delay: 0 }
+        ledger_closed:  { enabled:  true, users:  15, pt_delay:  1000, pt_range:   20, delay: 0 }
+        nft_info:       { enabled:  true, users:   2, pt_delay:   300, pt_range:   20, delay: 0 }
+        ledger_data:    { enabled:  true, users:  20, pt_delay:  1100, pt_range:   20, delay: 0 }
+        book_offers:    { enabled:  true, users:  15, pt_delay:   750, pt_range:   20, delay: 0 }
